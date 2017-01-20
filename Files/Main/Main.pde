@@ -8,93 +8,10 @@ void setup()
   dataInit();
 }
 
-//GLOBAL VARIABLES
-int screenIndex = 0;
-int menuIndex = 0;
-int splashOp = 0;
-boolean splashCheck = false;
-
-PFont splashFont;
-PFont menuFont;
-
-ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
-
 void draw()
 {
   background(0);
   screenControl();
-}
-
-void screenControl()
-{  
-  switch(screenIndex)
-  {
-    case 0://Splash Screen
-    {
-      if(splashOp >=0 && splashOp <255 && splashCheck == false)
-      {
-       splashOp += 2;
-      }
-      else if(splashOp > 255)
-      {
-        splashCheck = true;
-        splashOp -= 2;
-      }
-      else if(splashOp >= 0)
-      {
-       splashOp -= 2; 
-      }
-      else
-      {
-       screenIndex = 1;//go to menu 
-      }
-      drawSplash();
-      
-      break;
-    }
-    case 1://Menu Screen
-    {
-      menuControl();
-      
-      break;
-    }
-    case 2://Game Screen
-    {
-      
-      break;
-    }
-  }
-}
-
-void menuControl()
-{
-  //things common to all menu options
-  textFont(menuFont,50);
-  drawMainMenu();
-  
-  switch(menuIndex)
-  {
-    case 0://Play - game options
-    {
-     
-      break;
-    }
-    case 1://High Scores 
-    {
-      
-      break;
-    }
-    case 2://Options
-    {
-      
-      break;
-    }
-    case 3://Acheivements
-    {
-      
-      break;
-    }
-  }
 }
 
 void drawSplash()
@@ -115,20 +32,16 @@ void drawMainMenu()
   {
     menuOptions.get(i).mouseDet();
     menuOptions.get(i).drawOption();
+    
+    if(menuOptions.get(i).clicked == true)
+    {
+      menuIndex = i; 
+      selected = menuOptions.get(i);
+    }
   }
 }
 
-void dataInit()
+void drawPlay()
 {
-  textFont(menuFont,50);
-  String[] menuNames = {"Play","High Scores","Achievements","Options"};
-  
-  for(int i=0;i<menuNames.length;i++)
-  {
-    float optionX = (width/3)-textWidth(menuNames[i]);
-    float optionY = (height/3)+((textDescent()+textAscent())*i);
-    menuOpt o = new menuOpt(menuNames[i],optionX,optionY);
-    menuOptions.add(o);
-    
-  }
+  text(selected.value,width/2,height/2);
 }
