@@ -51,6 +51,14 @@ class menuOpt
       hover = true;
       if(mousePressed)
       {
+        if(clicked ==false)
+        {
+          menuLineX = 0; 
+          menuBoxY = 0;
+          menuBoxWidth = 0;
+          menuBoxHeight = 0;
+        }
+        
         clicked = true; 
         
         for(int i=0;i<menuOptions.size();i++)

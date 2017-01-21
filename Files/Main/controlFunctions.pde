@@ -5,7 +5,11 @@ void screenControl()
   {
     case 0://Splash Screen
     {
-      if(splashOp >=0 && splashOp <255 && splashCheck == false)
+      if(keyPressed && key == 32)
+      {
+        screenIndex = 1;  
+      }
+      else if(splashOp >=0 && splashOp <255 && splashCheck == false)
       {
        splashOp += 2;
       }
@@ -55,17 +59,17 @@ void menuControl()
     }
     case 1://High Scores 
     {
-      text("high scores",width/2,height/2);
+      drawHigh();
       break;
     }
     case 2://Acheivements
     {
-      text("achievements",width/2,height/2);
+      drawAchieve();
       break;
     }
     case 3://Options
     {
-      text("options",width/2,height/2);
+      drawOptions();
       break;
     }
     case 4://Title
