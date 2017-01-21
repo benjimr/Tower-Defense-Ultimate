@@ -68,5 +68,9 @@ void menuControl()
       text("options",width/2,height/2);
       break;
     }
+    case 4://Title
+    {
+      drawTitle();
+    }
   }
 }
