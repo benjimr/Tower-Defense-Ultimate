@@ -11,4 +11,12 @@ void dataInit()
     menuOptions.add(o);
     
   }
+  
+  Table t = loadTable("maps.csv","header");
+  
+  for(TableRow row:t.rows())
+  {
+     map m = new map(row);
+     maps.add(m);
+  }
 }

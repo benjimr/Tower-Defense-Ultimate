@@ -14,6 +14,7 @@ void draw()
   screenControl();
 }
 
+//SPLASH DRAW FUNCTION
 void drawSplash()
 {
  textFont(splashFont,50);
@@ -25,6 +26,8 @@ void drawSplash()
  fill(255,255,255,splashOp);
  text(splashVal,splashX,splashY);
 }
+
+//IN MENU DRAW FUNCTIONS
 
 void drawMainMenu()
 {  
@@ -45,7 +48,7 @@ void drawMainMenu()
       titleCheck = true; 
     }
   }
-
+/*
   if(titleCheck == false && mousePressed)
   {
     menuIndex = 4;
@@ -60,11 +63,21 @@ void drawMainMenu()
   {
    titleCheck =false; 
   }
+  */
 }
 
 void drawPlay()
 {
   drawMenuBox();
+  goWidth = menuBoxWidth/6;
+  goHeight = menuBoxHeight/5;
+  
+  goX = startX + menuBoxWidth - goWidth/2;
+  goY = menuBoxY + menuBoxHeight - goHeight - 20;
+  
+  rect(goX,goY,goWidth,goHeight);
+  
+  text("Go",goX + 20,goY+textAscent()+textDescent());
 }
 
 void drawHigh()
@@ -84,7 +97,7 @@ void drawOptions()
 
 void drawMenuBox()
 {
-  float startX = selectedMenu.xVal + textWidth(selectedMenu.value) + 20;
+  startX = selectedMenu.xVal + textWidth(selectedMenu.value) + 20;
   float endX = width/20;
   float lineY = selectedMenu.yVal - textDescent();
   
@@ -103,9 +116,7 @@ void drawMenuBox()
   
   noFill();
   rect(menuLineX,menuBoxY,menuBoxWidth,menuBoxHeight);
-  popMatrix();
-   
-  
+  popMatrix(); 
 }
 
 void drawTitle()
@@ -122,4 +133,17 @@ void drawTitle()
   text(name2,xVal-(textWidth(name2)/2),yVal+(textAscent()+textDescent())*1.4);
   text(name3,xVal-(textWidth(name3)/2),yVal+(textAscent()+textDescent())*2.8);
 
+}
+
+//IN GAME DRAW FUNCTIONS
+
+void drawMap()
+{
+   for(int i=0;i<maps.size();i++)
+   {
+     if(maps.get(i).name.equals(selectedMap)) 
+     {
+       maps.get(i).drawMap(); 
+     }
+   }
 }

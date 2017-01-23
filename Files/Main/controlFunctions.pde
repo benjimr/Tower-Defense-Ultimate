@@ -38,7 +38,7 @@ void screenControl()
     }
     case 2://Game Screen
     {
-      
+      gameControl();
       break;
     }
   }
@@ -49,12 +49,16 @@ void menuControl()
   //things common to all menu options
   textFont(menuFont,50);
   drawMainMenu();
-  
   switch(menuIndex)
   {
     case 0://Play - game options
     {
       drawPlay();
+      
+      if(mouseX > goX && mouseX < goX + goWidth && mouseY > goY && mouseY <goY + goHeight && mousePressed)
+      {
+        screenIndex = 2; 
+      }
       break;
     }
     case 1://High Scores 
@@ -77,4 +81,9 @@ void menuControl()
       drawTitle();
     }
   }
+}
+
+void gameControl()
+{
+  drawMap();
 }
