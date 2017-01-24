@@ -22,4 +22,4 @@ ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
 ArrayList<map> maps = new ArrayList<map>();
 
-String selectedMap = "zigzag";
+String selectedMap = "S";
