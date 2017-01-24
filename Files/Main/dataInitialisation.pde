@@ -19,4 +19,22 @@ void dataInit()
      map m = new map(row);
      maps.add(m);
   }
+  
+  Table t2 = loadTable("rounds.csv","header");
+  
+  for(TableRow row:t2.rows())
+  {
+    round r = new round(row);
+    rounds.add(r);
+  }
+}
+
+void roundData()
+{
+   for(int j=0;j<rounds.get(currentRound).basic;j++)
+   {
+     basic b = new basic();
+     basics.add(b);
+   }
+   
 }

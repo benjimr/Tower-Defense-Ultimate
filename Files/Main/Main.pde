@@ -40,7 +40,6 @@ void drawMainMenu()
     {
       menuIndex = i; 
       selectedMenu = menuOptions.get(i);
-      
     }
     
     if(menuOptions.get(i).hover == true)
@@ -146,4 +145,15 @@ void drawMap()
        maps.get(i).drawMap(); 
      }
    }
+}
+
+void drawEnemies()
+{
+  println("in");
+  for(int i=0;i<basics.size();i++)
+  {
+    println(basics.size());
+    basics.get(i).drawEnemy();
+  }
+  
 }

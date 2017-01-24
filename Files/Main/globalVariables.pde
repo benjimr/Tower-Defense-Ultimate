@@ -18,8 +18,18 @@ float goY = 0;
 PFont splashFont;
 PFont menuFont;
 
+int currentRound = 0;
+
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
 ArrayList<map> maps = new ArrayList<map>();
+ArrayList<round> rounds = new ArrayList<round>();
+
+ArrayList<basic> basics = new ArrayList<basic>();
+/*ArrayList<>  = new ArrayList<>();
+ArrayList<>  = new ArrayList<>();
+ArrayList<>  = new ArrayList<>();
+ArrayList<>  = new ArrayList<>();
+ArrayList<>  = new ArrayList<>();*/
 
 String selectedMap = "S";
