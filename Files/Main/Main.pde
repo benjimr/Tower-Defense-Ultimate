@@ -154,6 +154,7 @@ void drawEnemies()
   {
     println(basics.size());
     basics.get(i).drawEnemy();
+    basics.get(i).moveEnemy();
   }
   
 }

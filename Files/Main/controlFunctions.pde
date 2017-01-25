@@ -88,5 +88,4 @@ void gameControl()
   roundData();
   drawMap();
   drawEnemies();
-  
 }

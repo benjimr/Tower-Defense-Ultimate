@@ -1,0 +1,4 @@
+class heavy extends enemy
+{
+  
+}

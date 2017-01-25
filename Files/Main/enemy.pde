@@ -2,10 +2,11 @@ abstract class enemy
 {
   PVector pos1 = new PVector(0,0);
   PVector dest1 = new PVector(0,0);
-  float speed;
+  PVector velocity = new PVector(0,0);
   color entityColour;
   float entityWidth;
   float entityHeight;
+  float health;
 
   
   void moveEnemy()
@@ -19,12 +20,9 @@ abstract class enemy
         selected = maps.get(i);
       }
     } 
-     
-    for(int i=0;i<selected.points.size()-1;i++)
-    {
-      pos1 = selected.points.get(i);
-      dest1 = selected.points.get(i+1);
-    }
+    
+   velocity = new PVector(2,2);
+   pos1.add(velocity);
   }
   
 }

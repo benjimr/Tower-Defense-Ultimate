@@ -13,11 +13,11 @@ class basic extends enemy
     }
     
     dest1 = new PVector(0,0);
-    speed = 0;
     entityColour = color(255,0,0);
     entityWidth = 50;
     entityHeight = 50;
   }
+  
   void drawEnemy()
   {
     fill(255,0,0);
