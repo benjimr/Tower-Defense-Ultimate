@@ -3,7 +3,15 @@ class basic extends enemy
   
   basic()
   {
-    pos1 = new PVector(0,0);
+    
+    for(int i=0;i<maps.size();i++)
+    {
+      if(maps.get(i).name.equals(selectedMap)) 
+      {
+        pos1 = new PVector(maps.get(i).points.get(0).x,maps.get(i).points.get(0).y);
+      }
+    }
+    
     dest1 = new PVector(0,0);
     speed = 0;
     entityColour = color(255,0,0);
@@ -12,12 +20,9 @@ class basic extends enemy
   }
   void drawEnemy()
   {
-    noFill();
-    stroke(entityColour);
+    fill(255,0,0);
+    stroke(0,255,0);
     
-    pushMatrix();
-    translate(width/2,height/2);
     rect(pos1.x,pos1.y,entityWidth,entityHeight);
-    popMatrix();
   }
 }

@@ -31,10 +31,14 @@ void dataInit()
 
 void roundData()
 {
-   for(int j=0;j<rounds.get(currentRound).basic;j++)
-   {
-     basic b = new basic();
-     basics.add(b);
-   }
+  if(basics.size() < rounds.get(currentRound).basic)
+  {
+    for(int i=0;i<rounds.get(currentRound).basic;i++)
+    {
+      basic b = new basic();
+      basics.add(b);
+    }
+  }
+   
    
 }

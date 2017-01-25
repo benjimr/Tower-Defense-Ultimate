@@ -1,6 +1,6 @@
 void setup()
 {
-  fullScreen(P3D,1);
+  fullScreen();
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
@@ -12,6 +12,7 @@ void draw()
 {
   background(0);
   screenControl();
+  println(rounds.get(currentRound).toString());
 }
 
 //SPLASH DRAW FUNCTION
@@ -149,7 +150,6 @@ void drawMap()
 
 void drawEnemies()
 {
-  println("in");
   for(int i=0;i<basics.size();i++)
   {
     println(basics.size());

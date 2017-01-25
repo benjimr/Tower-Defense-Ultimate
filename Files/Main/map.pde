@@ -18,8 +18,8 @@ class map
     { 
       if(!row.getString(i).equals("11"))
       {
-        float x = Float.parseFloat(row.getString(i));
-        float y = Float.parseFloat(row.getString(i+1));
+        float x = map(Float.parseFloat(row.getString(i)),-10,10,277,width-277);
+        float y = map(Float.parseFloat(row.getString(i+1)),-10,20,156,height-277);
           
         PVector p = new PVector(x,y);
         points.add(p);
@@ -31,15 +31,15 @@ class map
   {
     for(int i=0;i<points.size();i++)
     {
-      float x1 = map(points.get(i).x,-10,10,277,width-277);
-      float y1 = map(points.get(i).y,-10,10,156,height-156);
+      float x1 = points.get(i).x;
+      float y1 = points.get(i).y;
       float x2 = -1;
       float y2 = -1;
       
       if(i+1 < points.size())
       {
-         x2 = map(points.get(i+1).x,-10,10,277,width-277);
-         y2 = map(points.get(i+1).y,-10,10,156,height-156);
+         x2 = points.get(i+1).x;
+         y2 = points.get(i+1).y;
       }
       
       strokeWeight(10);
