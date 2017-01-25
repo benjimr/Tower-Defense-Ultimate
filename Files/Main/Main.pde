@@ -12,7 +12,7 @@ void draw()
 {
   background(0);
   screenControl();
-  println(rounds.get(currentRound).toString());
+ // println(rounds.get(currentRound).toString());
 }
 
 //SPLASH DRAW FUNCTION
