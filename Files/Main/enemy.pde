@@ -1,12 +1,16 @@
 abstract class enemy
 {
-  PVector pos1 = new PVector(0,0);
-  PVector dest1 = new PVector(0,0);
-  float velocity;
+  PVector source = new PVector(0,0);
+  PVector dest = new PVector(0,0);
+  PVector forward = new PVector(0,0);
+  PVector curr = new PVector(0,0);
+  float speed = 6;
+  float theta = 0;
   color entityColour;
   float entityWidth;
   float entityHeight;
   float health;
+  int destIndex;
 
   
   void moveEnemy()
@@ -18,25 +22,44 @@ abstract class enemy
       if(maps.get(i).name.equals(selectedMap))
       {
         selected = maps.get(i);
+        source = new PVector(maps.get(i).points.get(destIndex-1).x,maps.get(i).points.get(destIndex-1).y);
+        dest = new PVector(maps.get(i).points.get(destIndex).x-source.x,maps.get(i).points.get(destIndex).y-source.y);
       }
     } 
-   
-   
-   
-    println("Pos : " + pos1.x + "\t" + pos1.y);
-    println("Dest: " + 
-    dest1.x + "\t" + dest1.y);
-   
-    println("Velocity: " + velocity);
+ 
+    pushMatrix();
+   translate(source.x,source.y);
     
-    pos1.x = lerp(pos1.x,dest1.x,velocity);
-    pos1.y = lerp(pos1.y,dest1.y,velocity);
+    theta = atan2(dest.x,dest.y);
+    popMatrix();
+    forward.x = sin(theta);
+    forward.y = -cos(theta);
     
-    if(pos1 == dest1)
+      
+    if(curr.x < dest.x-10 || curr.x > dest.x + 10 || curr.y < dest.y-10 || curr.y >dest.y+10)
     {
-       
-    } 
-   
+      curr.x += forward.x * speed;
+      curr.y -= forward.y * speed; 
+    }
+    else if(destIndex+1 < selected.points.size())
+    {          
+      destIndex +=1;
+
+      curr.x = 0;
+      curr.y = 0;
+      
+     
+    }
+    
+    
+    
+     println("Forward : " + forward.x + "\t" + forward.y);
+    println("Theta: " + theta);   
+    println("Source : " + source.x + "\t" + source.y);
+    println("Dest: " + dest.x + "\t" + dest.y);
+    println("Curr: " + curr.x +"\t"+curr.y);
+    println("speed: " + speed);
+    println("destIndex: " +destIndex + "\n");
    
   }
   

@@ -1,6 +1,7 @@
 void setup()
 {
-  fullScreen();
+  println("start");
+  fullScreen(2);
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
@@ -149,12 +150,15 @@ void drawMap()
 }
 
 void drawEnemies()
-{
+{/*
   for(int i=0;i<basics.size();i++)
   {
-    println(basics.size());
-    basics.get(i).drawEnemy();
+    basics.get(i).drawEnemy(); 
     basics.get(i).moveEnemy();
+    
   }
+  */
   
+  basics.get(0).drawEnemy(); 
+  basics.get(0).moveEnemy();
 }
