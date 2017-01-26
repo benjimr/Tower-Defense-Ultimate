@@ -51,7 +51,7 @@ abstract class enemy
      
     }
     
-    
+    /*
     
      println("Forward : " + forward.x + "\t" + forward.y);
     println("Theta: " + theta);   
@@ -60,7 +60,7 @@ abstract class enemy
     println("Curr: " + curr.x +"\t"+curr.y);
     println("speed: " + speed);
     println("destIndex: " +destIndex + "\n");
-   
+   */
   }
   
 }

@@ -27,18 +27,18 @@ void dataInit()
     round r = new round(row);
     rounds.add(r);
   }
+  
 }
 
 void roundData()
 {
-  if(basics.size() < rounds.get(currentRound).basic)
+  
+  if(basics.size() < rounds.get(currentRound).basic && frameCount % 60 == 0)
   {
-    for(int i=0;i<rounds.get(currentRound).basic;i++)
-    {
       basic b = new basic();
       basics.add(b);
-    }
   }
+
    
-   
+   println("Amount: "+basics.size());
 }

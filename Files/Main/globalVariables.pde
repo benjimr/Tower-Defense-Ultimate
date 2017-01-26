@@ -33,3 +33,5 @@ ArrayList<>  = new ArrayList<>();
 ArrayList<>  = new ArrayList<>();*/
 
 String selectedMap = "S";
+
+float n;

@@ -150,15 +150,16 @@ void drawMap()
 }
 
 void drawEnemies()
-{/*
-  for(int i=0;i<basics.size();i++)
-  {
-    basics.get(i).drawEnemy(); 
-    basics.get(i).moveEnemy();
-    
-  }
-  */
+{
   
-  basics.get(0).drawEnemy(); 
-  basics.get(0).moveEnemy();
+  
+ if(basics.size()>0)
+ {
+   for(int i=0;i<basics.size();i++)
+   {
+     basics.get(i).drawEnemy(); 
+     basics.get(i).moveEnemy();
+   }
+ }
+
 }
