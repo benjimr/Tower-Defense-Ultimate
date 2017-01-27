@@ -1,13 +1,14 @@
-class basic extends enemy
+class fast extends enemy
 {
+  float size = 20;
   
-  basic()
+  fast()
   {
     entityColour = color(255,0,0);
     entityWidth = 25;
     entityHeight = 25;
-    speed = 3;
-    health = 100;
+    speed = 4.5;
+    health = 70;
   }
   
   void drawEnemy()
@@ -17,7 +18,7 @@ class basic extends enemy
     
     pushMatrix();
     translate(source.x,source.y);
-    ellipse(curr.x,curr.y,entityWidth,entityHeight);
+    triangle(curr.x,curr.y-size,curr.x+size,curr.y+size,curr.x-size,curr.y+size);
     popMatrix();
   }
 }

@@ -4,13 +4,13 @@ abstract class enemy
   PVector dest = new PVector(0,0);
   PVector forward = new PVector(0,0);
   PVector curr = new PVector(0,0);
-  float speed = 6;
+  float speed;
   float theta = 0;
   color entityColour;
   float entityWidth;
   float entityHeight;
   float health;
-  int destIndex;
+  int destIndex = 1;
 
   
   void moveEnemy()

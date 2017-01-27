@@ -1,7 +1,7 @@
 void setup()
 {
   println("start");
-  fullScreen(2);
+  fullScreen();
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
@@ -159,6 +159,25 @@ void drawEnemies()
    {
      basics.get(i).drawEnemy(); 
      basics.get(i).moveEnemy();
+   }
+ }
+
+ println(heavys.size());
+ if(heavys.size()>0)
+ {
+   for(int i=0;i<heavys.size();i++)
+   {
+     heavys.get(i).drawEnemy();
+     heavys.get(i).moveEnemy();
+   }
+ }
+ 
+ if(fasts.size()>0)
+ {
+   for(int i=0;i<fasts.size();i++)
+   {
+     fasts.get(i).drawEnemy();
+     fasts.get(i).moveEnemy();
    }
  }
 

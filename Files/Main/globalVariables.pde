@@ -18,7 +18,7 @@ float goY = 0;
 PFont splashFont;
 PFont menuFont;
 
-int currentRound = 0;
+int currentRound = 20;
 
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
@@ -26,9 +26,9 @@ ArrayList<map> maps = new ArrayList<map>();
 ArrayList<round> rounds = new ArrayList<round>();
 
 ArrayList<basic> basics = new ArrayList<basic>();
+ArrayList<heavy> heavys  = new ArrayList<heavy>();
+ArrayList<fast>  fasts = new ArrayList<fast>();
 /*ArrayList<>  = new ArrayList<>();
-ArrayList<>  = new ArrayList<>();
-ArrayList<>  = new ArrayList<>();
 ArrayList<>  = new ArrayList<>();
 ArrayList<>  = new ArrayList<>();*/
 
