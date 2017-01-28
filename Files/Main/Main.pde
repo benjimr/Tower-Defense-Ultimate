@@ -7,6 +7,7 @@ void setup()
   menuFont = createFont("CH-Thin.otf",200);
   
   dataInit();
+  towerType();
 }
 
 void draw()
@@ -160,4 +161,38 @@ void drawEnemies()
       fasts.get(i).moveEnemy();
     }
   }
+}
+
+void drawTowerMenu()
+{
+   float menuWidth = width/10;
+   
+   fill(0);
+   stroke(255);
+   strokeWeight(3);
+   
+   rect(0,0,menuWidth,height);
+   
+   for(int i=0;i<towerMenu.size();i++)
+   {
+     if(towerMenu.get(i) instanceof cannon)
+     {
+        cannon c = (cannon) towerMenu.get(i);
+        c.pos.x = menuWidth/2;
+        c.pos.y = height/6;
+
+        c.drawTower();
+     }
+     
+     if(towerMenu.get(i) instanceof AOE)
+     {
+       AOE a = (AOE) towerMenu.get(i);
+       a.pos.x = menuWidth/2;
+       a.pos.y = height/4;
+       a.drawTower();
+     }
+      
+   }
+   
+   
 }

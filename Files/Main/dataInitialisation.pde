@@ -50,3 +50,19 @@ void roundData()
     fasts.add(f);
   }    
 }
+
+void towerType()
+{
+  cannon c = new cannon();
+  towerMenu.add(c);
+  
+  AOE a = new AOE();
+  towerMenu.add(a);
+  
+  rocket r = new rocket();
+  towerMenu.add(r);
+  
+  sniper s = new sniper();
+  towerMenu.add(s);
+  
+}

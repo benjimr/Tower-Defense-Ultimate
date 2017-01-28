@@ -87,4 +87,5 @@ void gameControl()
   roundData();
   drawMap(); 
   drawEnemies();
+  drawTowerMenu();
 }

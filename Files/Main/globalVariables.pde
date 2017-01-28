@@ -17,7 +17,7 @@ float goY = 0;
 PFont splashFont;
 PFont menuFont;
 
-int currentRound = 20;
+int currentRound = 1;
 
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
@@ -29,3 +29,5 @@ ArrayList<heavy> heavys  = new ArrayList<heavy>();
 ArrayList<fast>  fasts = new ArrayList<fast>();
 
 String selectedMap = "zigzag";
+
+ArrayList<tower> towerMenu = new ArrayList<tower>();
