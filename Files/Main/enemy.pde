@@ -1,17 +1,26 @@
 abstract class enemy
 {
-  PVector source = new PVector(0,0);
-  PVector dest = new PVector(0,0);
-  PVector forward = new PVector(0,0);
-  PVector curr = new PVector(0,0);
+  PVector source;
+  PVector dest;
+  PVector forward;
+  PVector curr;
   float speed;
-  float theta = 0;
+  float theta;
   color entityColour;
   float entityWidth;
   float entityHeight;
   float health;
-  int destIndex = 1;
-
+  int destIndex;
+  
+  enemy()
+  {
+    source = new PVector(0,0);
+    dest  = new PVector(0,0);
+    forward = new PVector(0,0);
+    curr = new PVector(0,0);
+    destIndex = 1;
+    theta = 0;
+  }
   
   void moveEnemy()
   {
@@ -28,10 +37,12 @@ abstract class enemy
     } 
  
     pushMatrix();
-   translate(source.x,source.y);
     
+    translate(source.x,source.y);
     theta = atan2(dest.x,dest.y);
+    
     popMatrix();
+    
     forward.x = sin(theta);
     forward.y = -cos(theta);
     
@@ -47,20 +58,7 @@ abstract class enemy
 
       curr.x = 0;
       curr.y = 0;
-      
-     
     }
-    
-    /*
-    
-     println("Forward : " + forward.x + "\t" + forward.y);
-    println("Theta: " + theta);   
-    println("Source : " + source.x + "\t" + source.y);
-    println("Dest: " + dest.x + "\t" + dest.y);
-    println("Curr: " + curr.x +"\t"+curr.y);
-    println("speed: " + speed);
-    println("destIndex: " +destIndex + "\n");
-   */
   }
   
 }

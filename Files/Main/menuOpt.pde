@@ -5,16 +5,7 @@ class menuOpt
   float yVal;
   boolean clicked;
   boolean hover;
-  
-  menuOpt()
-  {
-    this.value = "Default";
-    this.xVal = 0;
-    this.yVal = 0;
-    this.clicked = false;
-    this.hover = false;
-  }
-  
+    
   menuOpt(String value, float xVal, float yVal)
   {
     this.value = value;
@@ -22,6 +13,11 @@ class menuOpt
     this.yVal = yVal;
     this.clicked = false;
     this.hover = false;
+  }
+  
+  menuOpt()
+  {
+    this("default",0,0); 
   }
   
   void drawOption()

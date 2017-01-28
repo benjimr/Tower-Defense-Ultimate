@@ -2,6 +2,7 @@ class heavy extends enemy
 {
   heavy()
   {
+    super();
     entityColour = color(0,255,0);
     entityWidth = 25;
     entityHeight = 25;
@@ -11,12 +12,13 @@ class heavy extends enemy
   
   void drawEnemy()
   {
-    fill(255,0,0);
-    stroke(0,255,0);
+    stroke(entityColour);
     
     pushMatrix();
+    
     translate(source.x,source.y);
-    rect(curr.x,curr.y,entityWidth,entityHeight);
+    rect(curr.x,curr.y-entityHeight/2,entityWidth,entityHeight);
+    
     popMatrix();
   }
 }

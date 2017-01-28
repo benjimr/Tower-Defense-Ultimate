@@ -1,8 +1,8 @@
 class basic extends enemy
 {
-  
   basic()
   {
+    super();
     entityColour = color(255,0,0);
     entityWidth = 25;
     entityHeight = 25;
@@ -12,12 +12,13 @@ class basic extends enemy
   
   void drawEnemy()
   {
-    fill(255,0,0);
-    stroke(0,255,0);
+    stroke(entityColour);
     
     pushMatrix();
+    
     translate(source.x,source.y);
     ellipse(curr.x,curr.y,entityWidth,entityHeight);
+    
     popMatrix();
   }
 }

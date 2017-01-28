@@ -13,7 +13,6 @@ void draw()
 {
   background(0);
   screenControl();
- // println(rounds.get(currentRound).toString());
 }
 
 //SPLASH DRAW FUNCTION
@@ -30,7 +29,6 @@ void drawSplash()
 }
 
 //IN MENU DRAW FUNCTIONS
-
 void drawMainMenu()
 {  
   for(int i=0;i<menuOptions.size();i++)
@@ -49,22 +47,6 @@ void drawMainMenu()
       titleCheck = true; 
     }
   }
-/*
-  if(titleCheck == false && mousePressed)
-  {
-    menuIndex = 4;
-    
-    for(int i=0;i<menuOptions.size();i++)
-    {
-      menuOptions.get(i).clicked = false;
-      menuOptions.get(i).hover = false;
-    }
-  }
-  else
-  {
-   titleCheck =false; 
-  }
-  */
 }
 
 void drawPlay()
@@ -137,7 +119,6 @@ void drawTitle()
 }
 
 //IN GAME DRAW FUNCTIONS
-
 void drawMap()
 {
    for(int i=0;i<maps.size();i++)
@@ -151,34 +132,32 @@ void drawMap()
 
 void drawEnemies()
 {
-  
-  
- if(basics.size()>0)
- {
-   for(int i=0;i<basics.size();i++)
-   {
-     basics.get(i).drawEnemy(); 
-     basics.get(i).moveEnemy();
-   }
- }
+  noFill();
+  strokeWeight(5);
+  if(basics.size()>0)
+  {
+    for(int i=0;i<basics.size();i++)
+    {
+      basics.get(i).drawEnemy(); 
+      basics.get(i).moveEnemy();
+    }
+  }
 
- println(heavys.size());
- if(heavys.size()>0)
- {
-   for(int i=0;i<heavys.size();i++)
-   {
-     heavys.get(i).drawEnemy();
-     heavys.get(i).moveEnemy();
-   }
- }
+  if(heavys.size()>0)
+  {
+    for(int i=0;i<heavys.size();i++)
+    {
+      heavys.get(i).drawEnemy();
+      heavys.get(i).moveEnemy();
+    }
+  }
  
- if(fasts.size()>0)
- {
-   for(int i=0;i<fasts.size();i++)
-   {
-     fasts.get(i).drawEnemy();
-     fasts.get(i).moveEnemy();
-   }
- }
-
+  if(fasts.size()>0)
+  {
+    for(int i=0;i<fasts.size();i++)
+    {
+      fasts.get(i).drawEnemy();
+      fasts.get(i).moveEnemy();
+    }
+  }
 }

@@ -11,7 +11,6 @@ float menuBoxY = 0;
 float startX =0;
 float goWidth = 0;
 float goHeight = 0;
-  
 float goX = 0;
 float goY = 0;
 
@@ -28,10 +27,5 @@ ArrayList<round> rounds = new ArrayList<round>();
 ArrayList<basic> basics = new ArrayList<basic>();
 ArrayList<heavy> heavys  = new ArrayList<heavy>();
 ArrayList<fast>  fasts = new ArrayList<fast>();
-/*ArrayList<>  = new ArrayList<>();
-ArrayList<>  = new ArrayList<>();
-ArrayList<>  = new ArrayList<>();*/
 
-String selectedMap = "S";
-
-float n;
+String selectedMap = "zigzag";

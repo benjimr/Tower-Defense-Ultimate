@@ -1,7 +1,7 @@
 void dataInit()
 {
   textFont(menuFont,50);
-  String[] menuNames = {"Play","High Scores","Achievements","Options"};
+  String[] menuNames = {"Play","High Scores","Achievements","Options",};
   
   for(int i=0;i<menuNames.length;i++)
   {

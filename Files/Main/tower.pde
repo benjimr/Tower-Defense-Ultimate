@@ -1,0 +1,4 @@
+abstract class tower
+{
+   
+}

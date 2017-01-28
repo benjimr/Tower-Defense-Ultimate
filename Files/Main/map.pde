@@ -42,14 +42,8 @@ class map
          y2 = points.get(i+1).y;
       }
       
-      strokeWeight(10);
-      stroke(0,255,0);
-      point(x1,y1);
-      textSize(30);
-      text(x1+","+y1,x1,y1);
-      
-      strokeWeight(5);
-      stroke(0,0,255);
+      strokeWeight(60);
+      stroke(255);
       
       if(x2 != -1 && y2 != -1)
       {
