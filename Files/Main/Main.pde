@@ -173,6 +173,7 @@ void drawTowerMenu()
    
    rect(0,0,menuWidth,height);
    
+   noFill();
    for(int i=0;i<towerMenu.size();i++)
    {
      if(towerMenu.get(i) instanceof cannon)

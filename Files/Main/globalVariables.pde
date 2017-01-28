@@ -31,3 +31,5 @@ ArrayList<fast>  fasts = new ArrayList<fast>();
 String selectedMap = "zigzag";
 
 ArrayList<tower> towerMenu = new ArrayList<tower>();
+
+boolean placing = false;

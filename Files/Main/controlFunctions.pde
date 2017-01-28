@@ -88,4 +88,30 @@ void gameControl()
   drawMap(); 
   drawEnemies();
   drawTowerMenu();
+  
+  for(int i=0;i<towerMenu.size();i++)
+  {
+    PVector pos = towerMenu.get(i).pos;
+    float tWidth = towerMenu.get(i).towerWidth;
+    float tHeight = towerMenu.get(i).towerHeight;
+    
+    if(mouseX > pos.x - tWidth/2 && mouseX < pos.x + tWidth/2 && mouseY > pos.y - tHeight/2 && mouseY < pos.y+tHeight/2 && mousePressed)
+    {
+      if(towerMenu.get(i) instanceof cannon)
+      {
+        cannon c = new cannon();
+        c.place();
+        c.drawTower();
+        break;
+      }
+      else if(towerMenu.get(i) instanceof AOE)
+      {
+        AOE a = new AOE();
+        a.place();
+        a.drawTower();
+        break;
+      }
+    }
+    
+  }
 }

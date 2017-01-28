@@ -18,18 +18,18 @@ abstract class tower
      
    }
    
-   boolean place()
+   void place()
    {
      pos.x = mouseX;
      pos.y = mouseY;
      
      if(mousePressed)
      {
-       return true;
+       placing = true;
      }
      else
      {
-       return false; 
+       placing = false;
      }
    }
 }
