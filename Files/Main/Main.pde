@@ -14,7 +14,6 @@ void draw()
 {
   background(0);
   screenControl();
-  println(frameRate);
 }
 
 //SPLASH DRAW FUNCTION
@@ -164,9 +163,9 @@ void drawEnemies()
 
 void drawTowerMenu()
 {
-   float menuWidth = width/10;
+   float menuWidth = width/7;
    
-   fill(0);
+   fill(0,0,50);
    stroke(255);
    strokeWeight(3);
    
@@ -192,7 +191,10 @@ void drawTowerMenu()
        a.drawTower();
      }
       
-   }
-   
-   
+   }  
+}
+
+void drawRoundUI()
+{
+  
 }

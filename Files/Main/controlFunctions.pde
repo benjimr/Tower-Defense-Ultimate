@@ -89,6 +89,8 @@ void gameControl()
   drawEnemies();
   drawTowerMenu();
   drawActiveTowers();
+  removeDeadEnemy();
+  roundControl();
   
   for(int i=0;i<activeTowers.size();i++)
   {
@@ -191,4 +193,22 @@ enemy rangeCheck(tower t)
   }
  
   return null;
+}
+
+void removeDeadEnemy()
+{
+  for(int i=0;i<enemies.size();i++)
+  {
+    enemy e = enemies.get(i);
+    
+    if(e.deadCheck() == true)
+    {
+      enemies.remove(i); 
+    }
+  }
+}
+
+void roundControl()
+{
+  drawRoundUI(); 
 }

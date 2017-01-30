@@ -61,4 +61,20 @@ abstract class enemy
     }
   }
   
+  void takeDamage(float damage)
+  {
+    health -= damage;
+  }
+  
+  boolean deadCheck()
+  {
+    if(health <= 0)
+    {
+       return true;
+    }
+    else
+    {
+      return false; 
+    }
+  }
 }

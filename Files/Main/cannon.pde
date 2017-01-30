@@ -19,8 +19,8 @@ class cannon extends tower
     strokeWeight(3);
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);
-    strokeWeight(1);
-    ellipse(pos.x,pos.y,range*2,range*2);
+   // strokeWeight(1);
+   // ellipse(pos.x,pos.y,range*2,range*2);
   }
   
   void fire()
@@ -31,9 +31,14 @@ class cannon extends tower
     {
       pushMatrix();
       translate(e.source.x,e.source.y);
+      strokeWeight(3);
+      stroke(255,0,0);
       line(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
       popMatrix();
+      e.takeDamage(damage);
     }  
+    
+    
   }
   
   

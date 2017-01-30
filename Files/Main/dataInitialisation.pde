@@ -32,23 +32,27 @@ void dataInit()
 
 void roundData()
 {
-  if(basics.size() < rounds.get(currentRound).basic && frameCount % 60 == 0)
+  if(roundStarted == false)
   {
-    enemy b = new basic();
-    enemies.add(b);
-  }
+    if(basics.size() < rounds.get(currentRound).basic && frameCount % 60 == 0)
+    {
+      enemy b = new basic();
+      enemies.add(b);
+    }
 
-  if(heavys.size() < rounds.get(currentRound).heavy && frameCount % 90 == 0)
-  {
-    enemy h = new heavy();
-    enemies.add(h);
-  }  
+    if(heavys.size() < rounds.get(currentRound).heavy && frameCount % 90 == 0)
+    {
+      enemy h = new heavy();
+      enemies.add(h);
+    }  
   
-  if(fasts.size() < rounds.get(currentRound).fast && frameCount % 120 == 0)
-  {
-    enemy f = new fast();
-    enemies.add(f);
-  }    
+    if(fasts.size() < rounds.get(currentRound).fast && frameCount % 120 == 0)
+    {
+      enemy f = new fast();
+      enemies.add(f);
+    }  
+  }
+    
 }
 
 void towerType()
@@ -64,5 +68,4 @@ void towerType()
   
   sniper s = new sniper();
   towerMenu.add(s);
-  
 }
