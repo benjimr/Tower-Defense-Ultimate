@@ -25,10 +25,12 @@ class cannon extends tower
   
   void fire()
   {
-    enemy e = rangeCheck(this); 
+    ArrayList<enemy> inRange = rangeCheck(this);
     
-    if(e != null)
+    if(inRange != null)
     {
+      enemy e = inRange.get(0);
+      
       pushMatrix();
       translate(e.source.x,e.source.y);
       strokeWeight(3);

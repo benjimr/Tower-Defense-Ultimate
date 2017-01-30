@@ -91,18 +91,9 @@ void gameControl()
   drawActiveTowers();
   removeDeadEnemy();
   roundControl();
+  towerFire();
   
-  for(int i=0;i<activeTowers.size();i++)
-  {
-    tower t = activeTowers.get(i); 
-    
-    if(t instanceof cannon)
-    {
-      cannon c = (cannon)t;
-      c.fire();
-      
-    }
-  }
+
   
   for(int i=0;i<towerMenu.size();i++)
   {
@@ -178,8 +169,9 @@ void drawSelectedTower()
   } 
 }
 
-enemy rangeCheck(tower t)
+ArrayList<enemy> rangeCheck(tower t)
 {
+  ArrayList <enemy> inRange = new ArrayList<enemy>();
   for(int i=0;i<enemies.size();i++)
   {
     enemy e = enemies.get(i);
@@ -187,12 +179,19 @@ enemy rangeCheck(tower t)
    
     if(range <= t.range)
     {
-      return e; 
+       inRange.add(e);
     }
-
   }
- 
-  return null;
+  
+  if(inRange.size() > 0)
+  {
+    return inRange;
+  }
+  else
+  {
+    return null;
+  }
+
 }
 
 void removeDeadEnemy()
@@ -211,4 +210,23 @@ void removeDeadEnemy()
 void roundControl()
 {
   drawRoundUI(); 
+}
+
+void towerFire()
+{
+    for(int i=0;i<activeTowers.size();i++)
+  {
+    tower t = activeTowers.get(i); 
+    
+    if(t instanceof cannon)
+    {
+      cannon c = (cannon)t;
+      c.fire(); 
+    }
+    else if(t instanceof AOE)
+    {
+      AOE a = (AOE)t;
+      a.fire();
+    }
+  }
 }
