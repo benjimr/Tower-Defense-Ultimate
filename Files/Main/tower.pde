@@ -7,6 +7,7 @@ abstract class tower
    float towerWidth;
    float towerHeight;
    float range;
+   String priority;
    
    tower()
    {

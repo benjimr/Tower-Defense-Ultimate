@@ -21,7 +21,7 @@ abstract class enemy
     destIndex = 1;
     theta = 0;
   }
-  
+    
   void moveEnemy()
   {
     map selected = new map();

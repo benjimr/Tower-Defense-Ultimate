@@ -28,6 +28,8 @@ ArrayList<basic> basics = new ArrayList<basic>();
 ArrayList<heavy> heavys  = new ArrayList<heavy>();
 ArrayList<fast>  fasts = new ArrayList<fast>();
 
+ArrayList<enemy> enemies = new ArrayList<enemy>();
+
 String selectedMap = "S";
 
 ArrayList<tower> towerMenu = new ArrayList<tower>();
@@ -35,3 +37,5 @@ ArrayList<tower> activeTowers = new ArrayList<tower>();
 
 boolean placing = false;
 tower selectedTower = null;
+
+boolean priorityCheck = false;

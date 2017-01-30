@@ -136,31 +136,29 @@ void drawEnemies()
 {
   noFill();
   strokeWeight(5);
-  if(basics.size()>0)
+  
+  
+  for(int i=0;i<enemies.size();i++)
   {
-    for(int i=0;i<basics.size();i++)
+    enemy e = enemies.get(i);
+    
+    if(e instanceof basic)
     {
-      basics.get(i).drawEnemy(); 
-      basics.get(i).moveEnemy();
+      basic b = (basic)enemies.get(i); 
+      b.drawEnemy();
     }
-  }
-
-  if(heavys.size()>0)
-  {
-    for(int i=0;i<heavys.size();i++)
+    else if(e instanceof heavy)
     {
-      heavys.get(i).drawEnemy();
-      heavys.get(i).moveEnemy();
+      heavy h = (heavy)enemies.get(i);
+      h.drawEnemy();
     }
-  }
- 
-  if(fasts.size()>0)
-  {
-    for(int i=0;i<fasts.size();i++)
+    else if(e instanceof fast)
     {
-      fasts.get(i).drawEnemy();
-      fasts.get(i).moveEnemy();
+      fast f = (fast)enemies.get(i);
+      f.drawEnemy();
     }
+    
+     e.moveEnemy();
   }
 }
 

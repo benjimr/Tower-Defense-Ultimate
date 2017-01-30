@@ -176,18 +176,19 @@ void drawSelectedTower()
   } 
 }
 
-basic rangeCheck(tower t)
+enemy rangeCheck(tower t)
 {
-  for(int i=0;i<basics.size();i++)
+  for(int i=0;i<enemies.size();i++)
   {
-    basic b = basics.get(i);
-
-    float range = dist(t.pos.x-b.source.x,t.pos.y-b.source.y,b.curr.x,b.curr.y);
-    
+    enemy e = enemies.get(i);
+    float range = dist(t.pos.x-e.source.x,t.pos.y-e.source.y,e.curr.x,e.curr.y);
+   
     if(range <= t.range)
     {
-      return b; 
+      return e; 
     }
+
   }
+ 
   return null;
 }

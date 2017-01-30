@@ -34,20 +34,20 @@ void roundData()
 {
   if(basics.size() < rounds.get(currentRound).basic && frameCount % 60 == 0)
   {
-    basic b = new basic();
-    basics.add(b);
+    enemy b = new basic();
+    enemies.add(b);
   }
 
   if(heavys.size() < rounds.get(currentRound).heavy && frameCount % 90 == 0)
   {
-    heavy h = new heavy();
-    heavys.add(h);
+    enemy h = new heavy();
+    enemies.add(h);
   }  
   
   if(fasts.size() < rounds.get(currentRound).fast && frameCount % 120 == 0)
   {
-    fast f = new fast();
-    fasts.add(f);
+    enemy f = new fast();
+    enemies.add(f);
   }    
 }
 
