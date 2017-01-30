@@ -88,6 +88,19 @@ void gameControl()
   drawMap(); 
   drawEnemies();
   drawTowerMenu();
+  drawActiveTowers();
+  
+  for(int i=0;i<activeTowers.size();i++)
+  {
+    tower t = activeTowers.get(i); 
+    
+    if(t instanceof cannon)
+    {
+      cannon c = (cannon)t;
+      c.fire();
+      
+    }
+  }
   
   for(int i=0;i<towerMenu.size();i++)
   {
@@ -115,7 +128,6 @@ void gameControl()
     
     if(!mousePressed && selectedTower != null && placing == true)
     {
-      println("HERE");
       activeTowers.add(selectedTower);
       placing = false;
       selectedTower = null;
@@ -128,16 +140,11 @@ void gameControl()
       selectedTower.place();
       drawSelectedTower();
   }
-  else
-  {
-  }
   
-  drawActiveTowers();
 }
 
 void drawActiveTowers()
 {
-  println(activeTowers.size());
   for(int i=0;i<activeTowers.size();i++)
   {
     if(activeTowers.get(i) instanceof cannon)
@@ -167,4 +174,20 @@ void drawSelectedTower()
     AOE a = (AOE)selectedTower;
     a.drawTower();
   } 
+}
+
+basic rangeCheck(tower t)
+{
+  for(int i=0;i<basics.size();i++)
+  {
+    basic b = basics.get(i);
+
+    float range = dist(t.pos.x-b.source.x,t.pos.y-b.source.y,b.curr.x,b.curr.y);
+    
+    if(range <= t.range)
+    {
+      return b; 
+    }
+  }
+  return null;
 }

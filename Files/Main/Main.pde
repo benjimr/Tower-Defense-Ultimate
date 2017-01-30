@@ -14,6 +14,7 @@ void draw()
 {
   background(0);
   screenControl();
+  println(frameRate);
 }
 
 //SPLASH DRAW FUNCTION

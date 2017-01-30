@@ -17,5 +17,19 @@ class cannon extends tower
     
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);
+    ellipse(pos.x,pos.y,range*2,range*2);
+  }
+  
+  void fire()
+  {
+    basic b = rangeCheck(this); 
+    
+    if(b != null)
+    {
+      pushMatrix();
+      translate(b.source.x,b.source.y);
+      line(pos.x-b.source.x,pos.y-b.source.y,b.curr.x,b.curr.y);
+      popMatrix();
+    }  
   }
 }

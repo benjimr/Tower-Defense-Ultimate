@@ -13,10 +13,6 @@ abstract class tower
      pos = new PVector(0,0);
    }
    
-   void fire()
-   {
-     
-   }
    
    void place()
    {

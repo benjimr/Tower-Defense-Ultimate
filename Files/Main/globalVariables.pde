@@ -17,7 +17,7 @@ float goY = 0;
 PFont splashFont;
 PFont menuFont;
 
-int currentRound = 1;
+int currentRound = 0;
 
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
