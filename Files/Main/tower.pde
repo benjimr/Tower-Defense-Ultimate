@@ -10,7 +10,7 @@ abstract class tower
    
    tower()
    {
-     pos = new PVector(0,0); 
+     pos = new PVector(0,0);
    }
    
    void fire()

@@ -99,19 +99,72 @@ void gameControl()
     {
       if(towerMenu.get(i) instanceof cannon)
       {
-        cannon c = new cannon();
-        c.place();
-        c.drawTower();
+        selectedTower = new cannon();
+        placing = true;
         break;
       }
       else if(towerMenu.get(i) instanceof AOE)
       {
-        AOE a = new AOE();
-        a.place();
-        a.drawTower();
+        selectedTower = new AOE();
+        placing = true;
         break;
       }
+      
+
     }
     
+    if(!mousePressed && selectedTower != null && placing == true)
+    {
+      println("HERE");
+      activeTowers.add(selectedTower);
+      placing = false;
+      selectedTower = null;
+    }
+
   }
+    
+  if(placing == true)
+  {
+      selectedTower.place();
+      drawSelectedTower();
+  }
+  else
+  {
+  }
+  
+  drawActiveTowers();
+}
+
+void drawActiveTowers()
+{
+  println(activeTowers.size());
+  for(int i=0;i<activeTowers.size();i++)
+  {
+    if(activeTowers.get(i) instanceof cannon)
+    {
+      cannon c = (cannon)activeTowers.get(i);
+      c.drawTower();
+    
+    }
+    else if(activeTowers.get(i) instanceof AOE)
+    {
+      AOE a = (AOE)activeTowers.get(i);
+      a.drawTower();
+    }
+  }
+
+}
+
+void drawSelectedTower()
+{
+  if(selectedTower instanceof cannon)
+  {
+    cannon c = (cannon)selectedTower;
+    c.drawTower();
+  }
+  else if(selectedTower instanceof AOE)
+  {
+    AOE a = (AOE)selectedTower;
+    a.drawTower();
+  } 
 }
