@@ -93,14 +93,15 @@ void gameControl()
   drawMap(); 
   drawTowerMenu();
   drawActiveTowers();
-  removeDeadEnemy();
   roundControl();
-  towerFire();
   
-  if(roundStarted == true)
+  
+  if(roundStarted == true && roundInitialised == true)
   {
     drawEnemies();
-    println(enemies.size());
+    removeDeadEnemy();
+    towerFire();
+    println(activeEnemies.size());
   }
   for(int i=0;i<towerMenu.size();i++)
   {
@@ -177,9 +178,9 @@ void drawSelectedTower()
 ArrayList<enemy> rangeCheck(tower t)
 {
   ArrayList <enemy> inRange = new ArrayList<enemy>();
-  for(int i=0;i<enemies.size();i++)
+  for(int i=0;i<activeEnemies.size();i++)
   {
-    enemy e = enemies.get(i);
+    enemy e = activeEnemies.get(i);
     float range = dist(t.pos.x-e.source.x,t.pos.y-e.source.y,e.curr.x,e.curr.y);
    
     if(range <= t.range)
@@ -201,13 +202,13 @@ ArrayList<enemy> rangeCheck(tower t)
 
 void removeDeadEnemy()
 {
-  for(int i=0;i<enemies.size();i++)
+  for(int i=0;i<activeEnemies.size();i++)
   {
-    enemy e = enemies.get(i);
+    enemy e = activeEnemies.get(i);
     
     if(e.deadCheck() == true)
     {
-      enemies.remove(i); 
+      activeEnemies.remove(i); 
     }
   }
 }

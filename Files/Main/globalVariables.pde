@@ -29,6 +29,7 @@ ArrayList<heavy> heavys  = new ArrayList<heavy>();
 ArrayList<fast>  fasts = new ArrayList<fast>();
 
 ArrayList<enemy> enemies = new ArrayList<enemy>();
+ArrayList<enemy> activeEnemies = new ArrayList<enemy>();
 
 String selectedMap = "S";
 
@@ -49,3 +50,5 @@ float roundStartWidth;
 float roundStartHeight;
 
 float menuWidth;
+
+int k=0;

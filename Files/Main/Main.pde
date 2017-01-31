@@ -139,33 +139,40 @@ void drawMap()
 
 void drawEnemies()
 {
+  
   noFill();
   strokeWeight(5);
   
-  
-  for(int i=0;i<enemies.size();i++)
+  if(k<enemies.size() && frameCount % 60 == 0)
   {
-    enemy e = enemies.get(i);
-    
-    if(e instanceof basic)
+    enemy e = enemies.get(k);
+    activeEnemies.add(e);
+    k++;
+  }
+  
+  for(int i=0;i<activeEnemies.size();i++)
+  {
+    enemy e = activeEnemies.get(i);
+   if(e instanceof basic)
     {
-      basic b = (basic)enemies.get(i); 
+      basic b = (basic)activeEnemies.get(i); 
       b.drawEnemy();
     }
     else if(e instanceof heavy)
     {
-      heavy h = (heavy)enemies.get(i);
+      heavy h = (heavy)activeEnemies.get(i);
       h.drawEnemy();
     }
     else if(e instanceof fast)
     {
-      fast f = (fast)enemies.get(i);
+      fast f = (fast)activeEnemies.get(i);
       f.drawEnemy();
     }
     
      e.moveEnemy();
-  }
+  } 
 }
+ 
 
 void drawTowerMenu()
 {
