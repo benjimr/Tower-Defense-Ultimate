@@ -17,7 +17,7 @@ float goY = 0;
 PFont splashFont;
 PFont menuFont;
 
-int currentRound = 20;
+int currentRound = 0;
 
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
@@ -41,3 +41,11 @@ tower selectedTower = null;
 boolean priorityCheck = false;
 
 boolean roundStarted = false;
+boolean roundInitialised = false;
+
+float roundStartX;
+float roundStartY;
+float roundStartWidth;
+float roundStartHeight;
+
+float menuWidth;

@@ -34,25 +34,24 @@ void roundData()
 {
   if(roundStarted == false)
   {
-    if(basics.size() < rounds.get(currentRound).basic && frameCount % 60 == 0)
+    for(int basics=0;basics<rounds.get(currentRound).basic;basics++)
     {
       enemy b = new basic();
       enemies.add(b);
     }
 
-    if(heavys.size() < rounds.get(currentRound).heavy && frameCount % 90 == 0)
+    for(int heavys=0;heavys<rounds.get(currentRound).heavy;heavys++)
     {
       enemy h = new heavy();
       enemies.add(h);
     }  
   
-    if(fasts.size() < rounds.get(currentRound).fast && frameCount % 120 == 0)
+    for(int fasts=0;fasts < rounds.get(currentRound).fast;fasts++)
     {
       enemy f = new fast();
       enemies.add(f);
     }  
   }
-    
 }
 
 void towerType()

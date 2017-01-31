@@ -6,6 +6,12 @@ void setup()
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
   
+  menuWidth = width/7;
+  roundStartX = menuWidth*0.15;
+  roundStartY = height*0.9;
+  roundStartWidth = menuWidth*.70;
+  roundStartHeight = height/15;
+ 
   dataInit();
   towerType();
 }
@@ -196,5 +202,13 @@ void drawTowerMenu()
 
 void drawRoundUI()
 {
+  String go = "Start";
+  fill(0);
+  stroke(255,0,0);
+  rect(roundStartX,roundStartY,roundStartWidth,roundStartHeight);
+  
+  fill(255,0,0);
+  textSize(50);
+  text(go,roundStartX+(roundStartWidth/2)-textWidth(go)/2,(roundStartY+(roundStartHeight/2))+textAscent()/2);
   
 }

@@ -3,7 +3,7 @@ class cannon extends tower
   cannon()
   {
     super();
-    damage = 50;
+    damage = 5;
     rateOfFire = 2;
     towerColour = color(255,0,255);
     towerWidth = 50;

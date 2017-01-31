@@ -84,17 +84,24 @@ void menuControl()
 
 void gameControl()
 {
-  roundData();
+  if(roundInitialised == false)
+  {
+    roundData();
+    roundInitialised = true;
+  }
+  
   drawMap(); 
-  drawEnemies();
   drawTowerMenu();
   drawActiveTowers();
   removeDeadEnemy();
   roundControl();
   towerFire();
   
-
-  
+  if(roundStarted == true)
+  {
+    drawEnemies();
+    println(enemies.size());
+  }
   for(int i=0;i<towerMenu.size();i++)
   {
     PVector pos = towerMenu.get(i).pos;
@@ -115,8 +122,6 @@ void gameControl()
         placing = true;
         break;
       }
-      
-
     }
     
     if(!mousePressed && selectedTower != null && placing == true)
@@ -209,7 +214,12 @@ void removeDeadEnemy()
 
 void roundControl()
 {
-  drawRoundUI(); 
+  drawRoundUI();
+  if(mouseX > roundStartX && mouseX < roundStartX+roundStartWidth && mouseY > roundStartY && mouseY < roundStartY+roundStartHeight && mousePressed)
+  {
+    roundStarted = true; 
+  }
+  
 }
 
 void towerFire()
