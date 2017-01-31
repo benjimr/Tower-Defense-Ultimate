@@ -96,13 +96,15 @@ void gameControl()
   roundControl();
   
   
-  if(roundStarted == true && roundInitialised == true)
+  if(roundStarted == true && roundInitialised == true && roundEnded == false)
   {
     drawEnemies();
     removeDeadEnemy();
     towerFire();
-    println(activeEnemies.size());
+    
+    
   }
+  
   for(int i=0;i<towerMenu.size();i++)
   {
     PVector pos = towerMenu.get(i).pos;
@@ -197,7 +199,6 @@ ArrayList<enemy> rangeCheck(tower t)
   {
     return null;
   }
-
 }
 
 void removeDeadEnemy()
@@ -209,6 +210,7 @@ void removeDeadEnemy()
     if(e.deadCheck() == true)
     {
       activeEnemies.remove(i); 
+      enemyTotal--;
     }
   }
 }
@@ -218,7 +220,29 @@ void roundControl()
   drawRoundUI();
   if(mouseX > roundStartX && mouseX < roundStartX+roundStartWidth && mouseY > roundStartY && mouseY < roundStartY+roundStartHeight && mousePressed)
   {
-    roundStarted = true; 
+    roundStarted = true;
+    roundEnded = false;
+  }
+  
+  if(enemyTotal == 0)
+  {
+    roundEnded = true; 
+    roundStarted = false;
+    enemies.clear();
+    activeEnemies.clear();
+    k=0;
+    if(currentRound<20)
+    {
+      text("Round "+(currentRound+1)+" Complete",width/2,height/2);
+      currentRound++;
+      
+    }
+    else
+    {
+      text("Complete",width/2,height/2); 
+    }
+    
+    roundData();
   }
   
 }

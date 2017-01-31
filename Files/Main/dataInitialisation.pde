@@ -34,24 +34,32 @@ void roundData()
 {
   if(roundStarted == false)
   {
+    enemyTotal = 0;
     for(int basics=0;basics<rounds.get(currentRound).basic;basics++)
     {
       enemy b = new basic();
       enemies.add(b);
+      enemyTotal++;
+      
     }
 
     for(int heavys=0;heavys<rounds.get(currentRound).heavy;heavys++)
     {
       enemy h = new heavy();
       enemies.add(h);
+      enemyTotal++;
     }  
   
     for(int fasts=0;fasts < rounds.get(currentRound).fast;fasts++)
     {
       enemy f = new fast();
       enemies.add(f);
+      enemyTotal++;
     }  
+    
+    Collections.shuffle(enemies);
   }
+  
 }
 
 void towerType()

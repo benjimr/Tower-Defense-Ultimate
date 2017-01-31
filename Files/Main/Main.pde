@@ -5,8 +5,9 @@ void setup()
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
+  gameFont = createFont("pixel.otf",200);
   
-  menuWidth = width/7;
+  menuWidth = width/6;
   roundStartX = menuWidth*0.15;
   roundStartY = height*0.9;
   roundStartWidth = menuWidth*.70;
@@ -139,11 +140,12 @@ void drawMap()
 
 void drawEnemies()
 {
-  
+    println("ArrayList size = "+activeEnemies.size()+"\t"+"Enemy Total = "+enemyTotal);
+
   noFill();
   strokeWeight(5);
   
-  if(k<enemies.size() && frameCount % 60 == 0)
+  if(k<enemies.size() && frameCount % 15 == 0)
   {
     enemy e = enemies.get(k);
     activeEnemies.add(e);
@@ -176,8 +178,6 @@ void drawEnemies()
 
 void drawTowerMenu()
 {
-   float menuWidth = width/7;
-   
    fill(0,0,50);
    stroke(255);
    strokeWeight(3);
@@ -193,7 +193,7 @@ void drawTowerMenu()
         c.pos.x = menuWidth/2;
         c.pos.y = height/6;
 
-        c.drawTower();
+        c.drawTower(); 
      }
      
      if(towerMenu.get(i) instanceof AOE)
@@ -209,13 +209,17 @@ void drawTowerMenu()
 
 void drawRoundUI()
 {
+  textFont(gameFont,20);
   String go = "Start";
+  String r = ("Round:"+(currentRound+1)+"/"+"21");
   fill(0);
   stroke(255,0,0);
   rect(roundStartX,roundStartY,roundStartWidth,roundStartHeight);
   
   fill(255,0,0);
-  textSize(50);
   text(go,roundStartX+(roundStartWidth/2)-textWidth(go)/2,(roundStartY+(roundStartHeight/2))+textAscent()/2);
+  
+  textSize(25);
+  text(r,(menuWidth/2)-(textWidth(r)/2),roundStartY-textAscent());
   
 }

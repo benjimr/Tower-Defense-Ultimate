@@ -8,6 +8,7 @@ abstract class tower
    float towerHeight;
    float range;
    String priority;
+   enemy target;
    
    tower()
    {

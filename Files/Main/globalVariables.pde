@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 int screenIndex = 0;
 int menuIndex = 4;
 int splashOp = 0;
@@ -16,8 +18,9 @@ float goY = 0;
 
 PFont splashFont;
 PFont menuFont;
+PFont gameFont;
 
-int currentRound = 0;
+
 
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
@@ -43,6 +46,9 @@ boolean priorityCheck = false;
 
 boolean roundStarted = false;
 boolean roundInitialised = false;
+int currentRound = 0;
+boolean roundEnded = false;
+int enemyTotal;
 
 float roundStartX;
 float roundStartY;
