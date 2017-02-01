@@ -31,20 +31,34 @@ class cannon extends tower
   void fire()
   {
     ArrayList<enemy> inRange = rangeCheck(this);
+    
     if(inRange != null)
     {
       enemy e = super.choose(inRange);
+
+      if(millis()-timeDamage >= rateOfFire*1000)  
+      {    
+        e.takeDamage(damage);
+        timeDamage = millis();
+        drawShot = true;
+      } 
       
-      pushMatrix();
-      translate(e.source.x,e.source.y);
-      strokeWeight(5);
-      stroke(255,0,0);
-      line(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
-      popMatrix();
-      e.takeDamage(damage);
-      time = millis();
-    }  
-    
+      if(drawShot == true)
+      {
+        pushMatrix();
+        translate(e.source.x,e.source.y);
+        strokeWeight(5);
+        stroke(255,0,0);
+        line(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
+        popMatrix();
+        
+        if(millis()-timeDraw > 500)
+        {
+          drawShot = false;
+          timeDraw = millis();
+       } 
+      }
+    }
     
   }
   

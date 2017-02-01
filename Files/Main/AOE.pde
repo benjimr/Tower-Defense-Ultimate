@@ -1,20 +1,24 @@
 class AOE extends tower
 {
-  float pulse = towerWidth/2;
+  float pulse;
+  
   AOE()
   {
     super();
-    damage = 1;
+    damage = 50;
     rateOfFire = 2;
     towerColour = color(0,255,255);
     towerWidth = 50;
     towerHeight = 50;
     range = 100;
+    pulse = towerWidth/2;
   }
   
   void drawTower()
   {
     stroke(towerColour);
+    noFill();
+    strokeWeight(3);
     
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     ellipse(pos.x,pos.y,towerWidth/2,towerHeight/2);
@@ -26,26 +30,34 @@ class AOE extends tower
     
     if(inRange != null)
     {
-      stroke(towerColour);
-      strokeWeight(2);
-      pulse = lerp(pulse,range*2,0.1);
-      ellipse(pos.x,pos.y,pulse,pulse);
-      
-     if(pulse > (range*2)-1)
+      if(millis()-timeDamage >= rateOfFire*1000)
       {
-        pulse = towerWidth/2;
+        timeDamage = millis();
+        drawShot = true;
       }
       
-      for(int i=0;i<inRange.size();i++)
+      if(drawShot == true)
       {
-        inRange.get(i).takeDamage(damage); 
+        stroke(towerColour);
+        strokeWeight(2);
+        pulse = lerp(pulse,range*2,0.1);
+        ellipse(pos.x,pos.y,pulse,pulse);
+      
+        if(pulse > (range*2)-1)
+        {
+          pulse = towerWidth/2;
+          drawShot = false;
+          for(int i=0;i<inRange.size();i++)
+          {
+            inRange.get(i).takeDamage(damage); 
+          }
+        } 
       }
+ 
     }
     else
     {
-      
-        pulse = towerWidth/2; 
-      
+        pulse = towerWidth/2;  
     }
   }
 }

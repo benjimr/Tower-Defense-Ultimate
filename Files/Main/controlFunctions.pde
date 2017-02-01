@@ -253,24 +253,16 @@ void towerFire()
   for(int i=0;i<activeTowers.size();i++)
   {
     tower t = activeTowers.get(i); 
-    println((int)t.rateOfFire*1000);
-    println(millis()-time);
     
-    if(millis()-time >= t.rateOfFire*1000)  
-    {    
-      if(t instanceof cannon)
-      {
-        cannon c = (cannon)t;
-        c.fire(); 
-      }
-      else if(t instanceof AOE)
-      {
-        AOE a = (AOE)t;
-        a.fire();
-      }
-      
-      
-      
-    }   
+    if(t instanceof cannon)
+    {
+      cannon c = (cannon)t;
+      c.fire(); 
+    }
+    else if(t instanceof AOE)
+    {
+      AOE a = (AOE)t;
+      a.fire();
+    }
   }
 }

@@ -20,9 +20,6 @@ PFont splashFont;
 PFont menuFont;
 PFont gameFont;
 
-
-
-
 ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
 menuOpt selectedMenu = new menuOpt();
 ArrayList<map> maps = new ArrayList<map>();

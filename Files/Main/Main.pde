@@ -18,25 +18,11 @@ void setup()
 
 float timeDelta = 0;
 float timeAccumulator = 0;
-int time = millis();
-
 
 void draw()
 {
   background(0);
-  screenControl();
-  /*
-  int now = millis();
-  timeDelta = (now - last)/1000.0f;
-  last = now;
-  
-  timeAccumulator += timeDelta;
-  
-  println(timeDelta);
-  println(timeAccumulator);
-  */
-
-      
+  screenControl();     
 }
 
 //SPLASH DRAW FUNCTION
