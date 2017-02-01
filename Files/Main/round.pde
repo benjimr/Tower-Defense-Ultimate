@@ -17,10 +17,9 @@ class round
   
   String toString()
   {
-    return "Round: " + number + "\n" +
-           "Basic: " + basic  + "\n" +
-           "Heavy: " + heavy  + "\n" +
-           "Fast:  " + fast   + "\n" +
-           "Boss:  " + boss   + "\n";
+    return "Basic: " + (int)basic  + "\n" +
+           "Heavy: " + (int)heavy  + "\n" +
+           "Fast:  " + (int)fast   + "\n" +
+           "Boss:  " + (int)boss   + "\n";
   }  
 }

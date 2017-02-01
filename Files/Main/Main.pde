@@ -212,6 +212,7 @@ void drawRoundUI()
   textFont(gameFont,20);
   String go = "Start";
   String r = ("Round:"+(currentRound+1)+"/"+"21");
+  String e = ("Remaining Enemies:"+enemyTotal);
   fill(0);
   stroke(255,0,0);
   rect(roundStartX,roundStartY,roundStartWidth,roundStartHeight);
@@ -221,5 +222,14 @@ void drawRoundUI()
   
   textSize(25);
   text(r,(menuWidth/2)-(textWidth(r)/2),roundStartY-textAscent());
+  
+  textSize(20);
+  text(e,menuWidth+5,height);
+  
+  textSize(15);
+  text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
+  println(rounds.get(currentRound));
+  
+  
   
 }

@@ -26,10 +26,9 @@ class cannon extends tower
   void fire()
   {
     ArrayList<enemy> inRange = rangeCheck(this);
-    
     if(inRange != null)
     {
-      enemy e = inRange.get(0);
+      enemy e = super.choose(inRange);
       
       pushMatrix();
       translate(e.source.x,e.source.y);

@@ -223,9 +223,10 @@ void roundControl()
     roundStarted = true;
     roundEnded = false;
   }
-  
+  println(enemyTotal);
   if(enemyTotal == 0)
   {
+    println("HERE");
     roundEnded = true; 
     roundStarted = false;
     enemies.clear();

@@ -30,4 +30,10 @@ abstract class tower
        placing = false;
      }
    }
+   
+   enemy choose(ArrayList<enemy> inRange)
+   {
+     enemy e = new basic();
+     return e;
+   }
 }
