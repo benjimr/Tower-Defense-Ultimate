@@ -91,9 +91,7 @@ void gameControl()
   }
   
   drawMap(); 
-  drawTowerMenu();
   drawActiveTowers();
-  roundControl();
   
   
   if(roundStarted == true && roundInitialised == true && roundEnded == false)
@@ -101,9 +99,11 @@ void gameControl()
     drawEnemies();
     removeDeadEnemy();
     towerFire();
-    
-    
+
   }
+  drawTowerMenu();
+  roundControl();
+
   
   for(int i=0;i<towerMenu.size();i++)
   {
@@ -223,10 +223,10 @@ void roundControl()
     roundStarted = true;
     roundEnded = false;
   }
-  println(enemyTotal);
+ // println(enemyTotal);
   if(enemyTotal == 0)
   {
-    println("HERE");
+ //   println("HERE");
     roundEnded = true; 
     roundStarted = false;
     enemies.clear();

@@ -33,7 +33,7 @@ abstract class tower
    
    enemy choose(ArrayList<enemy> inRange)
    {
-     enemy e = new basic();
+     enemy e = inRange.get(0);
      return e;
    }
 }

@@ -15,12 +15,17 @@ class cannon extends tower
   void drawTower()
   {
     stroke(towerColour);
-    
+    noFill();
     strokeWeight(3);
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);
-   // strokeWeight(1);
-   // ellipse(pos.x,pos.y,range*2,range*2);
+    
+    if(placing == true && pos.x > menuWidth)
+    {
+      strokeWeight(1);
+      ellipse(pos.x,pos.y,range*2,range*2);
+    }
+    
   }
   
   void fire()

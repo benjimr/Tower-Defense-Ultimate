@@ -1,6 +1,5 @@
 void setup()
 {
-  println("start");
   size(1366,768);
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
@@ -17,10 +16,38 @@ void setup()
   towerType();
 }
 
+float timeDelta = 0;
+float timeAccumulator = 0;
+int last = 0;
+
+
 void draw()
 {
   background(0);
   screenControl();
+  /*
+  int now = millis();
+  timeDelta = (now - last)/1000.0f;
+  last = now;
+  
+  timeAccumulator += timeDelta;
+  
+  println(timeDelta);
+  println(timeAccumulator);
+  
+      if (timeAccumulator >= 0 && timeAccumulator < 1)  
+      {    
+        background(255, 0, 0);  
+      }  
+      if (timeAccumulator >= 1 && timeAccumulator < 2)  
+      {    
+        background(0, 0, 255);  
+      }    
+      if (timeAccumulator >= 2)   
+      {    
+        timeAccumulator = 0;  
+      }  
+      */
 }
 
 //SPLASH DRAW FUNCTION
@@ -140,7 +167,7 @@ void drawMap()
 
 void drawEnemies()
 {
-    println("ArrayList size = "+activeEnemies.size()+"\t"+"Enemy Total = "+enemyTotal);
+   // println("ArrayList size = "+activeEnemies.size()+"\t"+"Enemy Total = "+enemyTotal);
 
   noFill();
   strokeWeight(5);
@@ -228,7 +255,7 @@ void drawRoundUI()
   
   textSize(15);
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
-  println(rounds.get(currentRound));
+  //println(rounds.get(currentRound));
   
   
   
