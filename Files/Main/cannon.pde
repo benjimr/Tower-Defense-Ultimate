@@ -3,8 +3,8 @@ class cannon extends tower
   cannon()
   {
     super();
-    damage = 5;
-    rateOfFire = 2;
+    damage = 100;
+    rateOfFire = 1;
     towerColour = color(255,0,255);
     towerWidth = 50;
     towerHeight = 50;
@@ -37,11 +37,12 @@ class cannon extends tower
       
       pushMatrix();
       translate(e.source.x,e.source.y);
-      strokeWeight(3);
+      strokeWeight(5);
       stroke(255,0,0);
       line(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
       popMatrix();
       e.takeDamage(damage);
+      time = millis();
     }  
     
     

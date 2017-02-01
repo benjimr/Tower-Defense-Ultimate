@@ -18,7 +18,7 @@ void setup()
 
 float timeDelta = 0;
 float timeAccumulator = 0;
-int last = 0;
+int time = millis();
 
 
 void draw()
@@ -34,20 +34,9 @@ void draw()
   
   println(timeDelta);
   println(timeAccumulator);
-  
-      if (timeAccumulator >= 0 && timeAccumulator < 1)  
-      {    
-        background(255, 0, 0);  
-      }  
-      if (timeAccumulator >= 1 && timeAccumulator < 2)  
-      {    
-        background(0, 0, 255);  
-      }    
-      if (timeAccumulator >= 2)   
-      {    
-        timeAccumulator = 0;  
-      }  
-      */
+  */
+
+      
 }
 
 //SPLASH DRAW FUNCTION
