@@ -5,7 +5,7 @@ class AOE extends tower
   AOE()
   {
     super();
-    damage = 50;
+    damage = 70;
     rateOfFire = 2;
     towerColour = color(0,255,255);
     towerWidth = 50;
@@ -34,6 +34,10 @@ class AOE extends tower
       {
         timeDamage = millis();
         drawShot = true;
+        for(int i=0;i<inRange.size();i++)
+        {
+          inRange.get(i).takeDamage(damage); 
+        }
       }
       
       if(drawShot == true)
@@ -47,10 +51,6 @@ class AOE extends tower
         {
           pulse = towerWidth/2;
           drawShot = false;
-          for(int i=0;i<inRange.size();i++)
-          {
-            inRange.get(i).takeDamage(damage); 
-          }
         } 
       }
  

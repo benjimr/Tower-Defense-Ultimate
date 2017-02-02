@@ -231,7 +231,4 @@ void drawRoundUI()
   textSize(15);
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
   //println(rounds.get(currentRound));
-  
-  
-  
 }

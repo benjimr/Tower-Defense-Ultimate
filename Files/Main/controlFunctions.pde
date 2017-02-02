@@ -92,7 +92,7 @@ void gameControl()
   
   drawMap(); 
   drawActiveTowers();
-  
+  towerData();
   
   if(roundStarted == true && roundInitialised == true && roundEnded == false)
   {
@@ -265,4 +265,18 @@ void towerFire()
       a.fire();
     }
   }
+}
+
+void towerData()
+{
+ for(int i=0;i<activeTowers.size();i++)
+ {
+   activeTowers.get(i).isClicked(); 
+   
+   if(activeTowers.get(i).clicked == true)
+   {
+     activeTowers.get(i).drawData();
+   } 
+ }
+
 }

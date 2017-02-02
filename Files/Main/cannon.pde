@@ -32,11 +32,11 @@ class cannon extends tower
   {
     ArrayList<enemy> inRange = rangeCheck(this);
     
-    if(inRange != null)
+    if(inRange != null )
     {
       super.choose(inRange);
      
-      if(millis()-timeDamage >= rateOfFire*1000)  
+      if(millis()-timeDamage >= rateOfFire*1000 && target != null)  
       {    
         target.takeDamage(damage);
         timeDamage = millis();

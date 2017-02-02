@@ -14,6 +14,7 @@ abstract class tower
    int timeDraw;
    boolean drawShot;
    String preference;
+   boolean clicked;
    
    tower()
    {
@@ -21,9 +22,10 @@ abstract class tower
     timeDamage = millis();
      timeDraw = millis();
      drawShot = false;
-     preference = "weakest";
+     preference = "first";
      changeTarget = false;
      target = null;
+     clicked = false;
    }
    
    
@@ -103,21 +105,82 @@ abstract class tower
           }
           case "basic":
           {
-           
+            for(int i=0;i<inRange.size();i++)
+            {
+              if(inRange.get(i) instanceof basic)
+              {
+                target = inRange.get(i);
+                break;
+              }
+              else
+              {
+                target = null; 
+              }
+            }
             break;
           }
           case "heavy":
           {
-            
+            for(int i=0;i<inRange.size();i++)
+            {
+              if(inRange.get(i) instanceof heavy)
+              {
+                target = inRange.get(i);
+                break;
+              }
+              else
+              {
+                target = null; 
+              }
+            }
             break;
           }
           case "fast":
           {
-            
+            for(int i=0;i<inRange.size();i++)
+            {
+              if(inRange.get(i) instanceof fast)
+              {
+                target = inRange.get(i);
+                break;
+              }
+              else
+              {
+                target = null; 
+              }
+            }            
             break;
           }
        }
+     } 
+   }
+   
+   void isClicked()
+   {
+     if(mouseX > pos.x - towerWidth/2 && mouseX < pos.x +towerWidth/2 && mouseY > pos.y - towerHeight/2 && mouseY < pos.y + towerHeight/2 && mousePressed)
+     {
+       clicked = true; 
+       
+       for(int j=0;j<activeTowers.size();j++)
+       {
+         if(activeTowers.get(j) != this)
+         {
+           activeTowers.get(j).clicked = false;
+         }
+       }
      }
+   }
+   
+   void drawData()
+   {
+     float boxHeight = towerHeight*.75;
+     fill(255,0,0);
+     textSize(20);
+     strokeWeight(2);
+    
+     line(pos.x,pos.y,pos.x+towerWidth/2,pos.y);
+     line(pos.x+towerWidth/2,pos.y,pos.x+towerWidth,pos.y-towerHeight/2);
+     rect(pos.x+towerWidth,pos.y-towerHeight,towerWidth*2,boxHeight);
      
      
    }
