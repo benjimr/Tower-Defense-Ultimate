@@ -18,7 +18,7 @@ class map
     { 
       if(!row.getString(i).equals("11"))
       {
-        float x = map(Float.parseFloat(row.getString(i)),-10,10,277,width-277);
+        float x = map(Float.parseFloat(row.getString(i)),-10,10,menuWidth+100,width-100);
         float y = map(Float.parseFloat(row.getString(i+1)),-10,20,100,height+156);
           
         PVector p = new PVector(x,y);
@@ -29,6 +29,8 @@ class map
   
   void drawMap()
   {
+    float pathWidth = width/20; 
+    
     for(int i=0;i<points.size();i++)
     {
       float x1 = points.get(i).x;
@@ -42,15 +44,41 @@ class map
          y2 = points.get(i+1).y;
       }
       
-      strokeWeight(60);
+      strokeWeight(1);
       stroke(255);
+      
+
+      if(i==0)
+      {
+        noFill();
+        strokeWeight(5); 
+        stroke(232,165,12);
+        image(eventHorizon,x1,y1,pathWidth*2,pathWidth*2);
+        ellipse(x1,y1,pathWidth,pathWidth*2);
+      }
+      
+      if(i==points.size()-2)
+      {
+        noFill();
+        strokeWeight(5);
+        stroke(19,149,209);
+        image(eventHorizon,x2,y2,pathWidth*2,pathWidth*2);
+        ellipse(x2,y2,pathWidth,pathWidth*2);
+      }
+     
       
       if(x2 != -1 && y2 != -1)
       {
-        line(x1,y1,x2,y2);  
+        noStroke();
+        fill(41,132,192,150);
+        quad(x1,y1-pathWidth/2,x2,y2-pathWidth/2,x2,y2+pathWidth/2,x1,y1+pathWidth/2);
       }
       
+      // noStroke();
+      // fill(255);
+     //  ellipse(x1,y1,pathWidth,pathWidth);
       
+
     }
   }
 }

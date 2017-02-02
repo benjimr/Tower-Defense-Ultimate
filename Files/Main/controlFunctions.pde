@@ -1,4 +1,3 @@
-
 void screenControl()
 {  
   switch(screenIndex)
@@ -126,14 +125,6 @@ void gameControl()
         break;
       }
     }
-    
-    if(!mousePressed && selectedTower != null && placing == true)
-    {
-      activeTowers.add(selectedTower);
-      placing = false;
-      selectedTower = null;
-    }
-
   }
     
   if(placing == true)

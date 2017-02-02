@@ -1,7 +1,7 @@
 void setup()
 {
-  //size(1366,768);
-  fullScreen();
+  size(1366,768);
+  //fullScreen();
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);
@@ -13,6 +13,10 @@ void setup()
   roundStartWidth = menuWidth*.70;
   roundStartHeight = height/15;
  
+ imageMode(CENTER);
+  eventHorizon = new Movie(this,"eventHorizon.mp4");
+   eventHorizon.loop();
+
   dataInit();
   towerType();
 }
@@ -23,7 +27,13 @@ float timeAccumulator = 0;
 void draw()
 {
   background(0);
-  screenControl();     
+  screenControl(); 
+  
+  
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
 
 //SPLASH DRAW FUNCTION

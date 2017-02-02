@@ -1,4 +1,7 @@
 import java.util.Collections;
+import processing.video.*;
+
+Movie eventHorizon;
 
 int screenIndex = 0;
 int menuIndex = 4;
@@ -32,7 +35,7 @@ ArrayList<fast>  fasts = new ArrayList<fast>();
 ArrayList<enemy> enemies = new ArrayList<enemy>();
 ArrayList<enemy> activeEnemies = new ArrayList<enemy>();
 
-String selectedMap = "S";
+String selectedMap = "zigzag";
 
 ArrayList<tower> towerMenu = new ArrayList<tower>();
 ArrayList<tower> activeTowers = new ArrayList<tower>();

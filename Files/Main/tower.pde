@@ -19,7 +19,7 @@ abstract class tower
    tower()
    {
      pos = new PVector(0,0);
-    timeDamage = millis();
+     timeDamage = millis();
      timeDraw = millis();
      drawShot = false;
      preference = 0;
@@ -34,13 +34,23 @@ abstract class tower
      pos.x = mouseX;
      pos.y = mouseY;
      
-     if(mousePressed)
+     if(!mousePressed)
      {
        placing = true;
      }
-     else
+     else if(selectedTower != null && placing == true)
      {
-       placing = false;
+       if(pos.x - towerWidth/2 > menuWidth)
+       {
+         activeTowers.add(selectedTower);
+         placing = false;
+         selectedTower = null;
+       }
+       else
+       {
+         text("Can not place here",width/2,height/2); 
+       }
+
      }
    }
    
@@ -52,7 +62,7 @@ abstract class tower
        {
          changeTarget = false;
          break;
-       }
+       }s
        else
        {
          changeTarget = true;

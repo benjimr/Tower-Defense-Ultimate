@@ -1,5 +1,6 @@
 class cannon extends tower
 {  
+  float theta;
   cannon()
   {
     super();
@@ -8,8 +9,9 @@ class cannon extends tower
     towerColour = color(255,0,255);
     towerWidth = 50;
     towerHeight = 50;
-    range = 100;
+    range = 200;
     priority = "Heavy";
+    theta = 0;
   }
   
   void drawTower()
@@ -18,8 +20,26 @@ class cannon extends tower
     noFill();
     strokeWeight(3);
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
-    triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);
     
+     pushMatrix();
+     translate(pos.x,pos.y);
+           println(theta);
+
+    if(target != null)
+    {
+      theta = lerp(theta,atan2(target.curr.x,target.curr.y),0.1);
+      rotate(theta);
+      triangle(0,towerHeight/4,towerWidth/4,-towerHeight/4,-towerWidth/4,-towerHeight/4); 
+    }
+    else
+    {
+       theta = lerp(theta,0,0.1);
+       rotate(theta);
+       triangle(0,towerHeight/4,towerWidth/4,-towerHeight/4,-towerWidth/4,-towerHeight/4);
+    }
+         
+    popMatrix();
+   
     if(placing == true && pos.x > menuWidth)
     {
       strokeWeight(1);
