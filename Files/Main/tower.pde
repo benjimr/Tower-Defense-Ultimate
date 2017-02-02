@@ -13,7 +13,7 @@ abstract class tower
    int timeDamage;
    int timeDraw;
    boolean drawShot;
-   String preference;
+   int preference;
    boolean clicked;
    
    tower()
@@ -22,7 +22,7 @@ abstract class tower
     timeDamage = millis();
      timeDraw = millis();
      drawShot = false;
-     preference = "first";
+     preference = 0;
      changeTarget = false;
      target = null;
      clicked = false;
@@ -61,7 +61,7 @@ abstract class tower
      
      if(changeTarget == true)
      {
-       switch(preference)
+       switch(preferences[preference])
        {
           case "first":
           {
@@ -173,16 +173,16 @@ abstract class tower
    
    void drawData()
    {
-     float boxHeight = towerHeight;
-     float boxWidth = towerWidth*3;
+     float boxHeight = towerHeight*2;
+     float boxWidth = towerWidth*7;
      float boxX = pos.x+towerWidth;
      float boxY = pos.y-towerHeight;
      float border = towerWidth/10;
      
+     textSize(13);
      String d = "Damage: " + (int)damage;
      String r = "Rate of Fire: " + (int)rateOfFire;
-     String p = "Focus: " + preference;
-     
+     String p = "Focus: " + preferences[preference];
      
      
      strokeWeight(2);
@@ -192,19 +192,58 @@ abstract class tower
      line(pos.x+towerWidth/2,pos.y,pos.x+towerWidth,pos.y-towerHeight/2);
      
      fill(0);
-     rect(boxX,boxY,boxWidth,boxHeight);
+     rect(boxX,boxY,boxWidth+border*4,boxHeight);
      
-     textSize(10);
      fill(0,255,0);
      
      text(d,boxX+border,boxY+border+textAscent());
      text(r,boxX+border,boxY+border+textAscent()*2);
      text(p,boxX+border,boxY+border+textAscent()*3);
      
-     
-     
-     
-     
-     
+   
+   prefButtons.clear();
+   int j = 0;
+   for(int i=0;i<preferences.length;i++)
+   {
+     button b;
+     if(i<=2)
+     {
+       b = new button(preferences[i],false,boxX+border*j+1+(boxWidth/4)*j,boxY+textAscent()*4,boxWidth/4,textAscent());
+       j++;
+     }
+     else
+     {
+       if(i==3)
+       {
+         j=0;
+       }
+       b = new button(preferences[i],false,boxX+border*j+1+(boxWidth/4)*j,boxY+textAscent()*5+5,boxWidth/4,textAscent());
+       j++;
+     }
+     prefButtons.add(b);
    }
-}
+   
+   for(int i=0;i<prefButtons.size();i++)
+   {
+     prefButtons.get(i).drawButton(); 
+     if(prefButtons.get(i).clicked == true)
+     {
+        for(int k=0;k<preferences.length;k++)
+        {
+           if(preferences[k] == prefButtons.get(i).label)
+           {
+              preference = k; 
+           }
+        }
+     }
+   }
+   
+   
+     
+     
+     
+   }  
+     
+     
+     
+ }

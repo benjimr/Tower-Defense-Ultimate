@@ -56,3 +56,7 @@ float roundStartHeight;
 float menuWidth;
 
 int k=0;
+
+
+String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
+ArrayList<button> prefButtons = new ArrayList<button>();
