@@ -1,6 +1,7 @@
 void setup()
 {
-  size(1366,768);
+  //size(1366,768);
+  fullScreen();
   smooth(8);  
   splashFont = createFont("spektakel.otf",200);
   menuFont = createFont("CH-Thin.otf",200);

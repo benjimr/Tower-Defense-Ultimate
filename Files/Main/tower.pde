@@ -173,14 +173,37 @@ abstract class tower
    
    void drawData()
    {
-     float boxHeight = towerHeight*.75;
-     fill(255,0,0);
-     textSize(20);
+     float boxHeight = towerHeight;
+     float boxWidth = towerWidth*3;
+     float boxX = pos.x+towerWidth;
+     float boxY = pos.y-towerHeight;
+     float border = towerWidth/10;
+     
+     String d = "Damage: " + (int)damage;
+     String r = "Rate of Fire: " + (int)rateOfFire;
+     String p = "Focus: " + preference;
+     
+     
+     
      strokeWeight(2);
+     stroke(0,255,0);
     
      line(pos.x,pos.y,pos.x+towerWidth/2,pos.y);
      line(pos.x+towerWidth/2,pos.y,pos.x+towerWidth,pos.y-towerHeight/2);
-     rect(pos.x+towerWidth,pos.y-towerHeight,towerWidth*2,boxHeight);
+     
+     fill(0);
+     rect(boxX,boxY,boxWidth,boxHeight);
+     
+     textSize(10);
+     fill(0,255,0);
+     
+     text(d,boxX+border,boxY+border+textAscent());
+     text(r,boxX+border,boxY+border+textAscent()*2);
+     text(p,boxX+border,boxY+border+textAscent()*3);
+     
+     
+     
+     
      
      
    }
