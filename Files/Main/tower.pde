@@ -9,6 +9,7 @@ abstract class tower
    float range;
    String priority;
    enemy target;
+   boolean changeTarget;
    int timeDamage;
    int timeDraw;
    boolean drawShot;
@@ -20,7 +21,9 @@ abstract class tower
     timeDamage = millis();
      timeDraw = millis();
      drawShot = false;
-     preference = "first";
+     preference = "weakest";
+     changeTarget = false;
+     target = null;
    }
    
    
@@ -39,49 +42,82 @@ abstract class tower
      }
    }
    
-   enemy choose(ArrayList<enemy> inRange)
+   void choose(ArrayList<enemy> inRange)
    {
-     enemy e = inRange.get(0);
-     
-     switch(preference)
+     for(int i=0;i<inRange.size();i++)
      {
-        case "first":
-        {
-          
-          break;
-        }
-        case "last":
-        {
-         
-          break;
-        }
-        case "strongest":
-        {
-          
-          break; 
-        }
-        case "weakest":
-        {
-         
-          break;
-        }
-        case "basic":
-        {
-         
-          break;
-        }
-        case "heavy":
-        {
-          
-          break;
-        }
-        case "fast":
-        {
-          
-          break;
-        }
+       if(inRange.contains(target) && target != null)
+       {
+         changeTarget = false;
+         break;
+       }
+       else
+       {
+         changeTarget = true;
+       }
      }
-     return e;
+     
+     if(changeTarget == true)
+     {
+       switch(preference)
+       {
+          case "first":
+          {
+            target = inRange.get(0);
+            break;
+          }
+          case "last":
+          {
+            target = inRange.get(inRange.size()-1);
+            break;
+          }
+          case "strongest":
+          {
+            int highest = 0;
+            
+            for(int i=0;i<inRange.size();i++)
+            {
+              if(inRange.get(highest).health<inRange.get(i).health)
+              {
+                highest = i;
+              }
+            }
+            
+            target = inRange.get(highest);
+            break; 
+          }
+          case "weakest":
+          {
+            int lowest = 0;
+            
+            for(int i=0;i<inRange.size();i++)
+            {
+              if(inRange.get(lowest).health>inRange.get(i).health)
+              {
+                lowest = i;
+              }
+            }
+            
+            target = inRange.get(lowest);
+            break;
+          }
+          case "basic":
+          {
+           
+            break;
+          }
+          case "heavy":
+          {
+            
+            break;
+          }
+          case "fast":
+          {
+            
+            break;
+          }
+       }
+     }
      
      
    }

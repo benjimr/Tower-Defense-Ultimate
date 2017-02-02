@@ -34,11 +34,11 @@ class cannon extends tower
     
     if(inRange != null)
     {
-      enemy e = super.choose(inRange);
-
+      super.choose(inRange);
+     
       if(millis()-timeDamage >= rateOfFire*1000)  
       {    
-        e.takeDamage(damage);
+        target.takeDamage(damage);
         timeDamage = millis();
         drawShot = true;
       } 
@@ -46,10 +46,10 @@ class cannon extends tower
       if(drawShot == true)
       {
         pushMatrix();
-        translate(e.source.x,e.source.y);
+        translate(target.source.x,target.source.y);
         strokeWeight(5);
         stroke(255,0,0);
-        line(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
+        line(pos.x-target.source.x,pos.y-target.source.y,target.curr.x,target.curr.y);
         popMatrix();
         
         if(millis()-timeDraw > 500)
