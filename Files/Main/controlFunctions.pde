@@ -42,7 +42,7 @@ void screenControl()
       }
       break;
     }
-    case 3:
+    case 3://Game over
     {
       textSize(50);
       fill(255);
@@ -51,8 +51,31 @@ void screenControl()
       
       text(gOver,(width/2)-(textWidth(gOver)/2),height/2);
       
+      button r = new button("Restart",false,width/2,height/2,width/10,height/10);
+      r.drawButton();
+      
+      if(r.clicked == true)
+      {
+        resetGame();
+        screenIndex = 2; 
+      }
+      
     }
   }
+}
+
+void resetGame()
+{
+  activeTowers.clear();
+  activeEnemies.clear();
+  enemies.clear();
+  basics.clear();
+  fasts.clear();
+  heavys.clear();
+  limit = 20;
+  money = 1000;
+  enemyTotal = 0;
+  currentRound = 0;
 }
 
 void menuControl()
@@ -96,6 +119,7 @@ void menuControl()
 
 boolean gameControl()
 {
+  println(currentRound);
   if(limit == 0)
   {
     return true;
@@ -234,10 +258,8 @@ void roundControl()
     roundStarted = true;
     roundEnded = false;
   }
- // println(enemyTotal);
   if(enemyTotal == 0)
   {
- //   println("HERE");
     roundEnded = true; 
     roundStarted = false;
     enemies.clear();
@@ -280,7 +302,6 @@ void towerFire()
 
 void towerData()
 {
- println(activeTowers.size());
  for(int i=0;i<activeTowers.size();i++)
  {
    activeTowers.get(i).isClicked(); 
