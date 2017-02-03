@@ -12,6 +12,8 @@ void setup()
   roundStartY = height*0.9;
   roundStartWidth = menuWidth*.70;
   roundStartHeight = height/15;
+  
+  pathWidth = width/20; 
  
  imageMode(CENTER);
   eventHorizon = new Movie(this,"eventHorizon.mp4");
@@ -191,11 +193,14 @@ void drawEnemies()
 
 void drawTowerMenu()
 {
-   fill(0,0,50);
+   fill(0);
    stroke(255);
    strokeWeight(3);
    
    rect(0,0,menuWidth,height);
+   fill(255);
+   textSize(15);
+   text("Money: " + money,5,0+textAscent());
    
    noFill();
    for(int i=0;i<towerMenu.size();i++)
@@ -205,8 +210,10 @@ void drawTowerMenu()
         cannon c = (cannon) towerMenu.get(i);
         c.pos.x = menuWidth/2;
         c.pos.y = height/6;
-
+    
         c.drawTower(); 
+        fill(255);
+        text("Price: "+c.price,c.pos.x,c.pos.y+c.towerHeight/2+textAscent());
      }
      
      if(towerMenu.get(i) instanceof AOE)
@@ -215,6 +222,7 @@ void drawTowerMenu()
        a.pos.x = menuWidth/2;
        a.pos.y = height/4;
        a.drawTower();
+       text("Price: "+a.price,a.pos.x,a.pos.y+a.towerHeight/2+textAscent());
      }
       
    }  
@@ -227,10 +235,11 @@ void drawRoundUI()
   String r = ("Round:"+(currentRound+1)+"/"+"21");
   String e = ("Remaining Enemies:"+enemyTotal);
   fill(0);
-  stroke(255,0,0);
+  stroke(255);
+  strokeWeight(3);
   rect(roundStartX,roundStartY,roundStartWidth,roundStartHeight);
   
-  fill(255,0,0);
+  fill(255);
   text(go,roundStartX+(roundStartWidth/2)-textWidth(go)/2,(roundStartY+(roundStartHeight/2))+textAscent()/2);
   
   textSize(25);

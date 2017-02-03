@@ -50,6 +50,7 @@ boolean roundInitialised = false;
 int currentRound = 0;
 boolean roundEnded = false;
 int enemyTotal;
+int limit = 20;
 
 float roundStartX;
 float roundStartY;
@@ -60,6 +61,9 @@ float menuWidth;
 
 int k=0;
 
+float pathWidth; 
 
 String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
 ArrayList<button> prefButtons = new ArrayList<button>();
+
+int money = 1000;

@@ -8,12 +8,13 @@ class heavy extends enemy
     entityHeight = 25;
     speed = 1.5;
     health = 200;
+    value = 60;
   }
   
   void drawEnemy()
   {
     stroke(entityColour);
-    
+    noFill();
     pushMatrix();
     
     translate(source.x,source.y);

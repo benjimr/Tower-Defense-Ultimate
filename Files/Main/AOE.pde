@@ -12,6 +12,7 @@ class AOE extends tower
     towerHeight = 50;
     range = 100;
     pulse = towerWidth/2;
+    price = 120;
   }
   
   void drawTower()
@@ -22,6 +23,12 @@ class AOE extends tower
     
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     ellipse(pos.x,pos.y,towerWidth/2,towerHeight/2);
+    
+    if(placing == true && pos.x > menuWidth || clicked == true)
+    {
+      strokeWeight(1);
+      ellipse(pos.x,pos.y,range*2,range*2);
+    } 
   }
   
   void fire()

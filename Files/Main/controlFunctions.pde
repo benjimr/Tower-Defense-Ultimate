@@ -36,8 +36,21 @@ void screenControl()
     }
     case 2://Game Screen
     {
-      gameControl();
+      if(gameControl() == true)
+      {
+        screenIndex = 3;
+      }
       break;
+    }
+    case 3:
+    {
+      textSize(50);
+      fill(255);
+      
+      String gOver = "Game Over";
+      
+      text(gOver,(width/2)-(textWidth(gOver)/2),height/2);
+      
     }
   }
 }
@@ -81,8 +94,13 @@ void menuControl()
   }
 }
 
-void gameControl()
+boolean gameControl()
 {
+  if(limit == 0)
+  {
+    return true;
+  }
+  
   if(roundInitialised == false)
   {
     roundData();
@@ -113,13 +131,13 @@ void gameControl()
     
     if(mouseX > pos.x - tWidth/2 && mouseX < pos.x + tWidth/2 && mouseY > pos.y - tHeight/2 && mouseY < pos.y+tHeight/2 && mousePressed)
     {
-      if(towerMenu.get(i) instanceof cannon)
+      if(towerMenu.get(i) instanceof cannon && money >= towerMenu.get(i).price)
       {
         selectedTower = new cannon();
         placing = true;
         break;
       }
-      else if(towerMenu.get(i) instanceof AOE)
+      else if(towerMenu.get(i) instanceof AOE && money >= towerMenu.get(i).price)
       {
         selectedTower = new AOE();
         placing = true;
@@ -134,6 +152,7 @@ void gameControl()
       drawSelectedTower();
   }
   
+  return false;
 }
 
 void drawActiveTowers()
@@ -261,6 +280,7 @@ void towerFire()
 
 void towerData()
 {
+ println(activeTowers.size());
  for(int i=0;i<activeTowers.size();i++)
  {
    activeTowers.get(i).isClicked(); 

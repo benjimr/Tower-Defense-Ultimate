@@ -27,9 +27,9 @@ class button
  //used to draw all buttons
  void drawButton()
  { 
-   fill(0);
-   stroke(0,255,0);
-   strokeWeight(2);
+   noFill();
+   stroke(255);
+   
    textSize(buttonHeight/2);
    
    //check if clicked before drawing
@@ -42,9 +42,10 @@ class button
      buttonHeight = buttonHeight*0.95;
      pos.x = pos.x +(buttonWidth*0.025);
      pos.y = pos.y +(buttonHeight*0.025);
-     textSize((width/147)*0.95);
+     textSize((buttonHeight/2)*0.95);
    }
    
+   strokeWeight(2);
    rect(pos.x,pos.y,buttonWidth,buttonHeight);
       
    fill(255);

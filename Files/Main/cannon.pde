@@ -12,6 +12,7 @@ class cannon extends tower
     range = 200;
     priority = "Heavy";
     theta = 0;
+    price = 100;
   }
   
   void drawTower()
@@ -23,7 +24,6 @@ class cannon extends tower
     
      pushMatrix();
      translate(pos.x,pos.y);
-           println(theta);
 
     if(target != null)
     {

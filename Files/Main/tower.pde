@@ -16,6 +16,8 @@ abstract class tower
    int preference;
    boolean clicked;
    boolean moving;
+   boolean placeOk;
+   int price;
    
    tower()
    {
@@ -28,6 +30,7 @@ abstract class tower
      target = null;
      clicked = false;
      moving = false;
+     placeOk = true;
    }
    
    
@@ -35,6 +38,8 @@ abstract class tower
    {
      pos.x = mouseX;
      pos.y = mouseY;
+     placeOk = true;
+      
      boolean mouse;
      
      if(moving == true)
@@ -52,18 +57,50 @@ abstract class tower
      }
      else if(selectedTower != null && placing == true)
      {
-       if(pos.x - towerWidth/2 > menuWidth)
+       if(pos.x - towerWidth/2 < menuWidth)
        {
-         activeTowers.add(selectedTower);
+         placeOk = false;
+       }
+      
+       
+       map m = new map();
+       for(int i=0;i<maps.size();i++)
+       {
+         if(selectedMap == maps.get(i).name)
+         {
+            m = maps.get(i); 
+         }
+       }
+       
+       //for(int i=0;i<m.points.size()-1;i++)
+       //{
+         //quad(x1,y1-pathWidth/2,x2,y2-pathWidth/2,x2,y2+pathWidth/2,x1,y1+pathWidth/2);
+         //PVector one = m.points.get(i);  
+         //PVector two = m.points.get(i+1);
+         
+         /*if(????
+         {
+           placeOk = false; 
+         }*/
+
+//       }}
+       
+       if(placeOk == true)
+       {
+         if(!activeTowers.contains(selectedTower))
+         {
+           activeTowers.add(selectedTower);
+         }
          placing = false;
          selectedTower = null;
+         money -= price; 
        }
        else
        {
          text("Can not place here",width/2,height/2); 
        }
-
-     }
+   }
+     
    }
    
    void choose(ArrayList<enemy> inRange)
@@ -205,85 +242,91 @@ abstract class tower
      String d = "Damage: " + (int)damage;
      String r = "Rate of Fire: " + (int)rateOfFire;
      String p = "Focus: " + preferences[preference];
-     
+     String ra = "Range: " + int(range);
      
      strokeWeight(2);
-     stroke(0,255,0);
+     noStroke();
+     noFill();
     
-    
-     
-     fill(0);
      rect(boxX,boxY,boxWidth,boxHeight);
      
-     fill(0,255,0);
+     fill(255);
+     text(d,boxX+border,boxY+textAscent());
+     text(r,boxX+border,boxY+textAscent()*2);
+     text(p,boxX+border,boxY+textAscent()*3);
+     text(ra,boxX+border,boxY+textAscent()*4);
      
-     text(d,boxX+border,boxY+border+textAscent());
-     text(r,boxX+border,boxY+border+textAscent()*2);
-     text(p,boxX+border,boxY+border+textAscent()*3);
+   
+   
+   
+   
+   if(!(this instanceof AOE))
+   {
+     prefButtons.clear();
+     int j = 0;
      
-   
-   prefButtons.clear();
-   int j = 0;
-   
-   for(int i=0;i<preferences.length;i++)
-   {
-     button b = new button();
-     if(i<=1)
+     for(int i=0;i<preferences.length;i++)
      {
-       b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*4,(boxWidth/2)-border*2,textAscent()*2);
-       j++;
-     }
-     else if(i<=3)
-     {
-       if(i==2)
+       button b = new button();
+       if(i<=1)
        {
-         j=0;
+         b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*5,(boxWidth/2)-border*2,textAscent()*2);
+         j++;
        }
-       b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*6+5,(boxWidth/2)-border*2,textAscent()*2);
-       j++;
-     }
-     else if(i<=5)
-     {
-       if(i==4)
+       else if(i<=3)
        {
-         j=0;
+         if(i==2)
+         {
+           j=0;
+         }
+         b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*7+5,(boxWidth/2)-border*2,textAscent()*2);
+         j++;
        }
-       b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*8+10,(boxWidth/2)-border*2,textAscent()*2);
-       j++;
-     }
-     else if(i<=7)
-     {
-       if(i==6)
+       else if(i<=5)
        {
-         j=0;
+         if(i==4)
+         {
+           j=0;
+         }
+         b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*9+10,(boxWidth/2)-border*2,textAscent()*2);
+         j++;
        }
-       b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*10+15,(boxWidth/2)-border*2,textAscent()*2);
-       j++;
+       else if(i<=7)
+       {
+         if(i==6)
+         {
+           j=0;
+         }
+         b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*11+15,(boxWidth/2)-border*2,textAscent()*2);
+         j++;
+       }
+       prefButtons.add(b);
      }
-     prefButtons.add(b);
-   }
-   
-   for(int i=0;i<prefButtons.size();i++)
-   {
-     prefButtons.get(i).drawButton(); 
-     if(prefButtons.get(i).clicked == true)
+     
+     for(int i=0;i<prefButtons.size();i++)
      {
-        for(int k=0;k<preferences.length;k++)
-        {
-           if(preferences[k] == prefButtons.get(i).label)
-           {
-              preference = k; 
-           }
-        }
+       prefButtons.get(i).drawButton(); 
+       if(prefButtons.get(i).clicked == true)
+       {
+          for(int k=0;k<preferences.length;k++)
+          {
+             if(preferences[k] == prefButtons.get(i).label)
+             {
+                preference = k; 
+             }
+          }
+       }
      }
    }
+ 
    
-   String move = "Move";
+
+  
    
-   button b = new button("Move",false,boxX+boxWidth-textWidth(move)-border,boxY+textAscent(),textWidth(move),textAscent());
-   b.drawButton();
+   button m = new button("Move",false,boxX+boxWidth*0.75-border,boxY,boxWidth/4,textAscent()*2);
+   m.drawButton();
    
-   if(b.clicked == true)
+   if(m.clicked == true)
    {
      selectedTower = this;
      moving = true;
@@ -291,15 +334,29 @@ abstract class tower
    }
    else
    {
-    moving = false; 
+     moving = false;
    }
    
+   button s = new button("Sell",false,boxX+boxWidth*0.75-border,boxY+textAscent()*2,boxWidth/4,textAscent()*2);
+   s.drawButton();
+   
+   if(s.clicked == true)
+   {
+     sell(); 
+   }
    
      
      
      
    }
+   
+  void sell()
+  {
+    money += price/2;
+    activeTowers.remove(this);
+  }
+}
+
+
      
      
-     
- }

@@ -29,7 +29,6 @@ class map
   
   void drawMap()
   {
-    float pathWidth = width/20; 
     
     for(int i=0;i<points.size();i++)
     {
@@ -52,7 +51,7 @@ class map
       {
         noFill();
         strokeWeight(5); 
-        stroke(232,165,12);
+        stroke(255);
         image(eventHorizon,x1,y1,pathWidth*2,pathWidth*2);
         ellipse(x1,y1,pathWidth,pathWidth*2);
       }
@@ -61,7 +60,7 @@ class map
       {
         noFill();
         strokeWeight(5);
-        stroke(19,149,209);
+        stroke(255);
         image(eventHorizon,x2,y2,pathWidth*2,pathWidth*2);
         ellipse(x2,y2,pathWidth,pathWidth*2);
       }

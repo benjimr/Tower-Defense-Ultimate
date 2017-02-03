@@ -8,12 +8,13 @@ class basic extends enemy
     entityHeight = 25;
     speed = 3;
     health = 100;
+    value = 20;
   }
   
   void drawEnemy()
   {
     stroke(entityColour);
-    
+    noFill();
     pushMatrix();
     
     translate(source.x,source.y);

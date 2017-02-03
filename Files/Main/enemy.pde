@@ -11,6 +11,7 @@ abstract class enemy
   float entityHeight;
   float health;
   int destIndex;
+  int value;
   
   enemy()
   {
@@ -34,8 +35,9 @@ abstract class enemy
         source = new PVector(maps.get(i).points.get(destIndex-1).x,maps.get(i).points.get(destIndex-1).y);
         dest = new PVector(maps.get(i).points.get(destIndex).x-source.x,maps.get(i).points.get(destIndex).y-source.y);
       }
-    } 
- 
+    }
+      
+     
     pushMatrix();
     
     translate(source.x,source.y);
@@ -48,7 +50,7 @@ abstract class enemy
     
       
     if(curr.x < dest.x-10 || curr.x > dest.x + 10 || curr.y < dest.y-10 || curr.y >dest.y+10)
-    {
+    {      
       curr.x += forward.x * speed;
       curr.y -= forward.y * speed; 
     }
@@ -59,7 +61,15 @@ abstract class enemy
       curr.x = 0;
       curr.y = 0;
     }
-  }
+    else if(destIndex == selected.points.size()-1)
+    {
+      activeEnemies.remove(this);       
+      enemyTotal--;
+      limit--;
+    }
+
+    
+ } 
   
   void takeDamage(float damage)
   {
@@ -70,7 +80,8 @@ abstract class enemy
   {
     if(health <= 0)
     {
-       return true;
+      money += value;
+      return true;
     }
     else
     {

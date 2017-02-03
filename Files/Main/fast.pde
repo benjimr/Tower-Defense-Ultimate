@@ -11,12 +11,13 @@ class fast extends enemy
     speed = 4.5;
     health = 70;
     size = 20;
+    value = 40;
   }
   
   void drawEnemy()
   {
     stroke(entityColour);
-    
+    noFill();
     pushMatrix();
     
     translate(source.x,source.y);
