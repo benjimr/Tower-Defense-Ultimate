@@ -59,7 +59,7 @@ void screenControl()
         resetGame();
         screenIndex = 2; 
       }
-      
+      break;
     }
   }
 }
@@ -72,10 +72,15 @@ void resetGame()
   basics.clear();
   fasts.clear();
   heavys.clear();
+  selectedTower = null;
   limit = 20;
   money = 1000;
   enemyTotal = 0;
   currentRound = 0;
+  roundInitialised = false;
+  roundStarted = false;
+  roundEnded = false;
+  placing = false;
 }
 
 void menuControl()

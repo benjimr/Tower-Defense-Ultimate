@@ -7,8 +7,6 @@ class cannon extends tower
     damage = 100;
     rateOfFire = 1;
     towerColour = color(255,0,255);
-    towerWidth = 50;
-    towerHeight = 50;
     range = 200;
     priority = "Heavy";
     theta = 0;
@@ -56,7 +54,7 @@ class cannon extends tower
     {
       super.choose(inRange);
      
-      if(millis()-timeDamage >= rateOfFire*1000 && target != null)  
+      if(millis()-timeDamage >= 1000/rateOfFire && target != null)  
       {    
         target.takeDamage(damage);
         timeDamage = millis();
@@ -72,7 +70,7 @@ class cannon extends tower
         line(pos.x-target.source.x,pos.y-target.source.y,target.curr.x,target.curr.y);
         popMatrix();
         
-        if(millis()-timeDraw > 500)
+        if(millis()-timeDraw > (1000/rateOfFire)/3)
         {
           drawShot = false;
           timeDraw = millis();
@@ -81,6 +79,4 @@ class cannon extends tower
     }
     
   }
-  
-  
 }

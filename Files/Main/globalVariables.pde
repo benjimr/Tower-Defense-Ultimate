@@ -66,4 +66,4 @@ float pathWidth;
 String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
 ArrayList<button> prefButtons = new ArrayList<button>();
 
-int money = 1000;
+int money = 500000;

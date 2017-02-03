@@ -18,6 +18,9 @@ abstract class tower
    boolean moving;
    boolean placeOk;
    int price;
+   float upgradeMult;
+   float upgradePrice;
+   int level;
    
    tower()
    {
@@ -31,6 +34,11 @@ abstract class tower
      clicked = false;
      moving = false;
      placeOk = true;
+     towerWidth = 50;
+     towerHeight = 50;
+     upgradeMult = 1;
+     upgradePrice = 1000;
+     level = 1;
    }
    
    
@@ -233,21 +241,27 @@ abstract class tower
    void drawData()
    {
      float border = towerWidth/10;
-     float boxHeight = height/4;
+     float boxHeight = height/3;
      float boxWidth = menuWidth - border*2;
      float boxX = border;
      float boxY = height/2;
      
      textSize(13);
      String d = "Damage: " + (int)damage;
-     String r = "Rate of Fire: " + (int)rateOfFire;
+     String r = "Rate of Fire: " + rateOfFire;
      String p = "Focus: " + preferences[preference];
      String ra = "Range: " + int(range);
+     String l = "Level: " + level;
+     String c = "Cost: " + upgradePrice;
+     
+     if(level == 5)
+     {
+       c = "Cost: Maxed";
+     }
      
      strokeWeight(2);
      noStroke();
      noFill();
-    
      rect(boxX,boxY,boxWidth,boxHeight);
      
      fill(255);
@@ -255,54 +269,56 @@ abstract class tower
      text(r,boxX+border,boxY+textAscent()*2);
      text(p,boxX+border,boxY+textAscent()*3);
      text(ra,boxX+border,boxY+textAscent()*4);
+     text(l,boxX+border,boxY+textAscent()*5);
+     text(c,boxX+border,boxY+textAscent()*6);
      
+    
+
+    
    
-   
-   
-   
-   if(!(this instanceof AOE))
-   {
-     prefButtons.clear();
-     int j = 0;
-     
-     for(int i=0;i<preferences.length;i++)
+     if(!(this instanceof AOE))
      {
-       button b = new button();
-       if(i<=1)
+       prefButtons.clear();
+       int j = 0;
+       
+       for(int i=0;i<preferences.length;i++)
        {
-         b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*5,(boxWidth/2)-border*2,textAscent()*2);
-         j++;
-       }
-       else if(i<=3)
-       {
-         if(i==2)
+         button b = new button();
+         if(i<=1)
          {
-           j=0;
+           b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+(boxHeight/10)*5+border,(boxWidth/2)-border*2,boxHeight/10);
+           j++;
          }
-         b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*7+5,(boxWidth/2)-border*2,textAscent()*2);
-         j++;
-       }
-       else if(i<=5)
-       {
-         if(i==4)
+         else if(i<=3)
          {
-           j=0;
+           if(i==2)
+           {
+             j=0;
+           }
+           b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+(boxHeight/10)*6+border*2,(boxWidth/2)-border*2,boxHeight/10);
+           j++;
          }
-         b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*9+10,(boxWidth/2)-border*2,textAscent()*2);
-         j++;
-       }
-       else if(i<=7)
-       {
-         if(i==6)
+         else if(i<=5)
          {
-           j=0;
+           if(i==4)
+           {
+             j=0;
+           }
+           b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+(boxHeight/10)*7+border*3,(boxWidth/2)-border*2,boxHeight/10);
+           j++;
          }
-         b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*11+15,(boxWidth/2)-border*2,textAscent()*2);
-         j++;
+         else if(i<=7)
+         {
+           if(i==6)
+           {
+             j=0;
+           }
+           b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+(boxHeight/10)*8+border*4,(boxWidth/2)-border*2,boxHeight/10);
+           j++;
+         }
+         prefButtons.add(b);
        }
-       prefButtons.add(b);
-     }
-     
+       
      for(int i=0;i<prefButtons.size();i++)
      {
        prefButtons.get(i).drawButton(); 
@@ -317,13 +333,10 @@ abstract class tower
           }
        }
      }
-   }
- 
-   
+    }
 
-  
    
-   button m = new button("Move",false,boxX+boxWidth*0.75-border,boxY,boxWidth/4,textAscent()*2);
+   button m = new button("Move",false,boxX+boxWidth*0.75-border*2,boxY,boxWidth/4,boxHeight/10);
    m.drawButton();
    
    if(m.clicked == true)
@@ -337,7 +350,7 @@ abstract class tower
      moving = false;
    }
    
-   button s = new button("Sell",false,boxX+boxWidth*0.75-border,boxY+textAscent()*2,boxWidth/4,textAscent()*2);
+   button s = new button("Sell",false,boxX+boxWidth*0.75-border*2,boxY+(boxHeight/10)+border,boxWidth/4,boxHeight/10);
    s.drawButton();
    
    if(s.clicked == true)
@@ -345,6 +358,13 @@ abstract class tower
      sell(); 
    }
    
+   button u = new button("Upgrade",false,boxX+border,boxY+(boxHeight/10)*4,(boxWidth/2)-border*2,boxHeight/10);
+   u.drawButton();
+     
+   if(u.clicked == true)
+   {
+     upgrade();
+   }
      
      
      
@@ -354,6 +374,21 @@ abstract class tower
   {
     money += price/2;
     activeTowers.remove(this);
+  }
+  
+  void upgrade()
+  {
+    if(money >= upgradePrice && level < 5)
+    {
+      text("UPGRADE",width/2,height/2);
+      upgradeMult *= 1.2;
+      money -= upgradePrice;
+      price *= upgradeMult;
+      damage *= upgradeMult;
+      rateOfFire *= upgradeMult;
+      upgradePrice *= upgradeMult;
+      level++;
+    }
   }
 }
 

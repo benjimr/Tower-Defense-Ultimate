@@ -155,8 +155,6 @@ void drawMap()
 
 void drawEnemies()
 {
-   // println("ArrayList size = "+activeEnemies.size()+"\t"+"Enemy Total = "+enemyTotal);
-
   noFill();
   strokeWeight(5);
   
@@ -201,6 +199,7 @@ void drawTowerMenu()
    fill(255);
    textSize(15);
    text("Money: " + money,5,0+textAscent());
+   text("Limit: " + limit,5,0+textAscent()*2);
    
    noFill();
    for(int i=0;i<towerMenu.size();i++)
@@ -250,5 +249,4 @@ void drawRoundUI()
   
   textSize(15);
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
-  //println(rounds.get(currentRound));
 }
