@@ -6,6 +6,15 @@ class button
  float buttonWidth;
  float buttonHeight;
  
+ button()
+ {
+    label = "Default";
+    clicked = false;
+    pos = new PVector(0,0);
+    buttonWidth = 0;
+    buttonHeight = 0;
+ }
+ 
  button(String label, boolean clicked,float x, float y, float buttonWidth, float buttonHeight)//Assigning values
  {
    this.label = label;
@@ -21,7 +30,7 @@ class button
    fill(0);
    stroke(0,255,0);
    strokeWeight(2);
-   textSize(width/147);
+   textSize(buttonHeight/2);
    
    //check if clicked before drawing
    isClicked();

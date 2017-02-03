@@ -91,7 +91,7 @@ void gameControl()
   
   drawMap(); 
   drawActiveTowers();
-  towerData();
+  
   
   if(roundStarted == true && roundInitialised == true && roundEnded == false)
   {
@@ -101,6 +101,7 @@ void gameControl()
 
   }
   drawTowerMenu();
+  towerData();
   roundControl();
 
   

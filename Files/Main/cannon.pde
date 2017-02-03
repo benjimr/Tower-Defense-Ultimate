@@ -40,7 +40,7 @@ class cannon extends tower
          
     popMatrix();
    
-    if(placing == true && pos.x > menuWidth)
+    if(placing == true && pos.x > menuWidth || clicked == true)
     {
       strokeWeight(1);
       ellipse(pos.x,pos.y,range*2,range*2);

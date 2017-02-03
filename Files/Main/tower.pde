@@ -15,6 +15,7 @@ abstract class tower
    boolean drawShot;
    int preference;
    boolean clicked;
+   boolean moving;
    
    tower()
    {
@@ -26,6 +27,7 @@ abstract class tower
      changeTarget = false;
      target = null;
      clicked = false;
+     moving = false;
    }
    
    
@@ -33,8 +35,18 @@ abstract class tower
    {
      pos.x = mouseX;
      pos.y = mouseY;
+     boolean mouse;
      
-     if(!mousePressed)
+     if(moving == true)
+     {
+       mouse = mousePressed; 
+     }
+     else
+     {
+       mouse = !mousePressed; 
+     }
+     
+     if(mouse)
      {
        placing = true;
      }
@@ -62,7 +74,7 @@ abstract class tower
        {
          changeTarget = false;
          break;
-       }s
+       }
        else
        {
          changeTarget = true;
@@ -183,11 +195,11 @@ abstract class tower
    
    void drawData()
    {
-     float boxHeight = towerHeight*2;
-     float boxWidth = towerWidth*7;
-     float boxX = pos.x+towerWidth;
-     float boxY = pos.y-towerHeight;
      float border = towerWidth/10;
+     float boxHeight = height/4;
+     float boxWidth = menuWidth - border*2;
+     float boxX = border;
+     float boxY = height/2;
      
      textSize(13);
      String d = "Damage: " + (int)damage;
@@ -198,11 +210,10 @@ abstract class tower
      strokeWeight(2);
      stroke(0,255,0);
     
-     line(pos.x,pos.y,pos.x+towerWidth/2,pos.y);
-     line(pos.x+towerWidth/2,pos.y,pos.x+towerWidth,pos.y-towerHeight/2);
+    
      
      fill(0);
-     rect(boxX,boxY,boxWidth+border*4,boxHeight);
+     rect(boxX,boxY,boxWidth,boxHeight);
      
      fill(0,255,0);
      
@@ -213,21 +224,40 @@ abstract class tower
    
    prefButtons.clear();
    int j = 0;
+   
    for(int i=0;i<preferences.length;i++)
    {
-     button b;
-     if(i<=2)
+     button b = new button();
+     if(i<=1)
      {
-       b = new button(preferences[i],false,boxX+border*j+1+(boxWidth/4)*j,boxY+textAscent()*4,boxWidth/4,textAscent());
+       b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*4,(boxWidth/2)-border*2,textAscent()*2);
        j++;
      }
-     else
+     else if(i<=3)
      {
-       if(i==3)
+       if(i==2)
        {
          j=0;
        }
-       b = new button(preferences[i],false,boxX+border*j+1+(boxWidth/4)*j,boxY+textAscent()*5+5,boxWidth/4,textAscent());
+       b = new button(preferences[i],false,(boxX+border)+((boxWidth/2)-(border*2))*j+(border*j),boxY+textAscent()*6+5,(boxWidth/2)-border*2,textAscent()*2);
+       j++;
+     }
+     else if(i<=5)
+     {
+       if(i==4)
+       {
+         j=0;
+       }
+       b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*8+10,(boxWidth/2)-border*2,textAscent()*2);
+       j++;
+     }
+     else if(i<=7)
+     {
+       if(i==6)
+       {
+         j=0;
+       }
+       b = new button(preferences[i],false,((boxX+border)+((boxWidth/2)-(border*2))*j)+(border*j),boxY+textAscent()*10+15,(boxWidth/2)-border*2,textAscent()*2);
        j++;
      }
      prefButtons.add(b);
@@ -248,11 +278,27 @@ abstract class tower
      }
    }
    
+   String move = "Move";
+   
+   button b = new button("Move",false,boxX+boxWidth-textWidth(move)-border,boxY+textAscent(),textWidth(move),textAscent());
+   b.drawButton();
+   
+   if(b.clicked == true)
+   {
+     selectedTower = this;
+     moving = true;
+     place();
+   }
+   else
+   {
+    moving = false; 
+   }
+   
    
      
      
      
-   }  
+   }
      
      
      
