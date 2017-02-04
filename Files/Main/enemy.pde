@@ -77,6 +77,7 @@ abstract class enemy
     if(health <= 0)
     {
       money += value;
+      score += value*2;
       return true;
     }
     else

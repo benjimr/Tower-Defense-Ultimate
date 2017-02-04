@@ -199,12 +199,13 @@ void drawTowerMenu()
    
   rect(0,0,menuWidth,height);
   fill(255);
-  textSize(15);
-  text("Money: " + money,5,0+textAscent());
-  text("Limit: " + limit,5,0+textAscent()*2);
+  textSize(20);
+  text("Money: " + money,5,textAscent());
+  text("Limit: " + limit,5,textAscent()*2);
+  text("Score: " + score,5,textAscent()*3);
  
   noFill();
-  
+  textSize(15);
   for(int i=0;i<towerMenu.size();i++)
   {
     if(towerMenu.get(i) instanceof cannon)
@@ -296,6 +297,33 @@ void drawQCheck()
   
   no = new button("No",false,checkX+checkWidth/2+5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
   no.drawButton();
+}
+
+void drawGameOver()
+{
+  float overWidth = width/3;
+  float overHeight = height/3;
+  float overX = (width/2)-overWidth/2;
+  float overY = (height/2)-overHeight/2;
+  String g = "Game Over";
+  String s = "Score: " + score;
+  
+  fill(0);
+  stroke(255);
+  rect(overX,overY,overWidth,overHeight);
+  
+  textSize(50);
+  fill(255);
+  text(g,overX+(overWidth/2)-textWidth(g)/2,overY+(overHeight*0.40));
+  
+  textSize(30);
+  text(s,overX+(overWidth/2)-textWidth(s)/2,overY+(overHeight*.55));
+  
+  r = new button("Retry",false,overX+(overWidth*.15)-5,overY+(overHeight*.65),overWidth/3,overHeight/5);
+  r.drawButton();
+  
+  m = new button("Menu",false,overX+(overWidth*.15)+(overWidth/3)+5,overY+overHeight*.65,overWidth/3,overHeight/5);
+  m.drawButton();
   
   
 }

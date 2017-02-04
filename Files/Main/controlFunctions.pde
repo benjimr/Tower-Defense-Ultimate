@@ -46,27 +46,8 @@ void screenControl()
     case 3://Game over
     {
       resetGame();
-      
-      float overWidth = width/3;
-      float overHeight = height/3;
-      float overX = (width/2)-overWidth/2;
-      float overY = (height/2)-overHeight/2;
-      String gOver = "Game Over";
-      
-      fill(0);
-      stroke(255);
-      rect(overX,overY,overWidth,overHeight);
-      
-      textSize(50);
-      fill(255);
-      text(gOver,overX+(overWidth/2)-textWidth(gOver)/2,overY+(overHeight*0.40));
-      
-      button r = new button("Retry",false,overX+(overWidth*.15)-5,overY+(overHeight*.65),overWidth/3,overHeight/5);
-      r.drawButton();
-      
-      button m = new button("Menu",false,overX+(overWidth*.15)+(overWidth/3)+5,overY+overHeight*.65,overWidth/3,overHeight/5);
-      m.drawButton();
-      
+      drawGameOver();
+
       if(r.clicked == true)
       {
         screenIndex = 2; 
@@ -284,6 +265,9 @@ void roundControl()//to Major Tom
     enemies.clear();
     activeEnemies.clear();
     k=0;
+    
+    money+=300;
+    score+=500;
     
     if(currentRound<20)
     {
