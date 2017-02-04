@@ -6,11 +6,12 @@ void screenControl()
     {
       if(keyPressed && key == 32)
       {
+        //skip animation
         screenIndex = 1;  
       }
       else if(splashOp >=0 && splashOp <255 && splashCheck == false)
       {
-       splashOp += 2;
+        splashOp += 2;
       }
       else if(splashOp > 255)
       {
@@ -44,20 +45,36 @@ void screenControl()
     }
     case 3://Game over
     {
-      textSize(50);
-      fill(255);
+      resetGame();
       
+      float overWidth = width/3;
+      float overHeight = height/3;
+      float overX = (width/2)-overWidth/2;
+      float overY = (height/2)-overHeight/2;
       String gOver = "Game Over";
       
-      text(gOver,(width/2)-(textWidth(gOver)/2),height/2);
+      fill(0);
+      stroke(255);
+      rect(overX,overY,overWidth,overHeight);
       
-      button r = new button("Restart",false,width/2,height/2,width/10,height/10);
+      textSize(50);
+      fill(255);
+      text(gOver,overX+(overWidth/2)-textWidth(gOver)/2,overY+(overHeight*0.40));
+      
+      button r = new button("Retry",false,overX+(overWidth*.15)-5,overY+(overHeight*.65),overWidth/3,overHeight/5);
       r.drawButton();
+      
+      button m = new button("Menu",false,overX+(overWidth*.15)+(overWidth/3)+5,overY+overHeight*.65,overWidth/3,overHeight/5);
+      m.drawButton();
       
       if(r.clicked == true)
       {
-        resetGame();
         screenIndex = 2; 
+      }
+      
+      if(m.clicked == true)
+      {
+        screenIndex = 1; 
       }
       break;
     }
@@ -75,12 +92,20 @@ void resetGame()
   selectedTower = null;
   limit = 20;
   money = 1000;
-  enemyTotal = 0;
   currentRound = 0;
   roundInitialised = false;
   roundStarted = false;
   roundEnded = false;
   placing = false;
+  qCheck = false;
+  menuIndex = 4;
+  k=0;
+  
+  for(int i=0;i<menuOptions.size();i++)
+  {
+    menuOptions.get(i).clicked = false;
+    menuOptions.get(i).hover = false;
+  }
 }
 
 void menuControl()
@@ -93,7 +118,8 @@ void menuControl()
     case 0://Play - game options
     {
       drawPlay();
-      
+            
+      //If Player clicks go, start game
       if(mouseX > goX && mouseX < goX + goWidth && mouseY > goY && mouseY <goY + goHeight && mousePressed)
       {
         screenIndex = 2; 
@@ -124,7 +150,6 @@ void menuControl()
 
 boolean gameControl()
 {
-  println(currentRound);
   if(limit == 0)
   {
     return true;
@@ -136,22 +161,148 @@ boolean gameControl()
     roundInitialised = true;
   }
   
-  drawMap(); 
+  drawMap();
   drawActiveTowers();
-  
   
   if(roundStarted == true && roundInitialised == true && roundEnded == false)
   {
     drawEnemies();
     removeDeadEnemy();
     towerFire();
-
   }
+  
   drawTowerMenu();
   towerData();
   roundControl();
-
+  towerPlace();
   
+  return false;
+}
+
+void removeDeadEnemy()
+{
+  for(int i=0;i<activeEnemies.size();i++)
+  {
+    enemy e = activeEnemies.get(i);
+    
+    if(e.deadCheck() == true)
+    {
+      activeEnemies.remove(i); 
+      enemyTotal--;
+    }
+  }
+}
+
+void towerFire()
+{
+  for(int i=0;i<activeTowers.size();i++)
+  {
+    tower t = activeTowers.get(i); 
+    
+    if(t instanceof cannon)
+    {
+      cannon c = (cannon)t;
+      c.fire(); 
+    }
+    else if(t instanceof AOE)
+    {
+      AOE a = (AOE)t;
+      a.fire();
+    }
+  }
+}
+
+void towerData()
+{
+  for(int i=0;i<activeTowers.size();i++)
+  {
+    activeTowers.get(i).isClicked(); 
+   
+    if(activeTowers.get(i).clicked == true)
+    {
+      activeTowers.get(i).drawData();
+    } 
+  }
+}
+
+ArrayList<enemy> rangeCheck(tower t)
+{
+  ArrayList <enemy> inRange = new ArrayList<enemy>();
+  for(int i=0;i<activeEnemies.size();i++)
+  {
+    enemy e = activeEnemies.get(i);
+    float range = dist(t.pos.x-e.source.x,t.pos.y-e.source.y,e.curr.x,e.curr.y);
+   
+    if(range <= t.range)
+    {
+       inRange.add(e);
+    }
+  }
+  
+  if(inRange.size() > 0)
+  {
+    return inRange;
+  }
+  else
+  {
+    return null;
+  }
+}
+
+void roundControl()//to Major Tom
+{
+  drawRoundUI();
+  if(s.clicked == true)
+  {
+    roundStarted = true;
+    roundEnded = false;
+  }
+  
+  if(q.clicked == true || qCheck == true)
+  {
+    drawQCheck();
+    
+    if(yes.clicked == true)
+    {
+      resetGame();
+      screenIndex = 1;
+    }
+    else if(no.clicked == true)
+    {
+      qCheck = false;
+    }
+    else
+    {
+      qCheck = true;
+    }
+  }
+  
+  if(enemyTotal == 0)
+  {
+    roundEnded = true; 
+    roundStarted = false;
+    enemies.clear();
+    activeEnemies.clear();
+    k=0;
+    
+    if(currentRound<20)
+    {
+      text("Round "+(currentRound+1)+" Complete",width/2,height/2);
+      currentRound++;
+      
+    }
+    else
+    {
+      text("Complete",width/2,height/2); 
+    }
+    
+    roundData();
+  }
+  
+}
+
+void towerPlace()
+{
   for(int i=0;i<towerMenu.size();i++)
   {
     PVector pos = towerMenu.get(i).pos;
@@ -180,141 +331,4 @@ boolean gameControl()
       selectedTower.place();
       drawSelectedTower();
   }
-  
-  return false;
-}
-
-void drawActiveTowers()
-{
-  for(int i=0;i<activeTowers.size();i++)
-  {
-    if(activeTowers.get(i) instanceof cannon)
-    {
-      cannon c = (cannon)activeTowers.get(i);
-      c.drawTower();
-    
-    }
-    else if(activeTowers.get(i) instanceof AOE)
-    {
-      AOE a = (AOE)activeTowers.get(i);
-      a.drawTower();
-    }
-  }
-
-}
-
-void drawSelectedTower()
-{
-  if(selectedTower instanceof cannon)
-  {
-    cannon c = (cannon)selectedTower;
-    c.drawTower();
-  }
-  else if(selectedTower instanceof AOE)
-  {
-    AOE a = (AOE)selectedTower;
-    a.drawTower();
-  } 
-}
-
-ArrayList<enemy> rangeCheck(tower t)
-{
-  ArrayList <enemy> inRange = new ArrayList<enemy>();
-  for(int i=0;i<activeEnemies.size();i++)
-  {
-    enemy e = activeEnemies.get(i);
-    float range = dist(t.pos.x-e.source.x,t.pos.y-e.source.y,e.curr.x,e.curr.y);
-   
-    if(range <= t.range)
-    {
-       inRange.add(e);
-    }
-  }
-  
-  if(inRange.size() > 0)
-  {
-    return inRange;
-  }
-  else
-  {
-    return null;
-  }
-}
-
-void removeDeadEnemy()
-{
-  for(int i=0;i<activeEnemies.size();i++)
-  {
-    enemy e = activeEnemies.get(i);
-    
-    if(e.deadCheck() == true)
-    {
-      activeEnemies.remove(i); 
-      enemyTotal--;
-    }
-  }
-}
-
-void roundControl()
-{
-  drawRoundUI();
-  if(mouseX > roundStartX && mouseX < roundStartX+roundStartWidth && mouseY > roundStartY && mouseY < roundStartY+roundStartHeight && mousePressed)
-  {
-    roundStarted = true;
-    roundEnded = false;
-  }
-  if(enemyTotal == 0)
-  {
-    roundEnded = true; 
-    roundStarted = false;
-    enemies.clear();
-    activeEnemies.clear();
-    k=0;
-    if(currentRound<20)
-    {
-      text("Round "+(currentRound+1)+" Complete",width/2,height/2);
-      currentRound++;
-      
-    }
-    else
-    {
-      text("Complete",width/2,height/2); 
-    }
-    
-    roundData();
-  }
-  
-}
-
-void towerFire()
-{
-  for(int i=0;i<activeTowers.size();i++)
-  {
-    tower t = activeTowers.get(i); 
-    
-    if(t instanceof cannon)
-    {
-      cannon c = (cannon)t;
-      c.fire(); 
-    }
-    else if(t instanceof AOE)
-    {
-      AOE a = (AOE)t;
-      a.fire();
-    }
-  }
-}
-
-void towerData()
-{
- for(int i=0;i<activeTowers.size();i++)
- {
-   activeTowers.get(i).isClicked(); 
-   
-   if(activeTowers.get(i).clicked == true)
-   {
-     activeTowers.get(i).drawData();
-   } 
- }
-
 }

@@ -1,69 +1,53 @@
 import java.util.Collections;
 import processing.video.*;
 
+//Video to play under portals
 Movie eventHorizon;
 
-int screenIndex = 0;
-int menuIndex = 4;
-int splashOp = 0;
-boolean splashCheck = false;
-boolean titleCheck = false;
+int money,score;
 
-float menuLineX = 0;
-float menuBoxWidth = 0;
-float menuBoxHeight = 0;
-float menuBoxY = 0;
-float startX =0;
-float goWidth = 0;
-float goHeight = 0;
-float goX = 0;
-float goY = 0;
+//Index Variables
+int screenIndex, menuIndex, k;
 
-PFont splashFont;
-PFont menuFont;
-PFont gameFont;
+//Splash Screen
+int splashOp;
+boolean splashCheck;
 
-ArrayList<menuOpt> menuOptions = new ArrayList<menuOpt>();
-menuOpt selectedMenu = new menuOpt();
-ArrayList<map> maps = new ArrayList<map>();
-ArrayList<round> rounds = new ArrayList<round>();
+//Main Menu
+boolean titleCheck;
+float menuLineX, menuBoxWidth, menuBoxHeight, menuBoxY, startX, goWidth, goHeight, goX, goY;
+ArrayList<menuOpt> menuOptions;
+menuOpt selectedMenu;
 
-ArrayList<basic> basics = new ArrayList<basic>();
-ArrayList<heavy> heavys  = new ArrayList<heavy>();
-ArrayList<fast>  fasts = new ArrayList<fast>();
+//Fonts
+PFont splashFont, menuFont, gameFont;
 
-ArrayList<enemy> enemies = new ArrayList<enemy>();
-ArrayList<enemy> activeEnemies = new ArrayList<enemy>();
-
-String selectedMap = "zigzag";
-
-ArrayList<tower> towerMenu = new ArrayList<tower>();
-ArrayList<tower> activeTowers = new ArrayList<tower>();
-
-boolean placing = false;
-tower selectedTower = null;
-
-boolean priorityCheck = false;
-
-boolean roundStarted = false;
-boolean roundInitialised = false;
-int currentRound = 0;
-boolean roundEnded = false;
-int enemyTotal;
-int limit = 20;
-
-float roundStartX;
-float roundStartY;
-float roundStartWidth;
-float roundStartHeight;
-
-float menuWidth;
-
-int k=0;
-
+//Round data
+ArrayList<map> maps;
+ArrayList<round> rounds;
+String selectedMap;
 float pathWidth; 
 
-String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
-ArrayList<button> prefButtons = new ArrayList<button>();
+//Enemies
+ArrayList<basic> basics;
+ArrayList<heavy> heavys;
+ArrayList<fast>  fasts;
+ArrayList<enemy> enemies, activeEnemies;
 
-int money = 500000;
+//Towers
+ArrayList<tower> towerMenu, activeTowers;
+boolean placing;
+tower selectedTower;
+
+//Round controllers
+boolean roundStarted, roundInitialised, roundEnded;
+int enemyTotal, limit, currentRound;
+
+//Round UI 
+float roundStartX, roundStartY, roundStartWidth, roundStartHeight, menuWidth;
+button s,q,yes,no;
+boolean qCheck;
+
+//Tower preference buttons
+String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
+ArrayList<button> prefButtons;

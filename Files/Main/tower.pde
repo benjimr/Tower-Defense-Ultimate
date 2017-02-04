@@ -42,43 +42,42 @@ abstract class tower
    }
    
    
-   void place()
-   {
-     pos.x = mouseX;
-     pos.y = mouseY;
-     placeOk = true;
-      
-     boolean mouse;
+  void place()
+  {
+    pos.x = mouseX;
+    pos.y = mouseY;
+    placeOk = true;
      
-     if(moving == true)
-     {
-       mouse = mousePressed; 
-     }
-     else
-     {
-       mouse = !mousePressed; 
-     }
+    boolean mouse;
      
-     if(mouse)
-     {
-       placing = true;
-     }
-     else if(selectedTower != null && placing == true)
-     {
-       if(pos.x - towerWidth/2 < menuWidth)
-       {
-         placeOk = false;
-       }
-      
-       
-       map m = new map();
-       for(int i=0;i<maps.size();i++)
-       {
-         if(selectedMap == maps.get(i).name)
-         {
-            m = maps.get(i); 
-         }
-       }
+    if(moving == true)
+    {
+      mouse = mousePressed; 
+    }
+    else
+    {
+      mouse = !mousePressed; 
+    }
+     
+    if(mouse)
+    {
+      placing = true;
+    }
+    else if(selectedTower != null && placing == true)
+    {
+      if(pos.x - towerWidth/2 < menuWidth)
+      {
+        placeOk = false;
+      }
+ 
+      map m = new map();
+      for(int i=0;i<maps.size();i++)
+      {
+        if(selectedMap == maps.get(i).name)
+        {
+          m = maps.get(i); 
+        }
+      }
        
        //for(int i=0;i<m.points.size()-1;i++)
        //{
@@ -98,20 +97,21 @@ abstract class tower
          if(!activeTowers.contains(selectedTower))
          {
            activeTowers.add(selectedTower);
+           money -= price; 
          }
+
          placing = false;
          selectedTower = null;
-         money -= price; 
+         
        }
        else
        {
          text("Can not place here",width/2,height/2); 
        }
-   }
-     
-   }
+    }   
+  }
    
-   void choose(ArrayList<enemy> inRange)
+  void choose(ArrayList<enemy> inRange)
    {
      for(int i=0;i<inRange.size();i++)
      {

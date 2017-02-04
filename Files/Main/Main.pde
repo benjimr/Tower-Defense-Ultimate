@@ -1,54 +1,36 @@
 void setup()
 {
   size(1366,768);
-  //fullScreen();
-  smooth(8);  
-  splashFont = createFont("spektakel.otf",200);
-  menuFont = createFont("CH-Thin.otf",200);
-  gameFont = createFont("pixel.otf",200);
   
-  menuWidth = width/6;
-  roundStartX = menuWidth*0.15;
-  roundStartY = height*0.9;
-  roundStartWidth = menuWidth*.70;
-  roundStartHeight = height/15;
-  
-  pathWidth = width/20; 
- 
- imageMode(CENTER);
-  eventHorizon = new Movie(this,"eventHorizon.mp4");
-   eventHorizon.loop();
-
   dataInit();
-  towerType();
+  
+  smooth(8);  
+  imageMode(CENTER);
+  eventHorizon.loop();
 }
-
-float timeDelta = 0;
-float timeAccumulator = 0;
 
 void draw()
 {
   background(0);
   screenControl(); 
-  
-  
 }
 
-void movieEvent(Movie m) {
+void movieEvent(Movie m)  
+{
   m.read();
 }
 
 //SPLASH DRAW FUNCTION
 void drawSplash()
 {
- textFont(splashFont,50);
+  textFont(splashFont,50);
  
- String splashVal = "TD GAMES";
- float splashX = ((width/2)-(textWidth(splashVal)/2));
- float splashY = ((height/2)+(textAscent()/2)); 
+  String splashVal = "TD GAMES";
+  float splashX = ((width/2)-(textWidth(splashVal)/2));
+  float splashY = ((height/2)+(textAscent()/2)); 
  
- fill(255,255,255,splashOp);
- text(splashVal,splashX,splashY);
+  fill(255,255,255,splashOp);
+  text(splashVal,splashX,splashY);
 }
 
 //IN MENU DRAW FUNCTIONS
@@ -84,6 +66,8 @@ void drawPlay()
   rect(goX,goY,goWidth,goHeight);
   
   text("Go",goX + 20,goY+textAscent()+textDescent());
+  
+  //Insert game options here, map, difficulty etc
 }
 
 void drawHigh()
@@ -138,7 +122,6 @@ void drawTitle()
   text(name1,xVal-(textWidth(name1)/2),yVal);
   text(name2,xVal-(textWidth(name2)/2),yVal+(textAscent()+textDescent())*1.4);
   text(name3,xVal-(textWidth(name3)/2),yVal+(textAscent()+textDescent())*2.8);
-
 }
 
 //IN GAME DRAW FUNCTIONS
@@ -151,6 +134,24 @@ void drawMap()
        maps.get(i).drawMap(); 
      }
    }
+}
+
+void drawActiveTowers()
+{
+  for(int i=0;i<activeTowers.size();i++)
+  {
+    if(activeTowers.get(i) instanceof cannon)
+    {
+      cannon c = (cannon)activeTowers.get(i);
+      c.drawTower();
+    
+    }
+    else if(activeTowers.get(i) instanceof AOE)
+    {
+      AOE a = (AOE)activeTowers.get(i);
+      a.drawTower();
+    }
+  }
 }
 
 void drawEnemies()
@@ -168,6 +169,7 @@ void drawEnemies()
   for(int i=0;i<activeEnemies.size();i++)
   {
     enemy e = activeEnemies.get(i);
+    
    if(e instanceof basic)
     {
       basic b = (basic)activeEnemies.get(i); 
@@ -184,63 +186,66 @@ void drawEnemies()
       f.drawEnemy();
     }
     
-     e.moveEnemy();
+    e.moveEnemy();
   } 
 }
  
 
 void drawTowerMenu()
 {
-   fill(0);
-   stroke(255);
-   strokeWeight(3);
+  fill(0);
+  stroke(255);
+  strokeWeight(3);
    
-   rect(0,0,menuWidth,height);
-   fill(255);
-   textSize(15);
-   text("Money: " + money,5,0+textAscent());
-   text("Limit: " + limit,5,0+textAscent()*2);
-   
-   noFill();
-   for(int i=0;i<towerMenu.size();i++)
-   {
-     if(towerMenu.get(i) instanceof cannon)
-     {
-        cannon c = (cannon) towerMenu.get(i);
-        c.pos.x = menuWidth/2;
-        c.pos.y = height/6;
-    
-        c.drawTower(); 
-        fill(255);
-        text("Price: "+c.price,c.pos.x,c.pos.y+c.towerHeight/2+textAscent());
-     }
-     
-     if(towerMenu.get(i) instanceof AOE)
-     {
-       AOE a = (AOE) towerMenu.get(i);
-       a.pos.x = menuWidth/2;
-       a.pos.y = height/4;
-       a.drawTower();
-       text("Price: "+a.price,a.pos.x,a.pos.y+a.towerHeight/2+textAscent());
-     }
+  rect(0,0,menuWidth,height);
+  fill(255);
+  textSize(15);
+  text("Money: " + money,5,0+textAscent());
+  text("Limit: " + limit,5,0+textAscent()*2);
+ 
+  noFill();
+  
+  for(int i=0;i<towerMenu.size();i++)
+  {
+    if(towerMenu.get(i) instanceof cannon)
+    {
+      cannon c = (cannon) towerMenu.get(i);
+      c.pos.x = menuWidth/2;
+      c.pos.y = height/6;
       
-   }  
+      c.drawTower(); 
+      fill(255);
+      text("Price: "+c.price,c.pos.x,c.pos.y+c.towerHeight/2+textAscent());
+    }
+     
+    if(towerMenu.get(i) instanceof AOE)
+    {
+      AOE a = (AOE) towerMenu.get(i);
+      a.pos.x = menuWidth/2;
+      a.pos.y = height/4;
+      a.drawTower();
+      text("Price: "+a.price,a.pos.x,a.pos.y+a.towerHeight/2+textAscent());
+    }
+  }  
 }
 
 void drawRoundUI()
 {
   textFont(gameFont,20);
-  String go = "Start";
   String r = ("Round:"+(currentRound+1)+"/"+"21");
   String e = ("Remaining Enemies:"+enemyTotal);
+  float border = width/80;
   fill(0);
   stroke(255);
   strokeWeight(3);
-  rect(roundStartX,roundStartY,roundStartWidth,roundStartHeight);
+  
+  s = new button("Start",false,roundStartX,roundStartY,roundStartWidth,roundStartHeight);
+  s.drawButton();
+  
+  q = new button("Quit",false,width - roundStartWidth - border,border,roundStartWidth,roundStartHeight); 
+  q.drawButton();
   
   fill(255);
-  text(go,roundStartX+(roundStartWidth/2)-textWidth(go)/2,(roundStartY+(roundStartHeight/2))+textAscent()/2);
-  
   textSize(25);
   text(r,(menuWidth/2)-(textWidth(r)/2),roundStartY-textAscent());
   
@@ -249,4 +254,48 @@ void drawRoundUI()
   
   textSize(15);
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
+}
+
+void drawSelectedTower()
+{
+  if(selectedTower instanceof cannon)
+  {
+    cannon c = (cannon)selectedTower;
+    c.drawTower();
+  }
+  else if(selectedTower instanceof AOE)
+  {
+    AOE a = (AOE)selectedTower;
+    a.drawTower();
+  } 
+}
+
+void drawQCheck()
+{
+  
+  float checkWidth = width/3;
+  float checkHeight = height/3;
+  float checkX = width/2 - checkWidth/2;
+  float checkY = height/2 - checkHeight/2;
+  String are = "Are you sure?";
+  String all = "All progress will be lost";
+  
+  stroke(255);
+  fill(0);
+  rect(checkX,checkY,checkWidth,checkHeight);
+  
+  fill(255);
+  textSize(30);
+  text(are,checkX+(checkWidth/2)-textWidth(are)/2,checkY+checkHeight*.25);
+  
+  textSize(20);
+  text(all,checkX+(checkWidth/2)-textWidth(all)/2,checkY+checkHeight*.5);
+  
+  yes = new button("Yes",false,checkX+checkWidth/4-5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
+  yes.drawButton();
+  
+  no = new button("No",false,checkX+checkWidth/2+5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
+  no.drawButton();
+  
+  
 }

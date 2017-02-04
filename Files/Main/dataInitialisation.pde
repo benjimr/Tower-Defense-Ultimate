@@ -1,5 +1,39 @@
 void dataInit()
 {
+  money = 500000;
+  score = 0;
+  
+  //Fonts
+  splashFont = createFont("spektakel.otf",200);
+  menuFont = createFont("CH-Thin.otf",200);
+  gameFont = createFont("pixel.otf",200);
+    
+  eventHorizon = new Movie(this,"eventHorizon.mp4");
+  
+  //Global Variables Initialisation
+  screenIndex = 0;
+  menuIndex = 4;
+  k=0;
+ 
+  //Splash screen
+  splashOp = 0;
+  splashCheck = titleCheck = false;
+    
+  //In game menu
+  menuWidth = width/6;
+  towerMenu = new ArrayList<tower>();
+        
+  //Tower preference
+  prefButtons = new ArrayList<button>();
+
+   
+ //Main Menu
+  menuLineX = menuBoxWidth = menuBoxHeight = menuBoxY = 
+  startX = goWidth = goHeight = goX = goY = 0;
+  
+  menuOptions = new ArrayList<menuOpt>();
+  selectedMenu = new menuOpt();
+  
   textFont(menuFont,50);
   String[] menuNames = {"Play","High Scores","Achievements","Options",};
   
@@ -9,8 +43,24 @@ void dataInit()
     float optionY = (height/3)+((textDescent()+textAscent())*i);
     menuOpt o = new menuOpt(menuNames[i],optionX,optionY);
     menuOptions.add(o);
-    
   }
+
+  //Round data
+  maps = new ArrayList<map>();
+  rounds = new ArrayList<round>();
+  selectedMap = "zigzag";
+  roundStarted = roundInitialised = roundEnded = false;
+  limit = 20;
+  currentRound = 0;
+  
+  //Round UI elements
+  roundStartX = menuWidth*0.15;
+  roundStartY = height*0.9;
+  roundStartWidth = menuWidth*.70;
+  roundStartHeight = height/15;
+  
+  pathWidth = width/20;
+  qCheck = false;
   
   Table t = loadTable("maps.csv","header");
   
@@ -28,6 +78,30 @@ void dataInit()
     rounds.add(r);
   }
   
+  //Enemies
+  basics = new ArrayList<basic>();
+  heavys  = new ArrayList<heavy>();
+  fasts = new ArrayList<fast>();
+  
+  enemies = new ArrayList<enemy>();
+  activeEnemies = new ArrayList<enemy>();
+
+  //Towers
+  activeTowers = new ArrayList<tower>();
+  placing = false;
+  selectedTower = null;
+  
+  cannon c = new cannon();
+  towerMenu.add(c);
+  
+  AOE a = new AOE();
+  towerMenu.add(a);
+  
+  rocket ro = new rocket();
+  towerMenu.add(ro);
+  
+  sniper s = new sniper();
+  towerMenu.add(s);
 }
 
 void roundData()
@@ -39,8 +113,7 @@ void roundData()
     {
       enemy b = new basic();
       enemies.add(b);
-      enemyTotal++;
-      
+      enemyTotal++;  
     }
 
     for(int heavys=0;heavys<rounds.get(currentRound).heavy;heavys++)
@@ -57,22 +130,9 @@ void roundData()
       enemyTotal++;
     }  
     
+    //gives random order of enemies each round
     Collections.shuffle(enemies);
-  }
-  
-}
-
-void towerType()
-{
-  cannon c = new cannon();
-  towerMenu.add(c);
-  
-  AOE a = new AOE();
-  towerMenu.add(a);
-  
-  rocket r = new rocket();
-  towerMenu.add(r);
-  
-  sniper s = new sniper();
-  towerMenu.add(s);
+    
+    println("Total: " + enemyTotal);
+  } 
 }

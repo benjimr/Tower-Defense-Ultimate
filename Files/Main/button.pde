@@ -54,8 +54,7 @@ class button
  }
  
  void isClicked()//if clicked change appearance
- {
-   
+ {  
    if(mouseX>pos.x && mouseX<(pos.x+buttonWidth) && mouseY>pos.y && mouseY<pos.y+buttonHeight)
    { 
      if(mousePressed)

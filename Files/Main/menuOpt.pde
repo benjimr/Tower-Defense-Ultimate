@@ -22,7 +22,6 @@ class menuOpt
   
   void drawOption()
   {
-    
     if(hover == true)
     {
       fill(0,0,255); 
@@ -47,7 +46,7 @@ class menuOpt
       hover = true;
       if(mousePressed)
       {
-        if(clicked ==false)
+        if(clicked == false)
         {
           menuLineX = 0; 
           menuBoxY = 0;

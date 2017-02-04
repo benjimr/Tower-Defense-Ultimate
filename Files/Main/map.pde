@@ -1,7 +1,6 @@
 class map
 {
   String name;
-
   ArrayList<PVector> points = new ArrayList<PVector>();
   
   map()
@@ -29,7 +28,6 @@ class map
   
   void drawMap()
   {
-    
     for(int i=0;i<points.size();i++)
     {
       float x1 = points.get(i).x;
@@ -39,14 +37,13 @@ class map
       
       if(i+1 < points.size())
       {
-         x2 = points.get(i+1).x;
-         y2 = points.get(i+1).y;
+        x2 = points.get(i+1).x;
+        y2 = points.get(i+1).y;
       }
       
       strokeWeight(1);
       stroke(255);
       
-
       if(i==0)
       {
         noFill();
@@ -65,19 +62,12 @@ class map
         ellipse(x2,y2,pathWidth,pathWidth*2);
       }
      
-      
       if(x2 != -1 && y2 != -1)
       {
         noStroke();
         fill(41,132,192,150);
         quad(x1,y1-pathWidth/2,x2,y2-pathWidth/2,x2,y2+pathWidth/2,x1,y1+pathWidth/2);
       }
-      
-      // noStroke();
-      // fill(255);
-     //  ellipse(x1,y1,pathWidth,pathWidth);
-      
-
     }
   }
 }

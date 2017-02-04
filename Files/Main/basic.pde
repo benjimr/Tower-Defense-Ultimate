@@ -22,6 +22,4 @@ class basic extends enemy
     
     popMatrix();
   }
-  
-
 }

@@ -6,7 +6,7 @@ class AOE extends tower
   {
     super();
     damage = 70;
-    rateOfFire = 2;
+    rateOfFire = 0.5;
     towerColour = color(0,255,255);
     range = 100;
     pulse = towerWidth/2;
@@ -35,7 +35,7 @@ class AOE extends tower
     
     if(inRange != null)
     {
-      if(millis()-timeDamage >= rateOfFire*1000)
+      if(millis()-timeDamage >= 1000/rateOfFire)
       {
         timeDamage = millis();
         drawShot = true;
@@ -55,14 +55,15 @@ class AOE extends tower
         if(pulse > (range*2)-1)
         {
           pulse = towerWidth/2;
+        
           drawShot = false;
+          
         } 
       }
- 
     }
     else
     {
-        pulse = towerWidth/2;  
+      pulse = lerp(pulse,towerWidth/2,0.1);  
     }
   }
 }

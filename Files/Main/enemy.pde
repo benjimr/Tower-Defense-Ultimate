@@ -36,7 +36,6 @@ abstract class enemy
         dest = new PVector(maps.get(i).points.get(destIndex).x-source.x,maps.get(i).points.get(destIndex).y-source.y);
       }
     }
-      
      
     pushMatrix();
     
@@ -47,8 +46,7 @@ abstract class enemy
     
     forward.x = sin(theta);
     forward.y = -cos(theta);
-    
-      
+         
     if(curr.x < dest.x-10 || curr.x > dest.x + 10 || curr.y < dest.y-10 || curr.y >dest.y+10)
     {      
       curr.x += forward.x * speed;
@@ -66,10 +64,8 @@ abstract class enemy
       activeEnemies.remove(this);       
       enemyTotal--;
       limit--;
-    }
-
-    
- } 
+    } 
+  } 
   
   void takeDamage(float damage)
   {
