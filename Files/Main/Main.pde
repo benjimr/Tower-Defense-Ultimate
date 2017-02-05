@@ -143,14 +143,24 @@ void drawActiveTowers()
     if(activeTowers.get(i) instanceof cannon)
     {
       cannon c = (cannon)activeTowers.get(i);
-      c.drawTower();
-    
+      c.drawTower();  
     }
     else if(activeTowers.get(i) instanceof AOE)
     {
       AOE a = (AOE)activeTowers.get(i);
       a.drawTower();
     }
+    else if(activeTowers.get(i) instanceof sniper)
+    {
+      sniper s = (sniper)activeTowers.get(i);
+      s.drawTower();
+    }
+    else if(activeTowers.get(i) instanceof rocket)
+    {
+      rocket r = (rocket)activeTowers.get(i);
+      r.drawTower();
+    }
+    
   }
 }
 
@@ -159,7 +169,7 @@ void drawEnemies()
   noFill();
   strokeWeight(5);
   
-  if(k<enemies.size() && frameCount % 15 == 0)
+  if(k<enemies.size() && frameCount % 35 == 0)
   {
     enemy e = enemies.get(k);
     activeEnemies.add(e);
@@ -212,7 +222,7 @@ void drawTowerMenu()
     {
       cannon c = (cannon) towerMenu.get(i);
       c.pos.x = menuWidth/2;
-      c.pos.y = height/6;
+      c.pos.y = height*.12;
       
       c.drawTower(); 
       fill(255);
@@ -223,9 +233,27 @@ void drawTowerMenu()
     {
       AOE a = (AOE) towerMenu.get(i);
       a.pos.x = menuWidth/2;
-      a.pos.y = height/4;
+      a.pos.y = height*0.22;
       a.drawTower();
       text("Price: "+a.price,a.pos.x,a.pos.y+a.towerHeight/2+textAscent());
+    }
+    
+    if(towerMenu.get(i) instanceof sniper)
+    {
+      sniper s = (sniper) towerMenu.get(i);
+      s.pos.x = menuWidth/2;
+      s.pos.y = height*0.32;
+      s.drawTower();
+      text("Price: " + s.price,s.pos.x,s.pos.y+s.towerHeight/2+textAscent());
+    }
+    
+    if(towerMenu.get(i) instanceof rocket)
+    {
+      rocket r = (rocket) towerMenu.get(i);
+      r.pos.x = menuWidth/2;
+      r.pos.y = height*0.42;
+      r.drawTower();
+      text("Price: " + r.price,r.pos.x,r.pos.y+r.towerHeight/2+textAscent());
     }
   }  
 }
@@ -269,6 +297,16 @@ void drawSelectedTower()
     AOE a = (AOE)selectedTower;
     a.drawTower();
   } 
+  else if( selectedTower instanceof sniper)
+  {
+    sniper s = (sniper)selectedTower;
+    s.drawTower();
+  }
+  else if(selectedTower instanceof rocket)
+  {
+    rocket r = (rocket)selectedTower;
+    r.drawTower();
+  }
 }
 
 void drawQCheck()

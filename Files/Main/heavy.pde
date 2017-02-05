@@ -7,7 +7,7 @@ class heavy extends enemy
     entityWidth = 25;
     entityHeight = 25;
     speed = 1.5;
-    health = 200;
+    health = health2 = 200;
     value = 60;
   }
   
@@ -15,11 +15,13 @@ class heavy extends enemy
   {
     stroke(entityColour);
     noFill();
+    strokeWeight(3);
     pushMatrix();
     
     translate(source.x,source.y);
-    rect(curr.x,curr.y-entityHeight/2,entityWidth,entityHeight);
-    
+    rect(curr.x-entityWidth/2,curr.y-entityHeight/2,entityWidth,entityHeight);
+    drawHealthBar();
+
     popMatrix();
   }
 }

@@ -7,7 +7,7 @@ class basic extends enemy
     entityWidth = 25;
     entityHeight = 25;
     speed = 3;
-    health = 100;
+    health = health2 = 100;
     value = 20;
   }
   
@@ -15,10 +15,12 @@ class basic extends enemy
   {
     stroke(entityColour);
     noFill();
+    strokeWeight(3);
     pushMatrix();
     
     translate(source.x,source.y);
     ellipse(curr.x,curr.y,entityWidth,entityHeight);
+    drawHealthBar();
     
     popMatrix();
   }

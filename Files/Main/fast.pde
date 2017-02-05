@@ -9,7 +9,7 @@ class fast extends enemy
     entityWidth = 25;
     entityHeight = 25;
     speed = 4.5;
-    health = 70;
+    health = health2 = 70;
     size = 20;
     value = 40;
   }
@@ -18,11 +18,13 @@ class fast extends enemy
   {
     stroke(entityColour);
     noFill();
+    strokeWeight(3);
     pushMatrix();
     
     translate(source.x,source.y);
     triangle(curr.x,curr.y-size,curr.x+size,curr.y+size,curr.x-size,curr.y+size);
-    
+    drawHealthBar();
+ 
     popMatrix();
   }
 }

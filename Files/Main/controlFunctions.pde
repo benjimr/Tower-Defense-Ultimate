@@ -307,10 +307,22 @@ void towerPlace()
         placing = true;
         break;
       }
+      else if(towerMenu.get(i) instanceof sniper && money >= towerMenu.get(i).price)
+      {
+        selectedTower = new sniper();
+        placing = true;
+        break;
+      }
+      else if(towerMenu.get(i) instanceof rocket && money >= towerMenu.get(i).price)
+      {
+        selectedTower = new rocket();
+        placing = true;
+        break;
+      }
     }
   }
     
-  if(placing == true)
+  if(placing == true && selectedTower != null)
   {
       selectedTower.place();
       drawSelectedTower();

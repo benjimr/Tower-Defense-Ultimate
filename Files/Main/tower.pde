@@ -181,7 +181,7 @@ abstract class tower
               }
               else
               {
-                target = null; 
+                target = inRange.get(0); 
               }
             }
             break;
@@ -197,7 +197,7 @@ abstract class tower
               }
               else
               {
-                target = null; 
+                target = inRange.get(0); 
               }
             }
             break;
@@ -213,7 +213,7 @@ abstract class tower
               }
               else
               {
-                target = null; 
+                target = inRange.get(0); 
               }
             }            
             break;
@@ -259,6 +259,10 @@ abstract class tower
        c = "Cost: Maxed";
      }
      
+     if(range > width)
+     {
+       ra = "Range: Unlimited";
+     }
      strokeWeight(2);
      noStroke();
      noFill();
@@ -374,6 +378,7 @@ abstract class tower
   {
     money += price/2;
     activeTowers.remove(this);
+    selectedTower = null;
   }
   
   void upgrade()

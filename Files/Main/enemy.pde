@@ -10,6 +10,7 @@ abstract class enemy
   float entityWidth;
   float entityHeight;
   float health;
+  float health2;
   int destIndex;
   int value;
   
@@ -85,4 +86,31 @@ abstract class enemy
       return false; 
     }
   }
+  
+  
+  void drawHealthBar()
+{
+  float barWidth = entityWidth*2;
+  float barHeight = entityHeight/3;
+  float barX = curr.x - entityWidth;
+  float barY = curr.y + entityHeight;
+  float innerBar = 0;
+  
+  if(health >= 0)
+  {
+    innerBar = map(health,0,health2,0,barWidth);
+  }
+  
+  noStroke();
+  fill(0,255,0);
+  rect(barX,barY,innerBar,barHeight);
+  
+  
+  noFill();
+  stroke(255);
+  strokeWeight(1);
+  
+  rect(barX,barY,barWidth,barHeight);
+  
+}
 }
