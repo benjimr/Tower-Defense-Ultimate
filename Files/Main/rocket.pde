@@ -3,8 +3,12 @@ class rocket extends tower
    PVector curr;
    PVector source;
    PVector forward;
+   PVector blastLoc;
    float speed;
    boolean currSet;
+   float AOE;
+   boolean drawBlast;
+   float pulse;
   
   rocket()
   {
@@ -15,8 +19,10 @@ class rocket extends tower
     range =300;
     price = 450;
     speed = 6;
-    forward = new PVector(1,1);
     currSet = true;
+    AOE = 100;
+    drawBlast = false;
+    pulse = 0;
   }
   
   void drawTower()
@@ -50,11 +56,19 @@ class rocket extends tower
       currSet = false;
     }
     
-    ArrayList<enemy> inRange = rangeCheck(this);
+    ArrayList<enemy> inRange = rangeCheck(pos,range);
     
     if(inRange != null && drawShot == false)
     {
-      super.choose(inRange);
+        super.choose(inRange);
+    }
+    
+    if(!(activeEnemies.contains(target)))
+    {
+      target = null;
+      drawShot = false;
+      curr.x = source.x;
+      curr.y = source.y;
     }
     
     if(target != null && millis() - timeDamage  >= 1000/rateOfFire && placing == false)
@@ -66,7 +80,7 @@ class rocket extends tower
     if(drawShot == true)
     {
       PVector dest = new PVector(target.curr.x+target.source.x,target.curr.y+target.source.y);
-   
+
       forward = PVector.sub(dest,curr);
       forward.normalize();
         
@@ -76,26 +90,43 @@ class rocket extends tower
       strokeWeight(10);
       fill(0,255,0);
       point(curr.x,curr.y);
-      
-      stroke(255,0,0);
-      point(dest.x,dest.y);
-      
-      stroke(0,0,255);
-      point(source.x,source.y);
     
-      if(dist(curr.x,curr.y,dest.x,dest.y) < 10 )
+      if(dist(curr.x,curr.y,dest.x,dest.y) < 10)
       {
-        drawShot = false; 
-        target.takeDamage(damage);
+        ArrayList<enemy> inBlast = rangeCheck(curr,AOE);
+        
+        for(int i=0;i<inBlast.size();i++)
+        {
+          inBlast.get(i).takeDamage(damage); 
+        } 
+         
+        blastLoc = new PVector(curr.x,curr.y);
         curr.x = source.x;
         curr.y = source.y;
+        target = null;
+        drawShot = false; 
+        drawBlast = true;
       }
-  
     }
     
-    
-     
-        
-
+    if(drawBlast == true)
+    {
+      stroke(0,255,0);
+      strokeWeight(4);
+      noFill();
+      
+      if(pulse < (AOE*2)-10)
+      {
+        pulse = lerp(pulse,AOE*2,0.1);
+      }
+      else
+      {
+        pulse = 0;
+        drawBlast = false;
+      }
+      
+      
+      ellipse(blastLoc.x,blastLoc.y,pulse,pulse);
+    }
   }
 }

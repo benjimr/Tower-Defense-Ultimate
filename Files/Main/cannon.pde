@@ -47,7 +47,7 @@ class cannon extends tower
   
   void fire()
   {
-    ArrayList<enemy> inRange = rangeCheck(this);
+    ArrayList<enemy> inRange = rangeCheck(pos,range);
     
     if(inRange != null )
     {

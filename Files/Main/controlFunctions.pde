@@ -216,15 +216,15 @@ void towerData()
   }
 }
 
-ArrayList<enemy> rangeCheck(tower t)
+ArrayList<enemy> rangeCheck(PVector pos, float range)
 {
   ArrayList <enemy> inRange = new ArrayList<enemy>();
   for(int i=0;i<activeEnemies.size();i++)
   {
     enemy e = activeEnemies.get(i);
-    float range = dist(t.pos.x-e.source.x,t.pos.y-e.source.y,e.curr.x,e.curr.y);
+    float distance = dist(pos.x-e.source.x,pos.y-e.source.y,e.curr.x,e.curr.y);
    
-    if(range <= t.range)
+    if(distance <= range)
     {
        inRange.add(e);
     }
