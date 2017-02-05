@@ -91,7 +91,7 @@ void resetGame()
 
 void menuControl()
 {
-  textFont(menuFont,50);
+  textFont(gameFont,50);
   drawMainMenu();
   
   switch(menuIndex)
@@ -101,7 +101,7 @@ void menuControl()
       drawPlay();
             
       //If Player clicks go, start game
-      if(mouseX > goX && mouseX < goX + goWidth && mouseY > goY && mouseY <goY + goHeight && mousePressed)
+      if(b.clicked)
       {
         screenIndex = 2; 
       }

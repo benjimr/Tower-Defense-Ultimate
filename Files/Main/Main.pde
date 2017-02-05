@@ -1,7 +1,7 @@
 void setup()
 {
-  size(1366,768);
-  
+  //size(1366,768);
+  fullScreen();
   dataInit();
   
   smooth(8);  
@@ -56,18 +56,54 @@ void drawMainMenu()
 
 void drawPlay()
 {
+  float border = menuBoxWidth/20;
   drawMenuBox();
   goWidth = menuBoxWidth/6;
-  goHeight = menuBoxHeight/5;
+  goHeight = menuBoxHeight/7;
   
   goX = startX + menuBoxWidth - goWidth/2;
   goY = menuBoxY + menuBoxHeight - goHeight - 20;
+
+  b = new button("Go",false,goX,goY,goWidth,goHeight);
+  b.drawButton();
   
-  rect(goX,goY,goWidth,goHeight);
+  ArrayList<button> mapChoice = new ArrayList<button>();
   
-  text("Go",goX + 20,goY+textAscent()+textDescent());
+  textSize(15);
+  fill(255);
   
-  //Insert game options here, map, difficulty etc
+  for(int i=0;i<maps.size();i++)
+  {
+     button b = new button(maps.get(i).name,false, menuLineX+startX+border,menuBoxY+(goHeight*i)+border+(border*i),goWidth,goHeight);
+     mapChoice.add(b);
+     
+     if(selectedMap == maps.get(i).name)
+     {
+        for(int j=0;j<maps.get(i).points.size()-1;j++)
+        {
+           float x1 = map(map(maps.get(i).points.get(j).x,menuWidth+100,width-100,0,20),0,20,menuLineX+startX+goWidth*2,menuLineX+menuBoxWidth+startX-border);
+           float y1 = map(map(maps.get(i).points.get(j).y,100,height-156,0,20),0,20,menuBoxY+border,menuBoxHeight);
+           float x2 = map(map(maps.get(i).points.get(j+1).x,menuWidth+100,width-100,0,20),0,20,menuLineX+startX+goWidth*2,menuLineX+menuBoxWidth+startX-border);
+           float y2 = map(map(maps.get(i).points.get(j+1).y,100,height-156,0,20),0,20,menuBoxY+border,menuBoxHeight);
+          
+           line(x1,y1,x2,y2);
+
+        }
+     }
+  }
+  
+  for(int i=0;i<mapChoice.size();i++)
+  {
+    mapChoice.get(i).drawButton(); 
+    
+    if(mapChoice.get(i).clicked == true)
+    {
+      selectedMap = mapChoice.get(i).label; 
+    }
+  }
+  println(selectedMap);
+ 
+  
 }
 
 void drawHigh()
@@ -101,7 +137,7 @@ void drawMenuBox()
   menuBoxHeight = lerp(menuBoxHeight,height/3,0.1);
   
   strokeWeight(1);
-  stroke(255,0,0);
+  stroke(255);
   line(0,lineY,menuLineX,lineY);
   
   noFill();

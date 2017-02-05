@@ -1,11 +1,16 @@
 void dataInit()
 {
+  //stats
   money = 500000;
   score = 0;
   
+  //game options
+  difficulty = "Normal";
+  diffMult = 1;
+  selectedMap = "zigzag";
+
   //Fonts
   splashFont = createFont("spektakel.otf",200);
-  menuFont = createFont("CH-Thin.otf",200);
   gameFont = createFont("pixel.otf",200);
     
   eventHorizon = new Movie(this,"eventHorizon.mp4");
@@ -34,7 +39,7 @@ void dataInit()
   menuOptions = new ArrayList<menuOpt>();
   selectedMenu = new menuOpt();
   
-  textFont(menuFont,50);
+  textFont(gameFont,50);
   String[] menuNames = {"Play","High Scores","Achievements","Options",};
   
   for(int i=0;i<menuNames.length;i++)
@@ -48,7 +53,6 @@ void dataInit()
   //Round data
   maps = new ArrayList<map>();
   rounds = new ArrayList<round>();
-  selectedMap = "zigzag";
   roundStarted = roundInitialised = roundEnded = false;
   limit = 20;
   currentRound = 0;

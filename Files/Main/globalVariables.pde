@@ -6,6 +6,12 @@ Movie eventHorizon;
 
 int money,score;
 
+//Game options
+String selectedMap,difficulty;
+float diffMult;
+button b;
+
+
 //Index Variables
 int screenIndex, menuIndex, k;
 
@@ -20,12 +26,11 @@ ArrayList<menuOpt> menuOptions;
 menuOpt selectedMenu;
 
 //Fonts
-PFont splashFont, menuFont, gameFont;
+PFont splashFont, gameFont;
 
 //Round data
 ArrayList<map> maps;
 ArrayList<round> rounds;
-String selectedMap;
 float pathWidth; 
 
 //Enemies

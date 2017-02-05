@@ -47,6 +47,7 @@ abstract class enemy
     
     forward.x = sin(theta);
     forward.y = -cos(theta);
+    //forward.normalize();
          
     if(curr.x < dest.x-10 || curr.x > dest.x + 10 || curr.y < dest.y-10 || curr.y >dest.y+10)
     {      

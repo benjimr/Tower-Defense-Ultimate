@@ -15,10 +15,10 @@ class map
     
     for(int i=1;i<column;i+=2)
     { 
-      if(!row.getString(i).equals("11"))
+      if(!row.getString(i).equals("21"))
       {
-        float x = map(Float.parseFloat(row.getString(i)),-10,10,menuWidth+100,width-100);
-        float y = map(Float.parseFloat(row.getString(i+1)),-10,20,100,height+156);
+        float x = map(Float.parseFloat(row.getString(i)),0,20,menuWidth+100,width-100);
+        float y = map(Float.parseFloat(row.getString(i+1)),0,20,100,height-156);
           
         PVector p = new PVector(x,y);
         points.add(p);
