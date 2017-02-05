@@ -243,8 +243,9 @@ void drawTowerMenu()
       sniper s = (sniper) towerMenu.get(i);
       s.pos.x = menuWidth/2;
       s.pos.y = height*0.32;
-      s.drawTower();
+      fill(255);
       text("Price: " + s.price,s.pos.x,s.pos.y+s.towerHeight/2+textAscent());
+      s.drawTower();
     }
     
     if(towerMenu.get(i) instanceof rocket)
@@ -252,8 +253,8 @@ void drawTowerMenu()
       rocket r = (rocket) towerMenu.get(i);
       r.pos.x = menuWidth/2;
       r.pos.y = height*0.42;
+     text("Price: " + r.price,r.pos.x,r.pos.y+r.towerHeight/2+textAscent());
       r.drawTower();
-      text("Price: " + r.price,r.pos.x,r.pos.y+r.towerHeight/2+textAscent());
     }
   }  
 }

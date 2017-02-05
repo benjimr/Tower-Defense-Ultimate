@@ -190,6 +190,16 @@ void towerFire()
       AOE a = (AOE)t;
       a.fire();
     }
+    else if(t instanceof sniper)
+    {
+      sniper s = (sniper)t;
+      s.fire();
+    }
+    else if(t instanceof rocket)
+    {
+      rocket r = (rocket)t;
+      r.fire();
+    }
   }
 }
 
