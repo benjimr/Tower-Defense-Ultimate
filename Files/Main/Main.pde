@@ -124,7 +124,21 @@ void drawPlay()
 
 void drawHigh()
 {
+  Table t3 = loadTable("data/highscores.csv","header");
+  float border = menuBoxWidth/20;
+  float sectionWidth = menuBoxWidth/6;
+  
   drawMenuBox(); 
+  textSize(10);
+  for(int i=0;i<t3.getRowCount();i++)
+  {
+    TableRow row = t3.getRow(i);
+    text(row.getString("Name"),menuLineX+startX+border,menuBoxY+border*4+textAscent()*3*i);
+    text(row.getInt("Round"),menuLineX+startX+border+sectionWidth*2,menuBoxY+border*4+textAscent()*3*i);
+    text(row.getInt("Score"),menuLineX+startX+border+sectionWidth*3,menuBoxY+border*4+textAscent()*3*i);
+    text(row.getString("Difficulty"),menuLineX+startX+border+sectionWidth*4,menuBoxY+border*4+textAscent()*3*i);
+    text(row.getString("Map"),menuLineX+startX+border+sectionWidth*5,menuBoxY+border*4+textAscent()*3*i);
+  }
 }
 
 void drawAchieve()

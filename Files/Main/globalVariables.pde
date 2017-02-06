@@ -61,3 +61,5 @@ ArrayList<button> prefButtons;
 
 //Game over
 button r,m;
+
+//highscores
