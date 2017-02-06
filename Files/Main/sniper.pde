@@ -12,7 +12,7 @@ class sniper extends tower
     damage = 100;
     rateOfFire = 0.5;
     towerColour = color(255,100,100);
-    range = 600;
+    range = width/3;
     price = 300;
     currSet = true;
     speed = 100;

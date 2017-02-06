@@ -9,7 +9,8 @@ int money,score;
 //Game options
 String selectedMap,difficulty;
 float diffMult;
-button b;
+button g;
+
 
 
 //Index Variables

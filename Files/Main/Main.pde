@@ -1,7 +1,7 @@
 void setup()
 {
-  //size(1366,768);
-  fullScreen();
+  size(1366,768);
+  //fullScreen();
   dataInit();
   
   smooth(8);  
@@ -56,26 +56,31 @@ void drawMainMenu()
 
 void drawPlay()
 {
+  
+    
   float border = menuBoxWidth/20;
+  float bottom = 0;
   drawMenuBox();
   goWidth = menuBoxWidth/6;
   goHeight = menuBoxHeight/7;
   
   goX = startX + menuBoxWidth - goWidth/2;
-  goY = menuBoxY + menuBoxHeight - goHeight - 20;
+  goY = menuBoxY + menuBoxHeight - goHeight-border;
+ 
 
-  b = new button("Go",false,goX,goY,goWidth,goHeight);
-  b.drawButton();
   
   ArrayList<button> mapChoice = new ArrayList<button>();
-  
-  textSize(15);
   fill(255);
   
   for(int i=0;i<maps.size();i++)
   {
      button b = new button(maps.get(i).name,false, menuLineX+startX+border,menuBoxY+(goHeight*i)+border+(border*i),goWidth,goHeight);
      mapChoice.add(b);
+     
+     if(i == maps.size()-1)
+     {
+       bottom = menuBoxY+(goHeight*i)+border+(border*i);
+     }
      
      if(selectedMap == maps.get(i).name)
      {
@@ -85,9 +90,8 @@ void drawPlay()
            float y1 = map(map(maps.get(i).points.get(j).y,100,height-156,0,20),0,20,menuBoxY+border,menuBoxHeight);
            float x2 = map(map(maps.get(i).points.get(j+1).x,menuWidth+100,width-100,0,20),0,20,menuLineX+startX+goWidth*2,menuLineX+menuBoxWidth+startX-border);
            float y2 = map(map(maps.get(i).points.get(j+1).y,100,height-156,0,20),0,20,menuBoxY+border,menuBoxHeight);
-          
+           
            line(x1,y1,x2,y2);
-
         }
      }
   }
@@ -101,9 +105,23 @@ void drawPlay()
       selectedMap = mapChoice.get(i).label; 
     }
   }
-  println(selectedMap);
- 
+  String[] diff = {"Easy","Normal","Hard"};
+  for(int i=0;i<diff.length;i++)
+  {
+    button b = new button(diff[i],false,menuLineX+startX+((border/2)*(i+3))+goWidth*(i+1),bottom,goWidth,goHeight);
+    
+    b.drawButton();
+    
+    if(b.clicked == true)
+    {
+      difficulty = diff[i]; 
+    }
+  }
   
+  g = new button("Go",false,goX+border,bottom,goWidth,goHeight);
+  g.drawButton();
+  
+
 }
 
 void drawHigh()

@@ -99,9 +99,28 @@ void menuControl()
     case 0://Play - game options
     {
       drawPlay();
+      
+      switch(difficulty)
+      {
+        case "Easy":
+        {
+           diffMult = 0.5;
+          break;
+        }
+        case "Normal":
+        {
+          diffMult = 1;
+          break;
+        }
+        case "Hard":
+        {
+          diffMult = 2;
+          break;
+        }    
+      }
             
       //If Player clicks go, start game
-      if(b.clicked)
+      if(g.clicked)
       {
         screenIndex = 2; 
       }

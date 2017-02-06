@@ -8,7 +8,7 @@ class AOE extends tower
     damage = 70;
     rateOfFire = 0.5;
     towerColour = color(0,255,255);
-    range = 100;
+    range = width/15;
     pulse = towerWidth/2;
     price = 120;
   }

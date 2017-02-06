@@ -7,7 +7,7 @@ class cannon extends tower
     damage = 20;
     rateOfFire = 1;
     towerColour = color(255,0,255);
-    range = 200;
+    range = width/8;
     priority = "Heavy";
     theta = 0;
     price = 100;

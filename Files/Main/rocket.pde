@@ -16,7 +16,7 @@ class rocket extends tower
     damage = 100;
     rateOfFire = 0.25;
     towerColour = color(150,100,150);
-    range =300;
+    range =width/5;
     price = 450;
     speed = 6;
     currSet = true;
