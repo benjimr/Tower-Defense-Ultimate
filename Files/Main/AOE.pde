@@ -31,6 +31,7 @@ class AOE extends tower
   
   void fire()
   {
+    
     ArrayList<enemy> inRange = rangeCheck(pos,range);
     
     if(inRange != null)
@@ -39,6 +40,7 @@ class AOE extends tower
       {
         timeDamage = millis();
         drawShot = true;
+        pulseCheck = true;
       }
     }
       
@@ -47,7 +49,8 @@ class AOE extends tower
         stroke(towerColour);
         strokeWeight(2);
         noFill();
-             
+        
+        
         pulse = lerp(pulse,range*2,0.1);
         ellipse(pos.x,pos.y,pulse,pulse);
       
@@ -58,10 +61,16 @@ class AOE extends tower
         }
         else if( pulse > range && inRange != null)
         {
-          for(int i=0;i<inRange.size();i++)
+          if(pulseCheck == true)
           {
-            inRange.get(i).takeDamage(damage); 
-          } 
+            for(int i=0;i<inRange.size();i++)
+            {
+              inRange.get(i).takeDamage(damage); 
+            }      
+            pulseCheck = false;
+          }
+
+          
         }
       }
     }

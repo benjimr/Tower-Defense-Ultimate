@@ -163,7 +163,7 @@ void drawMenuBox()
 
 void drawTitle()
 {
-  textFont(splashFont,75);
+  textFont(splashFont,100);
   String name1 = "TOWER";
   String name2 = "DEFENSE";
   String name3 = "ULTIMATE";

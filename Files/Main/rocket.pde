@@ -23,6 +23,7 @@ class rocket extends tower
     AOE = 100;
     drawBlast = false;
     pulse = 0;
+    theta = 0;
   }
   
   void drawTower()
@@ -30,27 +31,74 @@ class rocket extends tower
     strokeWeight(3);
     stroke(towerColour);
     noFill();
+
+    pushMatrix();
+    translate(pos.x,pos.y);
+    //theta = degrees(atan2(mouseX-pos.x,mouseY-pos.y));
+
+
+    if(target != null)
+    {
+      theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
+    }
+    else
+    {
+      theta = lerp(theta,0,0.1); 
+    }
     
-    ellipse(pos.x,pos.y,towerWidth,towerHeight);
+    
+
+    rotate((-radians(theta-90)));
+    strokeWeight(3);
+    stroke(towerColour);
+    noFill();
+    ellipse(0,0,towerWidth,towerHeight);
+    
     fill(0);
-    rect(pos.x-towerWidth/4,pos.y-towerHeight/1.5,towerWidth-towerWidth/2,towerHeight);
+    
+    rect(-towerWidth/4,-towerHeight/4,towerWidth,towerHeight/2);
     
     if(placing == true && pos.x > menuWidth || clicked == true)
     {
       strokeWeight(1);
       noFill();
-      ellipse(pos.x,pos.y,range*2,range*2);
-      
+      ellipse(0,0,range*2,range*2);
       
       source = new PVector(pos.x,pos.y);
+    }
+      popMatrix();
+    
+    
+   /* 
+    strokeWeight(3);
+    stroke(towerColour);
+    noFill();
+    
+    pushMatrix();
+    if(target != null)
+    {
+      translate(pos.x,pos.y);
+      theta = atan2(pos.x-target.curr.x,pos.y-target.curr.y);
+      rotate(theta);
+    
+      ellipse(0,0,towerWidth,towerHeight);
+      fill(0);
+      rect(0-towerWidth/4,0-towerHeight/1.5,towerWidth-towerWidth/2,towerHeight);
       
+      
+    }
+    
 
-    } 
+     
+     popMatrix();
+     
+     */
   }
   
   void fire()
   {
     ArrayList<enemy> inRange = rangeCheck(pos,range);
+
 
     if(currSet == true)
     {
@@ -76,12 +124,16 @@ class rocket extends tower
     {
       timeDamage = millis();
       drawShot = true;
+      pulseCheck = true;
     }
     
     if(drawShot == true)
     {
       PVector dest = new PVector(target.curr.x+target.source.x,target.curr.y+target.source.y);
-
+    fill(255,0,0);
+    stroke(255,0,0);
+    strokeWeight(10);
+    point(dest.x,dest.y);
       forward = PVector.sub(dest,curr);
       forward.normalize();
         
@@ -121,10 +173,15 @@ class rocket extends tower
       }
       else if(pulse > AOE && inBlast != null)
       {
-        for(int i=0;i<inBlast.size();i++)
+        if(pulseCheck == true)
         {
-          inBlast.get(i).takeDamage(damage); 
+          for(int i=0;i<inBlast.size();i++)
+          {
+            inBlast.get(i).takeDamage(damage); 
+          }  
+          pulseCheck = false;
         }
+
       }
 
       

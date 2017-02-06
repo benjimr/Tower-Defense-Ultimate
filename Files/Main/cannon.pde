@@ -1,6 +1,5 @@
 class cannon extends tower
 {  
-  float theta;
   cannon()
   {
     super();
@@ -9,7 +8,6 @@ class cannon extends tower
     towerColour = color(255,0,255);
     range = width/8;
     priority = "Heavy";
-    theta = 0;
     price = 100;
   }
   
@@ -18,31 +16,31 @@ class cannon extends tower
     stroke(towerColour);
     noFill();
     strokeWeight(3);
-    ellipse(pos.x,pos.y,towerWidth,towerHeight);
     
-    pushMatrix();
-    translate(pos.x,pos.y);
-
     if(target != null)
     {
-      theta = lerp(theta,atan2(target.curr.x,target.curr.y),0.1);
-      rotate(theta);
-      triangle(0,towerHeight/4,towerWidth/4,-towerHeight/4,-towerWidth/4,-towerHeight/4); 
-    }
-    else
-    {
-       theta = lerp(theta,0,0.1);
-       rotate(theta);
-       triangle(0,towerHeight/4,towerWidth/4,-towerHeight/4,-towerWidth/4,-towerHeight/4);
-    }
-         
-    popMatrix();
+      pushMatrix();
+      translate(pos.x,pos.y);
+      theta = atan2(target.curr.x-pos.x,target.curr.y-pos.y);
+      rotate(-theta);
+      
+      ellipse(0,0,towerWidth,towerHeight);
+      triangle(0+towerWidth/4,0+towerHeight/4,0,0-towerHeight/4,0-towerWidth/4,+towerHeight/4);  
+      
+      /*
+      ellipse(pos.x,pos.y,towerWidth,towerHeight);
+      triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);  
+    */
+      if(placing == true && pos.x > menuWidth || clicked == true)
+      {
+        strokeWeight(1);
+        ellipse(0,0,range*2,range*2);
+      } 
    
-    if(placing == true && pos.x > menuWidth || clicked == true)
-    {
-      strokeWeight(1);
-      ellipse(pos.x,pos.y,range*2,range*2);
-    } 
+      popMatrix(); 
+    }
+    
+    
   }
   
   void fire()
@@ -75,6 +73,10 @@ class cannon extends tower
           timeDraw = millis();
         } 
       }
-    } 
+    }
+    else
+    {
+     target = null; 
+    }
   }
 }

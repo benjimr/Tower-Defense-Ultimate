@@ -42,7 +42,7 @@ class menuOpt
   
   void mouseDet()
   {
-    if(mouseX>xVal && mouseX<xVal+textWidth(value) && mouseY<yVal && mouseY>yVal-(textAscent()))
+    if(mouseX>xVal && mouseX<xVal+textWidth(value) && mouseY<yVal && mouseY>yVal-(textAscent()+textAscent()))
     {
       hover = true;
       if(mousePressed)

@@ -21,6 +21,7 @@ abstract class tower
    float upgradeMult;
    float upgradePrice;
    int level;
+   float theta;
    
    tower()
    {
@@ -376,6 +377,7 @@ abstract class tower
     }
   }
 }
+
 
 
      
