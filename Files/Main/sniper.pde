@@ -21,23 +21,38 @@ class sniper extends tower
   
   void drawTower()
   {
+    pushMatrix();
+    translate(pos.x,pos.y);
+    
+    if(target != null)
+    {
+      theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
+    }
+    else
+    {
+      theta = lerp(theta,0,0.1); 
+    }
+    
+    rotate(-radians(theta-90));
     strokeWeight(3);
     stroke(towerColour);
     noFill();
     
-    ellipse(pos.x,pos.y,towerWidth,towerHeight);
+    ellipse(0,0,towerWidth,towerHeight);
     
     strokeWeight(5);
-    line(pos.x,pos.y+towerHeight/5,pos.x,pos.y-towerHeight/2.25);
+    line(0,0,(towerWidth*0.75),0);
     
     if(placing == true && pos.x > menuWidth || clicked == true)
     {
       strokeWeight(1);
       noFill();
-      ellipse(pos.x,pos.y,range*2,range*2);
+      ellipse(0,0,range*2,range*2);
       
       source = new PVector(pos.x,pos.y);
     } 
+    
+    popMatrix();
   }
   
   void fire()

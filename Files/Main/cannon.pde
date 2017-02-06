@@ -13,34 +13,34 @@ class cannon extends tower
   
   void drawTower()
   {
+    pushMatrix();
+    translate(pos.x,pos.y);
+      
+    if(target != null)
+    {
+      theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
+    }
+    else
+    {
+      theta = lerp(theta,0,0.1); 
+    }
+    
+    rotate(-radians(theta-90));
+      
     stroke(towerColour);
     noFill();
     strokeWeight(3);
+      
+    ellipse(0,0,towerWidth,towerHeight);
+    triangle(towerWidth/4,0,-towerWidth/4,towerHeight/4,-towerWidth/4,-towerHeight/4);  
     
-    if(target != null)
+    if(placing == true && pos.x > menuWidth || clicked == true)
     {
-      pushMatrix();
-      translate(pos.x,pos.y);
-      theta = atan2(target.curr.x-pos.x,target.curr.y-pos.y);
-      rotate(-theta);
-      
-      ellipse(0,0,towerWidth,towerHeight);
-      triangle(0+towerWidth/4,0+towerHeight/4,0,0-towerHeight/4,0-towerWidth/4,+towerHeight/4);  
-      
-      /*
-      ellipse(pos.x,pos.y,towerWidth,towerHeight);
-      triangle(pos.x,pos.y-towerHeight/4,pos.x+towerWidth/4,pos.y+towerHeight/4,pos.x-towerWidth/4,pos.y+towerHeight/4);  
-    */
-      if(placing == true && pos.x > menuWidth || clicked == true)
-      {
-        strokeWeight(1);
-        ellipse(0,0,range*2,range*2);
-      } 
-   
-      popMatrix(); 
-    }
+      strokeWeight(1);
+      ellipse(0,0,range*2,range*2);
+    } 
     
-    
+    popMatrix();
   }
   
   void fire()
