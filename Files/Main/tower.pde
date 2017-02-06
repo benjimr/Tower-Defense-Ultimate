@@ -34,8 +34,8 @@ abstract class tower
      clicked = false;
      moving = false;
      placeOk = true;
-     towerWidth = 50;
-     towerHeight = 50;
+     towerWidth = width/38;
+     towerHeight = width/38;
      upgradeMult = 1;
      upgradePrice = 1000;
      level = 1;
@@ -69,45 +69,24 @@ abstract class tower
       {
         placeOk = false;
       }
- 
-      map m = new map();
-      for(int i=0;i<maps.size();i++)
-      {
-        if(selectedMap == maps.get(i).name)
-        {
-          m = maps.get(i); 
-        }
-      }
-       
-       //for(int i=0;i<m.points.size()-1;i++)
-       //{
-         //quad(x1,y1-pathWidth/2,x2,y2-pathWidth/2,x2,y2+pathWidth/2,x1,y1+pathWidth/2);
-         //PVector one = m.points.get(i);  
-         //PVector two = m.points.get(i+1);
-         
-         /*if(????
-         {
-           placeOk = false; 
-         }*/
 
-//       }}
        
-       if(placeOk == true)
+     if(placeOk == true)
+     {
+       if(!activeTowers.contains(selectedTower))
        {
-         if(!activeTowers.contains(selectedTower))
-         {
-           activeTowers.add(selectedTower);
-           money -= price; 
-         }
+         activeTowers.add(selectedTower);
+         money -= price; 
+       }
 
-         placing = false;
-         selectedTower = null;
-         
-       }
-       else
-       {
-         text("Can not place here",width/2,height/2); 
-       }
+       placing = false;
+       selectedTower = null;
+       
+     }
+     else
+     {
+       text("Can not place here",width/2,height/2); 
+     }
     }   
   }
    
@@ -246,13 +225,14 @@ abstract class tower
      float boxX = border;
      float boxY = height/2;
      
-     textSize(13);
+     textSize(7);
      String d = "Damage: " + (int)damage;
-     String r = "Rate of Fire: " + rateOfFire;
+     String rate = String.format("%.2f",rateOfFire);
+     String r = "Fire Rate:"+ rate;
      String p = "Focus: " + preferences[preference];
      String ra = "Range: " + int(range);
      String l = "Level: " + level;
-     String c = "Cost: " + upgradePrice;
+     String c = "Cost: " + (int)upgradePrice;
      
      if(level == 5)
      {
@@ -269,12 +249,12 @@ abstract class tower
      rect(boxX,boxY,boxWidth,boxHeight);
      
      fill(255);
-     text(d,boxX+border,boxY+textAscent());
-     text(r,boxX+border,boxY+textAscent()*2);
-     text(p,boxX+border,boxY+textAscent()*3);
-     text(ra,boxX+border,boxY+textAscent()*4);
-     text(l,boxX+border,boxY+textAscent()*5);
-     text(c,boxX+border,boxY+textAscent()*6);
+     text(d,boxX+border,boxY+textAscent()*2);
+     text(r,boxX+border,boxY+textAscent()*4);
+     text(p,boxX+border,boxY+textAscent()*6);
+     text(ra,boxX+border,boxY+textAscent()*8);
+     text(l,boxX+border,boxY+textAscent()*10);
+     text(c,boxX+border,boxY+textAscent()*12);
      
     
 
@@ -372,7 +352,7 @@ abstract class tower
      
      
      
-   }
+  }
    
   void sell()
   {

@@ -30,7 +30,7 @@ class button
    noFill();
    stroke(255);
    
-   textSize(buttonHeight/2);
+   textSize(buttonHeight/4);
    
    //check if clicked before drawing
    isClicked();
@@ -42,7 +42,7 @@ class button
      buttonHeight = buttonHeight*0.95;
      pos.x = pos.x +(buttonWidth*0.025);
      pos.y = pos.y +(buttonHeight*0.025);
-     textSize((buttonHeight/2)*0.95);
+     textSize((buttonHeight/4)*0.95);
    }
    
    strokeWeight(2);
@@ -50,7 +50,7 @@ class button
       
    fill(255);
    
-   text(label,(pos.x+(buttonWidth/2))-(textWidth(this.label)/2),pos.y+buttonHeight-textDescent()+1);
+   text(label,(pos.x+(buttonWidth/2))-(textWidth(this.label)/2),pos.y+buttonHeight*.75);
  }
  
  void isClicked()//if clicked change appearance

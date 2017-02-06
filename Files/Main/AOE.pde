@@ -5,10 +5,10 @@ class AOE extends tower
   AOE()
   {
     super();
-    damage = 70;
-    rateOfFire = 0.5;
+    damage = 100;
+    rateOfFire = 0.25;
     towerColour = color(0,255,255);
-    range = width/15;
+    range = width/12;
     pulse = towerWidth/2;
     price = 120;
   }
@@ -39,32 +39,32 @@ class AOE extends tower
       {
         timeDamage = millis();
         drawShot = true;
-        for(int i=0;i<inRange.size();i++)
-        {
-          inRange.get(i).takeDamage(damage); 
-        }
       }
+    }
       
       if(drawShot == true)
       {
         stroke(towerColour);
         strokeWeight(2);
         noFill();
+             
         pulse = lerp(pulse,range*2,0.1);
         ellipse(pos.x,pos.y,pulse,pulse);
       
-        if(pulse > (range*2)-1)
+        if(pulse > range*2-1)
         {
           pulse = towerWidth/2;
-        
           drawShot = false;
-          
-        } 
+        }
+        else if( pulse > range && inRange != null)
+        {
+          for(int i=0;i<inRange.size();i++)
+          {
+            inRange.get(i).takeDamage(damage); 
+          } 
+        }
       }
     }
-    else
-    {
-      pulse = lerp(pulse,towerWidth/2,0.1);  
-    }
-  }
+
+  
 }

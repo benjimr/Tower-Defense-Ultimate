@@ -50,13 +50,14 @@ class rocket extends tower
   
   void fire()
   {
+    ArrayList<enemy> inRange = rangeCheck(pos,range);
+
     if(currSet == true)
     {
       curr = new PVector(pos.x,pos.y);
       currSet = false;
     }
     
-    ArrayList<enemy> inRange = rangeCheck(pos,range);
     
     if(inRange != null && drawShot == false)
     {
@@ -92,14 +93,7 @@ class rocket extends tower
       point(curr.x,curr.y);
     
       if(dist(curr.x,curr.y,dest.x,dest.y) < 10)
-      {
-        ArrayList<enemy> inBlast = rangeCheck(curr,AOE);
-        
-        for(int i=0;i<inBlast.size();i++)
-        {
-          inBlast.get(i).takeDamage(damage); 
-        } 
-         
+      {         
         blastLoc = new PVector(curr.x,curr.y);
         curr.x = source.x;
         curr.y = source.y;
@@ -111,19 +105,28 @@ class rocket extends tower
     
     if(drawBlast == true)
     {
+      ArrayList<enemy> inBlast = rangeCheck(blastLoc,AOE);
+
+       
       stroke(0,255,0);
       strokeWeight(4);
       noFill();
       
-      if(pulse < (AOE*2)-10)
-      {
-        pulse = lerp(pulse,AOE*2,0.1);
-      }
-      else
+      pulse = lerp(pulse,AOE*2,0.1);
+      
+      if(pulse > (AOE*2)-1)
       {
         pulse = 0;
-        drawBlast = false;
+        drawBlast = false;  
       }
+      else if(pulse > AOE && inBlast != null)
+      {
+        for(int i=0;i<inBlast.size();i++)
+        {
+          inBlast.get(i).takeDamage(damage); 
+        }
+      }
+
       
       
       ellipse(blastLoc.x,blastLoc.y,pulse,pulse);

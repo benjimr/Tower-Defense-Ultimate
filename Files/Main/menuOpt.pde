@@ -36,6 +36,7 @@ class menuOpt
       fill(255,0,0); 
     }
     
+    textFont(gameFont,20);
     text(value,xVal,yVal);
   }
   

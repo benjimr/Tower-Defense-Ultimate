@@ -7,11 +7,12 @@ void dataInit()
   //game options
   difficulty = "Normal";
   diffMult = 1;
-  selectedMap = "zigzag";
+  selectedMap = "zigzag";//line square l j t z s
 
   //Fonts
   splashFont = createFont("spektakel.otf",200);
-  gameFont = createFont("pixel.otf",200);
+  gameFont = createFont("pixel1.otf",200);
+
     
   eventHorizon = new Movie(this,"eventHorizon.mp4");
   
@@ -39,13 +40,13 @@ void dataInit()
   menuOptions = new ArrayList<menuOpt>();
   selectedMenu = new menuOpt();
   
-  textFont(gameFont,50);
+  textFont(gameFont,20);
   String[] menuNames = {"Play","High Scores","Achievements","Options",};
   
   for(int i=0;i<menuNames.length;i++)
   {
     float optionX = (width/3)-textWidth(menuNames[i]);
-    float optionY = (height/3)+((textDescent()+textAscent())*i);
+    float optionY = (height/3)+((textDescent()+textAscent())*i+(15*i));
     menuOpt o = new menuOpt(menuNames[i],optionX,optionY);
     menuOptions.add(o);
   }

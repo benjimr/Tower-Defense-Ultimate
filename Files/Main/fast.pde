@@ -9,7 +9,8 @@ class fast extends enemy
     entityWidth = 25;
     entityHeight = 25;
     speed = 4.5;
-    health = health2 = 70;
+    println(currentRound+1);
+    health = health2 = (70*diffMult)*(1+(currentRound+1)/10);
     size = 20;
     value = 40;
   }

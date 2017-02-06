@@ -23,7 +23,7 @@ void movieEvent(Movie m)
 //SPLASH DRAW FUNCTION
 void drawSplash()
 {
-  textFont(splashFont,50);
+  textFont(splashFont,40);
  
   String splashVal = "TD GAMES";
   float splashX = ((width/2)-(textWidth(splashVal)/2));
@@ -35,7 +35,7 @@ void drawSplash()
 
 //IN MENU DRAW FUNCTIONS
 void drawMainMenu()
-{  
+{
   for(int i=0;i<menuOptions.size();i++)
   {
     menuOptions.get(i).mouseDet();
@@ -56,8 +56,6 @@ void drawMainMenu()
 
 void drawPlay()
 {
-  
-    
   float border = menuBoxWidth/20;
   float bottom = 0;
   drawMenuBox();
@@ -165,7 +163,7 @@ void drawMenuBox()
 
 void drawTitle()
 {
-  textFont(splashFont,150);
+  textFont(splashFont,75);
   String name1 = "TOWER";
   String name2 = "DEFENSE";
   String name3 = "ULTIMATE";
@@ -257,57 +255,71 @@ void drawEnemies()
 
 void drawTowerMenu()
 {
+  String l = "Laser Cannon";
+  String p = "Pulser";
+  String sn = "Sniper";
+  String rl = "Launcher";
   fill(0);
   stroke(255);
   strokeWeight(3);
    
   rect(0,0,menuWidth,height);
   fill(255);
-  textSize(20);
-  text("Money: " + money,5,textAscent());
-  text("Limit: " + limit,5,textAscent()*2);
-  text("Score: " + score,5,textAscent()*3);
+  textSize(10);
+  text("Money: " + money,5,textAscent()*2+5);
+  text("Limit: " + limit,5,textAscent()*4+5);
+  text("Score: " + score,5,textAscent()*6+5);
+  
  
   noFill();
-  textSize(15);
+  textSize(7);
   for(int i=0;i<towerMenu.size();i++)
   {
     if(towerMenu.get(i) instanceof cannon)
     {
       cannon c = (cannon) towerMenu.get(i);
-      c.pos.x = menuWidth/2;
+      c.pos.x = menuWidth/4;
       c.pos.y = height*.12;
       
       c.drawTower(); 
       fill(255);
-      text("Price: "+c.price,c.pos.x,c.pos.y+c.towerHeight/2+textAscent());
+      text(l,c.pos.x+textWidth(l)*0.3,c.pos.y-c.towerHeight*0.2);
+      text("Price: "+c.price,c.pos.x+textWidth(l)*0.3,c.pos.y-(c.towerHeight*0.2)+textAscent()*2);
+      text("Dps: "+ (int)(c.damage*c.rateOfFire),c.pos.x+textWidth(l)*0.3,c.pos.y-(c.towerHeight*0.2)+textAscent()*4);
+      
     }
      
     if(towerMenu.get(i) instanceof AOE)
     {
       AOE a = (AOE) towerMenu.get(i);
-      a.pos.x = menuWidth/2;
+      a.pos.x = menuWidth/4;
       a.pos.y = height*0.22;
       a.drawTower();
-      text("Price: "+a.price,a.pos.x,a.pos.y+a.towerHeight/2+textAscent());
+      text(p,a.pos.x+textWidth(l)*0.3,a.pos.y-a.towerHeight*0.2);
+      text("Price: "+a.price,a.pos.x+textWidth(l)*0.3,a.pos.y-(a.towerHeight*0.2)+textAscent()*2);
+      text("Dps: "+ (int)(a.damage*a.rateOfFire)+"(AOE)",a.pos.x+textWidth(l)*0.3,a.pos.y-(a.towerHeight*0.2)+textAscent()*4);
     }
     
     if(towerMenu.get(i) instanceof sniper)
     {
       sniper s = (sniper) towerMenu.get(i);
-      s.pos.x = menuWidth/2;
+      s.pos.x = menuWidth/4;
       s.pos.y = height*0.32;
       fill(255);
-      text("Price: " + s.price,s.pos.x,s.pos.y+s.towerHeight/2+textAscent());
+      text(sn,s.pos.x+textWidth(l)*0.3,s.pos.y-s.towerHeight*0.2);
+      text("Price: "+s.price,s.pos.x+textWidth(l)*0.3,s.pos.y-(s.towerHeight*0.2)+textAscent()*2);
+      text("Dps: "+ (int)(s.damage*s.rateOfFire),s.pos.x+textWidth(l)*0.3,s.pos.y-(s.towerHeight*0.2)+textAscent()*4);
       s.drawTower();
     }
     
     if(towerMenu.get(i) instanceof rocket)
     {
       rocket r = (rocket) towerMenu.get(i);
-      r.pos.x = menuWidth/2;
+      r.pos.x = menuWidth/4;
       r.pos.y = height*0.42;
-     text("Price: " + r.price,r.pos.x,r.pos.y+r.towerHeight/2+textAscent());
+      text(rl,r.pos.x+textWidth(l)*0.3,r.pos.y-r.towerHeight*0.2);
+      text("Price: "+r.price,r.pos.x+textWidth(l)*0.3,r.pos.y-(r.towerHeight*0.2)+textAscent()*2);
+      text("Dps: "+ (int)(r.damage*r.rateOfFire)+" (AOE)",r.pos.x+textWidth(l)*0.3,r.pos.y-(r.towerHeight*0.2)+textAscent()*4);
       r.drawTower();
     }
   }  
@@ -315,7 +327,7 @@ void drawTowerMenu()
 
 void drawRoundUI()
 {
-  textFont(gameFont,20);
+  textFont(gameFont,10);
   String r = ("Round:"+(currentRound+1)+"/"+"21");
   String e = ("Remaining Enemies:"+enemyTotal);
   float border = width/80;
@@ -330,13 +342,13 @@ void drawRoundUI()
   q.drawButton();
   
   fill(255);
-  textSize(25);
+  textSize(12);
   text(r,(menuWidth/2)-(textWidth(r)/2),roundStartY-textAscent());
   
-  textSize(20);
+  textSize(10);
   text(e,menuWidth+5,height);
   
-  textSize(15);
+  textSize(10);
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
 }
 
@@ -379,10 +391,10 @@ void drawQCheck()
   rect(checkX,checkY,checkWidth,checkHeight);
   
   fill(255);
-  textSize(30);
+  textSize(15);
   text(are,checkX+(checkWidth/2)-textWidth(are)/2,checkY+checkHeight*.25);
   
-  textSize(20);
+  textSize(10);
   text(all,checkX+(checkWidth/2)-textWidth(all)/2,checkY+checkHeight*.5);
   
   yes = new button("Yes",false,checkX+checkWidth/4-5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
@@ -405,11 +417,11 @@ void drawGameOver()
   stroke(255);
   rect(overX,overY,overWidth,overHeight);
   
-  textSize(50);
+  textSize(25);
   fill(255);
   text(g,overX+(overWidth/2)-textWidth(g)/2,overY+(overHeight*0.40));
   
-  textSize(30);
+  textSize(15);
   text(s,overX+(overWidth/2)-textWidth(s)/2,overY+(overHeight*.55));
   
   r = new button("Retry",false,overX+(overWidth*.15)-5,overY+(overHeight*.65),overWidth/3,overHeight/5);

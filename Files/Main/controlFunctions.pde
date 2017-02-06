@@ -104,7 +104,7 @@ void menuControl()
       {
         case "Easy":
         {
-           diffMult = 0.5;
+          diffMult = 0.5;
           break;
         }
         case "Normal":
@@ -114,9 +114,9 @@ void menuControl()
         }
         case "Hard":
         {
-          diffMult = 2;
+          diffMult = 1.5;
           break;
-        }    
+        } 
       }
             
       //If Player clicks go, start game
