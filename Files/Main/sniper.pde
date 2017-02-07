@@ -13,9 +13,10 @@ class sniper extends tower
     rateOfFire = 0.5;
     towerColour = color(255,100,100);
     range = width/3;
-    price = 300;
+    price = 350;
     currSet = true;
     speed = 100;
+    source = new PVector(0,0);
     
   }
   
@@ -78,7 +79,7 @@ class sniper extends tower
       curr.y = source.y;
     }
     
-    if(target != null && millis() - timeDamage  >= 1000/rateOfFire && placing == false)
+    if(target != null && millis() - timeDamage  >= 1000/rateOfFire && moving == false)
     {
       timeDamage = millis();
       drawShot = true;

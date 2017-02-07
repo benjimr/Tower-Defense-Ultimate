@@ -3,7 +3,7 @@ class cannon extends tower
   cannon()
   {
     super();
-    damage = 20;
+    damage = 40;
     rateOfFire = 1;
     towerColour = color(255,0,255);
     range = width/8;
@@ -51,7 +51,7 @@ class cannon extends tower
     {
       super.choose(inRange);
      
-      if(millis()-timeDamage >= 1000/rateOfFire && target != null && placing == false)  
+      if(millis()-timeDamage >= 1000/rateOfFire && target != null && moving == false)  
       {    
         target.takeDamage(damage);
         timeDamage = millis();

@@ -29,7 +29,7 @@ abstract class tower
      timeDamage = millis();
      timeDraw = millis();
      drawShot = false;
-     preference = 0;
+     preference = 7;
      changeTarget = false;
      target = null;
      clicked = false;
@@ -54,6 +54,7 @@ abstract class tower
     if(moving == true)
     {
       mouse = mousePressed; 
+      moving = false;
     }
     else
     {
@@ -198,6 +199,13 @@ abstract class tower
             }            
             break;
           }
+          case "random":
+          {
+            int rand = (int)random(0,inRange.size()-1);
+            
+            target = inRange.get(rand);
+            break;
+          }
        }
      } 
    }
@@ -330,7 +338,7 @@ abstract class tower
      moving = true;
      place();
    }
-   else
+   else if(placing == false)
    {
      moving = false;
    }

@@ -58,7 +58,7 @@ button s,q,yes,no;
 boolean qCheck;
 
 //Tower preference buttons
-String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast"};
+String[] preferences = {"first","last","strongest","weakest","basic","heavy","fast","random"};
 ArrayList<button> prefButtons;
 
 //Game over

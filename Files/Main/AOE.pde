@@ -11,7 +11,7 @@ class AOE extends tower
     towerColour = color(0,255,255);
     range = width/12;
     pulse = towerWidth/2;
-    price = 120;
+    price = 200;
     pulseCheck = true;
   }
   
@@ -38,7 +38,7 @@ class AOE extends tower
     
     if(inRange != null)
     {
-      if(millis()-timeDamage >= 1000/rateOfFire)
+      if(millis()-timeDamage >= 1000/rateOfFire && moving == false)
       {
         timeDamage = millis();
         drawShot = true;

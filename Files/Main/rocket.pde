@@ -96,7 +96,7 @@ class rocket extends tower
       curr.y = source.y;
     }
     
-    if(target != null && millis() - timeDamage  >= 1000/rateOfFire && placing == false)
+    if(target != null && millis() - timeDamage  >= 1000/rateOfFire && moving == false)
     {
       timeDamage = millis();
       drawShot = true;
