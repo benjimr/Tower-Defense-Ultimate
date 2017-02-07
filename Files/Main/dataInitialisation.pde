@@ -3,6 +3,7 @@ void dataInit()
   //stats
   money = 500000;
   score = 0;
+  Name = "";
   
   //game options
   difficulty = "Normal";

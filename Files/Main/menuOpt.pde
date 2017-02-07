@@ -38,11 +38,12 @@ class menuOpt
     
     textFont(gameFont,20);
     text(value,xVal,yVal);
+    rect(xVal,yVal-textAscent()*2,textWidth(value),textAscent()*2);
   }
   
   void mouseDet()
   {
-    if(mouseX>xVal && mouseX<xVal+textWidth(value) && mouseY<yVal && mouseY>yVal-(textAscent()+textAscent()))
+    if(mouseX>xVal && mouseX<xVal+textWidth(value) && mouseY<yVal && mouseY>yVal-(textAscent()*2))
     {
       hover = true;
       if(mousePressed)

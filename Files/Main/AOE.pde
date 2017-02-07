@@ -1,6 +1,7 @@
 class AOE extends tower
 {
   float pulse;
+  boolean pulseCheck;
   
   AOE()
   {
@@ -11,6 +12,7 @@ class AOE extends tower
     range = width/12;
     pulse = towerWidth/2;
     price = 120;
+    pulseCheck = true;
   }
   
   void drawTower()

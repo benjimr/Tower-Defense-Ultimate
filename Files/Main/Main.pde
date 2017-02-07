@@ -52,6 +52,34 @@ void drawMainMenu()
       titleCheck = true; 
     }
   }
+  
+  textSize(15);
+  String type = "Name: ";
+  text(type,(width/2)-textWidth(type),height-100);
+  text(Name,(width/2)-textWidth(Name)/2,height-100);
+  
+  if(keyPressed)
+  {
+    if(key == 8) 
+    {
+      println("BACKSPACE");
+      if (Name.length() > 0) 
+      {
+        Name = Name.substring(0, Name.length()-1);
+      }
+    }
+    else if (key == 127)
+    {
+      println("DELETE");
+      Name = "";
+    } 
+    else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT && Name.length() < 4) 
+    {
+      println("OTHER " + key);
+      Name = Name + key;
+    }
+    delay(100);
+  }
 }
 
 void drawPlay()
@@ -124,20 +152,47 @@ void drawPlay()
 
 void drawHigh()
 {
-  Table t3 = loadTable("data/highscores.csv","header");
   float border = menuBoxWidth/20;
   float sectionWidth = menuBoxWidth/6;
   
   drawMenuBox(); 
   textSize(10);
+  
+  ArrayList<TableRow> scores = new ArrayList<TableRow>();
+
+  Table t3 = loadTable("data/highscores.csv","header");
+ 
   for(int i=0;i<t3.getRowCount();i++)
   {
-    TableRow row = t3.getRow(i);
-    text(row.getString("Name"),menuLineX+startX+border,menuBoxY+border*4+textAscent()*3*i);
-    text(row.getInt("Round"),menuLineX+startX+border+sectionWidth*2,menuBoxY+border*4+textAscent()*3*i);
-    text(row.getInt("Score"),menuLineX+startX+border+sectionWidth*3,menuBoxY+border*4+textAscent()*3*i);
-    text(row.getString("Difficulty"),menuLineX+startX+border+sectionWidth*4,menuBoxY+border*4+textAscent()*3*i);
-    text(row.getString("Map"),menuLineX+startX+border+sectionWidth*5,menuBoxY+border*4+textAscent()*3*i);
+    scores.add(t3.getRow(i));
+  }
+  
+  for(int i=0;i<scores.size();i++)
+  {
+    for(int j=1;j<scores.size()-i;j++)
+    {
+      int score = scores.get(j-1).getInt("Score");
+      int score1 = scores.get(j).getInt("Score");
+
+      if(score > score1)
+      {
+        TableRow temp = scores.get(j-1);
+        scores.set(j-1,scores.get(j));
+        scores.set(j,temp);
+      }
+    }
+   }
+ 
+  Collections.reverse(scores);
+  
+  for(int i=0;i<scores.size();i++)
+  {
+    TableRow row = scores.get(i);
+    text(row.getString("Name"),menuLineX+startX+border,menuBoxY+border*2+textAscent()*3*i);
+    text(row.getInt("Round"),menuLineX+startX+border+sectionWidth,menuBoxY+border*2+textAscent()*3*i);
+    text(row.getInt("Score"),menuLineX+startX+border+sectionWidth*1.5,menuBoxY+border*2+textAscent()*3*i);
+    text(row.getString("Diff"),menuLineX+startX+border+sectionWidth*3,menuBoxY+border*2+textAscent()*3*i);
+    text(row.getString("Map"),menuLineX+startX+border+sectionWidth*4.5,menuBoxY+border*2+textAscent()*3*i); 
   }
 }
 
@@ -155,7 +210,7 @@ void drawMenuBox()
 {
   startX = selectedMenu.xVal + textWidth(selectedMenu.value) + 20;
   float endX = width/20;
-  float lineY = selectedMenu.yVal - textDescent();
+  float lineY = selectedMenu.yVal - textAscent();
   
   pushMatrix();
   translate(startX,0);

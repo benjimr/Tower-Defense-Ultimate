@@ -9,6 +9,7 @@ class rocket extends tower
    float AOE;
    boolean drawBlast;
    float pulse;
+   boolean pulseCheck2;
   
   rocket()
   {
@@ -24,6 +25,7 @@ class rocket extends tower
     drawBlast = false;
     pulse = 0;
     theta = 0;
+    pulseCheck2 = true;
   }
   
   void drawTower()
@@ -124,7 +126,7 @@ class rocket extends tower
     {
       timeDamage = millis();
       drawShot = true;
-      pulseCheck = true;
+      pulseCheck2 = true;
     }
     
     if(drawShot == true)
@@ -173,13 +175,13 @@ class rocket extends tower
       }
       else if(pulse > AOE && inBlast != null)
       {
-        if(pulseCheck == true)
+        if(pulseCheck2 == true)
         {
           for(int i=0;i<inBlast.size();i++)
           {
             inBlast.get(i).takeDamage(damage); 
           }  
-          pulseCheck = false;
+          pulseCheck2 = false;
         }
 
       }

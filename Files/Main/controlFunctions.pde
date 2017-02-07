@@ -45,69 +45,65 @@ void screenControl()
     }
     case 3://Game over
     {
-            Table t3 = loadTable("data/highscores.csv","header");
-
-      println(t3.getRowCount());
-      for(int i=0;i<t3.getRowCount();i++)
+      if(scoreCheck == true)
       {
-        TableRow row = t3.getRow(i);
-        println(row.getString("Name"));
-      }
-      int lowest = 0;
+        Table t3 = loadTable("data/highscores.csv","header");
+
+        println(t3.getRowCount());
+        for(int i=0;i<t3.getRowCount();i++)
+        {
+          TableRow row = t3.getRow(i);
+          println(row.getString("Name"));
+        }
+        int lowest = 0;
             
-      //find lowest in table
-      for(int i=0;i<t3.getRowCount();i++)
-      {
-         TableRow row  = t3.getRow(i);
-         TableRow row2 = t3.getRow(lowest);
-         int s = row.getInt("Score");
-         int s2 = row2.getInt("Score");
-         
-         if(s2>s)
-         {
-           lowest = i; 
-         }
-      }
-      
-      TableRow row = t3.getRow(lowest);
-      
-      if(row.getInt("Score") < score)
-      {
-        row.setString("Name","Ben");
-        row.setInt("Round",currentRound+1);
-        row.setInt("Score",score);
-        row.setString("Difficulty",difficulty);
-        row.setString("Map",selectedMap);
-      }
-      
-      t3.sort("Score");
-      
-      println(t3.getRowCount());
-      for(int i=0;i<t3.getRowCount();i++)
-      {
-        TableRow row1 = t3.getRow(i);
-        println(row1.getString("Name"));
-      }
-      saveTable(t3,"data/highscores.csv");
-      
-      
-      
-    
+        //find lowest in table
+        for(int i=0;i<t3.getRowCount();i++)
+        {
+          TableRow row2 = t3.getRow(lowest);
+          int s2 = row2.getInt("Score");
+          
+          TableRow row  = t3.getRow(i);
+          int s = row.getInt("Score");
 
+          if(s2>s)
+          {
+            lowest = i; 
+          }
+       }
       
+       TableRow row = t3.getRow(lowest);
+       println("Lowest = " +row.getInt("Score"));
       
+       if(row.getInt("Score") < score)
+       {
+         row.setString("Name","Bob");
+         row.setInt("Round",currentRound+1);
+         row.setInt("Score",score);
+         row.setString("Diff",difficulty);
+         row.setString("Map",selectedMap);
+
+       }
+       
+       saveTable(t3,"data/highscores.csv");
+
+       scoreCheck = false;
+      }
       
+     
       
-      resetGame();
+     
       drawGameOver();
 
       if(r.clicked == true)
       {
+        resetGame();
         screenIndex = 2; 
       }
       
       if(m.clicked == true)
       {
+        resetGame();
         screenIndex = 1; 
       }
       break;
@@ -133,6 +129,7 @@ void resetGame()
   roundEnded = false;
   placing = false;
   qCheck = false;
+  scoreCheck = true;
   menuIndex = 4;
   k=0;
   

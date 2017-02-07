@@ -3,9 +3,10 @@ import processing.video.*;
 
 //Video to play under portals
 Movie eventHorizon;
-boolean pulseCheck = true;
-boolean pulseCheck2 = true;
+
+boolean scoreCheck = true;
 int money,score;
+String Name;
 
 //Game options
 String selectedMap,difficulty;
