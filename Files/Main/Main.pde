@@ -41,7 +41,7 @@
 
 void setup()
 {
-  fullScreen(2);
+  fullScreen();
   
   //in dataInitialisation tab
   dataInit();
