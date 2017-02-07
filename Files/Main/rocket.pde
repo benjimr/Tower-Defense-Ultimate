@@ -70,13 +70,11 @@ class rocket extends tower
   {
     ArrayList<enemy> inRange = rangeCheck(pos,range);
 
-
     if(currSet == true)
     {
       curr = new PVector(pos.x,pos.y);
       currSet = false;
     }
-    
     
     if(inRange != null && drawShot == false)
     {
@@ -139,7 +137,6 @@ class rocket extends tower
           launcherSound.rewind(); 
         }
       }
-      
        
       stroke(0,255,0);
       strokeWeight(4);
@@ -162,9 +159,8 @@ class rocket extends tower
           }  
           pulseCheck2 = false;
         }
-
       }
-
+      
       ellipse(blastLoc.x,blastLoc.y,pulse,pulse);
     }
   }

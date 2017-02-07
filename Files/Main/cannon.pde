@@ -16,11 +16,13 @@ class cannon extends tower
     pushMatrix();
     translate(pos.x,pos.y);
       
+    //if tower has a target calculate the angle between them
     if(target != null)
     {
       theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
     }
     
+    //point towards target
     rotate(-radians(theta-90));
       
     stroke(towerColour);
@@ -30,6 +32,7 @@ class cannon extends tower
     ellipse(0,0,towerWidth,towerHeight);
     triangle(towerWidth/4,0,-towerWidth/4,towerHeight/4,-towerWidth/4,-towerHeight/4);  
     
+    //if clicked draw range
     if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);

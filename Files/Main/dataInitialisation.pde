@@ -7,11 +7,19 @@ void dataInit()
   AOESound = minim.loadFile("AOE1.wav");
   sniperSound = minim.loadFile("Sniper.wav");
   launcherSound = minim.loadFile("Launcher.wav");
+  sound = true;
+  scoreCheck = true;
   
   //stats
   money = 500;
   score = 0;
   Name = "";
+  moneyCheck = false;
+  
+  regOver = false;
+  overtime = false;
+  conCheck = false;
+  overtimeMult = 0;
   
   //game options
   difficulty = "Normal";

@@ -32,11 +32,12 @@ void screenControl()
     }
     case 1://Menu Screen
     {
-      menuControl();
+      menuControl();//in this tab around line 140
       break;
     }
     case 2://Game Screen
     {
+      //in this tab around line 200
       if(gameControl() == true)
       {
         screenIndex = 3;
@@ -45,6 +46,7 @@ void screenControl()
     }
     case 3://Game over
     {
+      //if game is over check if part of high scores
       if(scoreCheck == true)
       {
         Table t3 = loadTable("data/highscores.csv","header");
@@ -83,9 +85,7 @@ void screenControl()
        scoreCheck = false;
       }
       
-     
-      
-     
+      //in main tab
       drawGameOver();
 
       if(r.clicked == true)
@@ -104,6 +104,7 @@ void screenControl()
   }
 }
 
+//used to reset all elements of the game
 void resetGame()
 {
   activeTowers.clear();
@@ -141,14 +142,17 @@ void resetGame()
 void menuControl()
 {
   textFont(gameFont,50);
+  //in main tab
   drawMainMenu();
   
   switch(menuIndex)
   {
     case 0://Play - game options
     {
+      //in main tab
       drawPlay();
       
+      //change difficulty multiplier
       switch(difficulty)
       {
         case "Easy":
@@ -177,11 +181,13 @@ void menuControl()
     }
     case 1://High Scores 
     {
+      //in main tab
       drawHigh();
       break;
     }
     case 2://Options
     {
+      //in main tab
       drawOptions();
       break;
     }
@@ -191,6 +197,7 @@ void menuControl()
     }
     case 4://Title
     {
+      //in main tab
       drawTitle();
     }
   }
@@ -209,17 +216,22 @@ boolean gameControl()
     roundInitialised = true;
   }
   
+  //in main tab
   drawMap();
   drawActiveTowers();
   
   if(roundStarted == true && roundInitialised == true && roundEnded == false)
   {
     drawEnemies();
+    //in this tab
     removeDeadEnemy();
     towerFire();
   }
   
+  //in main tab
   drawTowerMenu();
+  
+  //in this tab
   towerData();
   
   towerPlace();
@@ -243,6 +255,7 @@ void removeDeadEnemy()
 
 void towerFire()
 {
+  //have all active towers fire
   for(int i=0;i<activeTowers.size();i++)
   {
     tower t = activeTowers.get(i); 
@@ -270,6 +283,7 @@ void towerFire()
   }
 }
 
+//drawing individual towers data
 void towerData()
 {
   for(int i=0;i<activeTowers.size();i++)
@@ -283,6 +297,7 @@ void towerData()
   }
 }
 
+//for checking which enemies are in range and return an arraylist containing them
 ArrayList<enemy> rangeCheck(PVector pos, float range)
 {
   ArrayList <enemy> inRange = new ArrayList<enemy>();
@@ -403,12 +418,8 @@ void roundControl()//to Major Tom
       money+=300;
       score+=500;
     }
-    
-   
     roundData();
   }
-  
-  
 }
 
 void towerPlace()

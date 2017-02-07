@@ -8,8 +8,8 @@ AudioPlayer laserCannonSound;
 AudioPlayer AOESound;
 AudioPlayer sniperSound;
 AudioPlayer launcherSound;
-Boolean sound = true;
-boolean scoreCheck = true;
+Boolean sound;
+boolean scoreCheck;
 
 //Video to play under portals
 Movie eventHorizon;
@@ -17,7 +17,7 @@ Movie eventHorizon;
 
 int money,score;
 String Name;
-boolean moneyCheck = false;
+boolean moneyCheck;
 
 //Game options
 String selectedMap,difficulty;
@@ -75,7 +75,5 @@ button r,m;
 
 //overtime
 button con,fin;
-boolean regOver = false;
-boolean overtime = false;
-boolean conCheck = false;
+boolean regOver, overtime, conCheck;
 int overtimeMult = 0;

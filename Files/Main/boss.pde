@@ -28,14 +28,9 @@ class boss extends enemy
     line(-entityWidth,0,entityWidth,0);
     line(0,-entityHeight,0,entityHeight);
     
-    
     popMatrix();
     drawHealthBar();
  
     popMatrix();
   }
 }
-
-//ellipse(curr.x,curr.y,entityWidth*2,entityHeight*2);
-  //  line(curr.x-entityWidth,curr.y,curr.x+entityWidth,curr.y);
-    //line(curr.x,curr.y-entityHeight,curr.x,curr.y+entityHeight);

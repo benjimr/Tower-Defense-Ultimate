@@ -92,6 +92,7 @@ abstract class tower
     }   
   }
    
+  //choose a target from inRange based on focus
   void choose(ArrayList<enemy> inRange)
    {
      for(int i=0;i<inRange.size();i++)
@@ -265,10 +266,6 @@ abstract class tower
      text(l,boxX+border,boxY+textAscent()*10);
      text(c,boxX+border,boxY+textAscent()*12);
      
-    
-
-    
-   
      if(!(this instanceof AOE))
      {
        prefButtons.clear();
@@ -326,9 +323,8 @@ abstract class tower
           }
        }
      }
-    }
+   }
 
-   
    button m = new button("Move",false,boxX+boxWidth*0.75-border*2,boxY,boxWidth/4,boxHeight/10);
    m.drawButton();
    
@@ -358,9 +354,7 @@ abstract class tower
    {
      upgrade();
    }
-     
-     
-     
+
   }
    
   void sell()

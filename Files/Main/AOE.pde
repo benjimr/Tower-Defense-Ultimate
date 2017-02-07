@@ -3,7 +3,6 @@ class AOE extends tower
   float pulse;
   boolean pulseCheck;
   
-  
   AOE()
   {
     super();
@@ -14,7 +13,6 @@ class AOE extends tower
     pulse = towerWidth/2;
     price = 200;
     pulseCheck = true;
-    
   }
   
   void drawTower()
@@ -26,6 +24,7 @@ class AOE extends tower
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     ellipse(pos.x,pos.y,towerWidth/2,towerHeight/2);
     
+    //if clicked draw range
     if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);
@@ -35,7 +34,6 @@ class AOE extends tower
   
   void fire()
   {
-    
     ArrayList<enemy> inRange = rangeCheck(pos,range);
     
     if(inRange != null)
@@ -48,47 +46,41 @@ class AOE extends tower
       }
     }
       
-      if(drawShot == true)
+    if(drawShot == true)
+    {
+      if(sound == true)
       {
-        if(sound == true)
-        {
-          AOESound.play();
-        
-          if(AOESound.position() == AOESound.length())
-          {
-            AOESound.rewind();
-          }        
-        }
-
-        
-        stroke(towerColour);
-        strokeWeight(2);
-        noFill();
-        
-        
-        pulse = lerp(pulse,range*2,0.1);
-        ellipse(pos.x,pos.y,pulse,pulse);
+        AOESound.play();
       
-        if(pulse > range*2-1)
+        if(AOESound.position() == AOESound.length())
         {
-          pulse = towerWidth/2;
-          drawShot = false;
-        }
-        else if( pulse > range && inRange != null)
+          AOESound.rewind();
+        }        
+      }
+ 
+      stroke(towerColour);
+      strokeWeight(2);
+      noFill();
+      
+      pulse = lerp(pulse,range*2,0.1);
+      ellipse(pos.x,pos.y,pulse,pulse);
+    
+      if(pulse > range*2-1)
+      {
+        pulse = towerWidth/2;
+        drawShot = false;
+      }
+      else if( pulse > range && inRange != null)
+      {
+        if(pulseCheck == true)
         {
-          if(pulseCheck == true)
+          for(int i=0;i<inRange.size();i++)
           {
-            for(int i=0;i<inRange.size();i++)
-            {
-              inRange.get(i).takeDamage(damage); 
-            }      
-            pulseCheck = false;
-          }
-
-          
+            inRange.get(i).takeDamage(damage); 
+          }      
+          pulseCheck = false;
         }
       }
     }
-
-  
+  }
 }

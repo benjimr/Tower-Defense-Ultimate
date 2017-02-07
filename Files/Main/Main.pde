@@ -1,26 +1,73 @@
+/*
+  Ben Ryan - C15507277 - DT228/2
+  OOP Assignment 2: Classic Game
+  Tower Defense
+  Features:
+  4 towers: aoe, laser, rocket launcher, sniper
+  4 enemies: basic, heavy, fast, boss
+  Money System
+  Can upgrade towers
+  Can change tower focus
+  Can move towers after placing
+  Can sell towers
+  Records top 10 high scores
+  Includes sound and an option to turn it on/off
+  3 difficuly level: easy, medium, hard
+  4 maps: Line, Z, Z2, >
+  endless mode (option given after completingt the 21 set rounds)
+  
+  
+  Tabs guide(in order of how processing sorts them)
+  1.Main - contains setup, draw, and most drawing code that is not contained in classes
+  2.AOE - class for the pulser tower with aoe damage
+  3.basic - class for the basic enemy
+  4.boss - class for the boss enemy
+  5.button - class for all buttons
+  6.cannon - class for laser cannon tower
+  7.controlFunctions - hold most control/calculation code that is not contained in classes
+  8.dataInitialisation - hold all the code for initialising data at program start and for each round
+  9.enemy - abstract super class for all enemies
+  10.fast - class for fast enemy
+  11.globalVariable - holds declaration of all global variables
+  12.heavy - class for heavy enemy
+  13.map - class to hold each maps data
+  14.menuOpt - class to hold the main menu options
+  15.rocket - class to the the launcher tower
+  16.round - class to hold each rounds information
+  17.sniper - class to hold the sniper tower
+  18.tower - abstract super class for all towers
+  
+*/
+
 void setup()
 {
-  //size(1366,768);
   fullScreen(2);
+  
+  //in dataInitialisation tab
   dataInit();
   
   smooth(8);  
   imageMode(CENTER);
+  
+  //video used used for portals on map
   eventHorizon.loop();
 }
 
 void draw()
 {
   background(0);
+  
+  //in controlFunctions tab
   screenControl(); 
 }
 
+//for playing video
 void movieEvent(Movie m)  
 {
   m.read();
 }
 
-//SPLASH DRAW FUNCTION
+//draw splash screen
 void drawSplash()
 {
   textFont(splashFont,40);
@@ -33,7 +80,7 @@ void drawSplash()
   text(splashVal,splashX,splashY);
 }
 
-//IN MENU DRAW FUNCTIONS
+//draw main menu
 void drawMainMenu()
 {
   for(int i=0;i<menuOptions.size();i++)
@@ -55,6 +102,7 @@ void drawMainMenu()
   
   textSize(15);
  
+  //take user input for name for highscores
   String type = "Insert Name: ";
   fill(255);
   text(type,(width/2)-textWidth(type),height-100);
@@ -81,22 +129,24 @@ void drawMainMenu()
   }
 }
 
+//draw the main menu play option
 void drawPlay()
 {
-  float border = menuBoxWidth/20;
-  float bottom = 0;
+  //in this tab around line 300
   drawMenuBox();
+  
+  float border = menuBoxWidth/20;
+  float bottom = 0;  
   goWidth = menuBoxWidth/6;
   goHeight = menuBoxHeight/7;
   
   goX = startX + menuBoxWidth - goWidth/2;
   goY = menuBoxY + menuBoxHeight - goHeight-border;
  
-
-  
   ArrayList<button> mapChoice = new ArrayList<button>();
   fill(255);
   
+  //drawing mini version of map and selecting
   for(int i=0;i<maps.size();i++)
   {
      button b = new button(maps.get(i).name,false, menuLineX+startX+border,menuBoxY+(goHeight*i)+border+(border*i),goWidth,goHeight);
@@ -130,6 +180,8 @@ void drawPlay()
       selectedMap = mapChoice.get(i).label; 
     }
   }
+  
+  //selecting difficulty
   String[] diff = {"Easy","Normal","Hard"};
   for(int i=0;i<diff.length;i++)
   {
@@ -151,14 +203,17 @@ void drawPlay()
 
 }
 
+//draw main menu highscores option
 void drawHigh()
 {
   float border = menuBoxWidth/20;
   float sectionWidth = menuBoxWidth/6;
   
+  //in this tab around line 300
   drawMenuBox(); 
   textSize(10);
   
+  //load scores from file, put in arraylist, sort display
   ArrayList<TableRow> scores = new ArrayList<TableRow>();
 
   Table t3 = loadTable("data/highscores.csv","header");
@@ -198,10 +253,14 @@ void drawHigh()
   }
 }
 
+//draw main menu options option
 void drawOptions()
 {
+  //in this tab around line 300
   drawMenuBox(); 
   String s;
+  
+  //turn sound on or off
   if(sound == true)
   {
     s = "Sound On";
@@ -234,6 +293,7 @@ void drawOptions()
   
 }
 
+//draw the box that holds all the main menu options
 void drawMenuBox()
 {
   startX = width/3;
@@ -262,6 +322,7 @@ void drawMenuBox()
 
 }
 
+//draw the game title when no option is selected
 void drawTitle()
 {
   textFont(splashFont,100);
@@ -277,7 +338,7 @@ void drawTitle()
   text(name3,xVal-(textWidth(name3)/2),yVal+(textAscent()+textDescent())*2.8);
 }
 
-//IN GAME DRAW FUNCTIONS
+//draw the map in game
 void drawMap()
 {
    for(int i=0;i<maps.size();i++)
@@ -289,6 +350,7 @@ void drawMap()
    }
 }
 
+//draw towers in game
 void drawActiveTowers()
 {
   for(int i=0;i<activeTowers.size();i++)
@@ -317,6 +379,7 @@ void drawActiveTowers()
   }
 }
 
+//draw enemies in game
 void drawEnemies()
 {
   noFill();
@@ -358,7 +421,7 @@ void drawEnemies()
   } 
 }
  
-
+//draw the menu that holds the towers for purchasing
 void drawTowerMenu()
 {
   String l = "Laser Cannon";
@@ -378,7 +441,6 @@ void drawTowerMenu()
     fill(255,0,0);
     moneyCheck = false;
   }
-  
   
   text("Money: " + money,5,textAscent()*2+5);
   fill(255);
@@ -447,6 +509,7 @@ void drawTowerMenu()
   }  
 }
 
+//draw the ui used in controlling the round and displaying round data
 void drawRoundUI()
 {
   textFont(gameFont,10);
@@ -482,6 +545,7 @@ void drawRoundUI()
   text(rounds.get(currentRound).toString(),menuWidth+5,height-(textAscent()*7));
 }
 
+//draw the tower you are currently placing
 void drawSelectedTower()
 {
   if(selectedTower instanceof cannon)
@@ -506,9 +570,9 @@ void drawSelectedTower()
   }
 }
 
+//draw the quit menu
 void drawQCheck()
-{
-  
+{ 
   float checkWidth = width/3;
   float checkHeight = height/3;
   float checkX = width/2 - checkWidth/2;
@@ -534,6 +598,7 @@ void drawQCheck()
   no.drawButton();
 }
 
+//draw the continue playing menu(for endless mode)
 void drawConCheck()
 {
   float checkWidth = width/3;
@@ -568,6 +633,7 @@ void drawConCheck()
   fin.drawButton();
 }
 
+//draw the game over screen
 void drawGameOver()
 {
   float overWidth = width/3;
@@ -593,6 +659,4 @@ void drawGameOver()
   
   m = new button("Menu",false,overX+(overWidth*.15)+(overWidth/3)+5,overY+overHeight*.65,overWidth/3,overHeight/5);
   m.drawButton();
-  
-  
 }
