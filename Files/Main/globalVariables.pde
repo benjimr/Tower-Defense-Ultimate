@@ -1,5 +1,12 @@
 import java.util.Collections;
 import processing.video.*;
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer laserCannonSound;
+AudioPlayer AOESound;
+AudioPlayer sniperSound;
+AudioPlayer launcherSound;
 
 //Video to play under portals
 Movie eventHorizon;

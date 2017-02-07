@@ -1,5 +1,13 @@
 void dataInit()
 {
+  //sound
+  minim = new Minim(this);
+  
+  laserCannonSound = minim.loadFile("LaserCannon.wav");
+  AOESound = minim.loadFile("AOE1.wav");
+  sniperSound = minim.loadFile("Sniper.wav");
+  launcherSound = minim.loadFile("Launcher.wav");
+  
   //stats
   money = 500000;
   score = 0;
@@ -143,9 +151,7 @@ void roundData()
       enemies.add(b);
       enemyTotal++;
     }  
-    
-    
-    
+   
     //gives random order of enemies each round
     Collections.shuffle(enemies);
   } 

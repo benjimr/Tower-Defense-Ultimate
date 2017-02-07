@@ -514,7 +514,11 @@ void drawConCheck()
   text(grat,checkX+(checkWidth/2)-textWidth(grat)/2,checkY+checkHeight*.25);
   
   textSize(10);
-  text(beat,checkX+(checkWidth/2)-textWidth(beat)/2,checkY+checkHeight*.5);
+  text(beat,checkX+(checkWidth/2)-textWidth(beat)/2,checkY+checkHeight*.35);
+  
+  text(sc,checkX+(checkWidth/2)-textWidth(sc)/2,checkY+checkHeight*.45);
+  text(diff,checkX+(checkWidth/2)-textWidth(diff)/2,checkY+checkHeight*.55);
+  text(cont,checkX+(checkWidth/2)-textWidth(cont)/2,checkY+checkHeight*.65);
   
   con = new button("Yes",false,checkX+checkWidth/4-5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
   con.drawButton();

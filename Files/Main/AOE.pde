@@ -3,6 +3,7 @@ class AOE extends tower
   float pulse;
   boolean pulseCheck;
   
+  
   AOE()
   {
     super();
@@ -13,6 +14,7 @@ class AOE extends tower
     pulse = towerWidth/2;
     price = 200;
     pulseCheck = true;
+    
   }
   
   void drawTower()
@@ -48,6 +50,13 @@ class AOE extends tower
       
       if(drawShot == true)
       {
+        AOESound.play();
+        
+        if(AOESound.position() == AOESound.length())
+        {
+          AOESound.rewind();
+        }
+        
         stroke(towerColour);
         strokeWeight(2);
         noFill();

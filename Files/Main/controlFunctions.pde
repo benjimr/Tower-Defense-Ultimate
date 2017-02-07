@@ -115,7 +115,7 @@ void resetGame()
   selectedTower = null;
   limit = 20;
   money = 1000;
- // score = 0;
+  score = 0;
   currentRound = 0;
   roundInitialised = false;
   roundStarted = false;
@@ -125,9 +125,12 @@ void resetGame()
   scoreCheck = true;
   regOver = false;
   overtime = false;
+  overtimeMult = 0;
+  overtimeRound = 0;
   conCheck = false;
   menuIndex = 4;
   k=0;
+  enemyTotal = 0;
   
   for(int i=0;i<menuOptions.size();i++)
   {
@@ -220,9 +223,9 @@ boolean gameControl()
   
   drawTowerMenu();
   towerData();
-  roundControl();
-  towerPlace();
   
+  towerPlace();
+  roundControl();
   return false;
 }
 
@@ -370,7 +373,6 @@ void roundControl()//to Major Tom
     
       if(con.clicked == true)
       {
-        println("here");
         overtime = true; 
         overtimeMult = 1;
         regOver = false;
