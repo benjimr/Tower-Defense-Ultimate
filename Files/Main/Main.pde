@@ -208,12 +208,14 @@ void drawOptions()
 
 void drawMenuBox()
 {
-  startX = selectedMenu.xVal + textWidth(selectedMenu.value) + 20;
+  startX = width/3;
+  
   float endX = width/20;
   float lineY = selectedMenu.yVal - textAscent();
-  
+
   pushMatrix();
   translate(startX,0);
+  point(0,0);
   
   menuLineX = lerp(menuLineX,endX,0.1);
   
@@ -227,7 +229,10 @@ void drawMenuBox()
   
   noFill();
   rect(menuLineX,menuBoxY,menuBoxWidth,menuBoxHeight);
+  
   popMatrix(); 
+  
+
 }
 
 void drawTitle()

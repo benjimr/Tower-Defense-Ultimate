@@ -38,7 +38,6 @@ class menuOpt
     
     textFont(gameFont,20);
     text(value,xVal,yVal);
-    rect(xVal,yVal-textAscent()*2,textWidth(value),textAscent()*2);
   }
   
   void mouseDet()
