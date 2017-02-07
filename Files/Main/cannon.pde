@@ -20,10 +20,6 @@ class cannon extends tower
     {
       theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
     }
-    else
-    {
-      theta = lerp(theta,0,0.1); 
-    }
     
     rotate(-radians(theta-90));
       
@@ -60,6 +56,16 @@ class cannon extends tower
       
       if(drawShot == true)
       {
+        if(sound == true)
+        {
+          laserCannonSound.play();
+        
+          if(laserCannonSound.position() == laserCannonSound.length())
+          {
+            laserCannonSound.rewind(); 
+          }
+        }
+        
         pushMatrix();
         translate(target.source.x,target.source.y);
         strokeWeight(5);

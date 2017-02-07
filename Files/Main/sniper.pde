@@ -29,10 +29,7 @@ class sniper extends tower
     {
       theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
     }
-    else
-    {
-      theta = lerp(theta,0,0.1); 
-    }
+
     
     rotate(-radians(theta-90));
     strokeWeight(3);
@@ -87,6 +84,16 @@ class sniper extends tower
     
     if(drawShot == true)
     {
+      if(sound == true)
+      {
+        sniperSound.play();
+      
+        if(sniperSound.position() == sniperSound.length())
+        {
+          sniperSound.rewind(); 
+        }
+      }
+      
       PVector dest = new PVector(target.curr.x+target.source.x,target.curr.y+target.source.y);
       
       float theta = atan2(dest.y - curr.y, dest.x - curr.x) + HALF_PI;

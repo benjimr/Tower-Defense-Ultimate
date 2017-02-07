@@ -214,8 +214,8 @@ abstract class tower
    {
      if(mouseX > pos.x - towerWidth/2 && mouseX < pos.x +towerWidth/2 && mouseY > pos.y - towerHeight/2 && mouseY < pos.y + towerHeight/2 && mousePressed)
      {
-       clicked = true; 
-       
+       clicked = true;
+
        for(int j=0;j<activeTowers.size();j++)
        {
          if(activeTowers.get(j) != this)
@@ -382,6 +382,10 @@ abstract class tower
       rateOfFire *= upgradeMult;
       upgradePrice *= upgradeMult;
       level++;
+    }
+    else
+    {
+      moneyCheck = true; 
     }
   }
 }

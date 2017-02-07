@@ -26,6 +26,7 @@ class rocket extends tower
     pulse = 0;
     theta = 0;
     pulseCheck2 = true;
+    source = new PVector(0,0);
   }
   
   void drawTower()
@@ -43,12 +44,6 @@ class rocket extends tower
     {
       theta = degrees(atan2(target.curr.x+target.source.x-pos.x,target.curr.y+target.source.y-pos.y));   
     }
-    else
-    {
-      theta = lerp(theta,0,0.1); 
-    }
-    
-    
 
     rotate((-radians(theta-90)));
     strokeWeight(3);
@@ -106,10 +101,10 @@ class rocket extends tower
     if(drawShot == true)
     {
       PVector dest = new PVector(target.curr.x+target.source.x,target.curr.y+target.source.y);
-    fill(255,0,0);
-    stroke(255,0,0);
-    strokeWeight(10);
-    point(dest.x,dest.y);
+      fill(255,0,0);
+      stroke(255,0,0);
+      strokeWeight(10);
+      point(dest.x,dest.y);
       forward = PVector.sub(dest,curr);
       forward.normalize();
         
@@ -134,7 +129,17 @@ class rocket extends tower
     if(drawBlast == true)
     {
       ArrayList<enemy> inBlast = rangeCheck(blastLoc,AOE);
-
+      
+      if(sound == true)
+      {
+        launcherSound.play();
+      
+        if(launcherSound.position() == launcherSound.length())
+        {
+          launcherSound.rewind(); 
+        }
+      }
+      
        
       stroke(0,255,0);
       strokeWeight(4);

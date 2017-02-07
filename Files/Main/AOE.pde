@@ -50,12 +50,16 @@ class AOE extends tower
       
       if(drawShot == true)
       {
-        AOESound.play();
-        
-        if(AOESound.position() == AOESound.length())
+        if(sound == true)
         {
-          AOESound.rewind();
+          AOESound.play();
+        
+          if(AOESound.position() == AOESound.length())
+          {
+            AOESound.rewind();
+          }        
         }
+
         
         stroke(towerColour);
         strokeWeight(2);

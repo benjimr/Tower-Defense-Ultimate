@@ -1,7 +1,7 @@
 void setup()
 {
-  size(1366,768);
-  //fullScreen();
+  //size(1366,768);
+  fullScreen(2);
   dataInit();
   
   smooth(8);  
@@ -54,8 +54,8 @@ void drawMainMenu()
   }
   
   textSize(15);
- ;
-  String type = "Name: ";
+ 
+  String type = "Insert Name: ";
   fill(255);
   text(type,(width/2)-textWidth(type),height-100);
   text(Name,(width/2)-textWidth(Name)/2,height-100);
@@ -198,14 +198,40 @@ void drawHigh()
   }
 }
 
-void drawAchieve()
-{
-  drawMenuBox(); 
-}
-
 void drawOptions()
 {
   drawMenuBox(); 
+  String s;
+  if(sound == true)
+  {
+    s = "Sound On";
+  }
+  else
+  {
+    s = "Sound Off";
+  }
+  
+  float buttonWidth = menuBoxWidth/5;
+  float buttonHeight = menuBoxHeight/5;
+  
+  text(s,(menuLineX+startX+(menuBoxWidth/2))-textWidth(s)/2,menuBoxY+(menuBoxHeight/2));
+  
+  button on = new button("On",false,menuLineX+startX+(menuBoxWidth/2)-buttonWidth*1.25,menuBoxY+menuBoxHeight-buttonHeight*1.25,buttonWidth,buttonHeight);
+  on.drawButton();
+  
+  button off = new button("Off",false,menuLineX+startX+(menuBoxWidth/2)+buttonWidth*0.25,menuBoxY+menuBoxHeight-buttonHeight*1.25,buttonWidth,buttonHeight);
+  off.drawButton();
+  
+  if(on.clicked == true)
+  {
+    sound = true; 
+  }
+  
+  if(off.clicked == true)
+  {
+    sound = false; 
+  }
+  
 }
 
 void drawMenuBox()
@@ -217,7 +243,6 @@ void drawMenuBox()
 
   pushMatrix();
   translate(startX,0);
-  point(0,0);
   
   menuLineX = lerp(menuLineX,endX,0.1);
   
@@ -345,10 +370,26 @@ void drawTowerMenu()
   strokeWeight(3);
    
   rect(0,0,menuWidth,height);
-  fill(255);
+  
   textSize(10);
+  fill(255);
+  if(moneyCheck == true)
+  {
+    fill(255,0,0);
+    moneyCheck = false;
+  }
+  
+  
   text("Money: " + money,5,textAscent()*2+5);
-  text("Limit: " + limit,5,textAscent()*4+5);
+  fill(255);
+  if(limit <= 5)
+  {
+    fill(255,0,0); 
+  }
+  
+  text("Health: " + limit,5,textAscent()*4+5);
+  
+  fill(255);
   text("Score: " + score,5,textAscent()*6+5);
   
  

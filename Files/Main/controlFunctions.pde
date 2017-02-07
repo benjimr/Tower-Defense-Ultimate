@@ -130,7 +130,6 @@ void resetGame()
   conCheck = false;
   menuIndex = 4;
   k=0;
-  enemyTotal = 0;
   
   for(int i=0;i<menuOptions.size();i++)
   {
@@ -181,15 +180,14 @@ void menuControl()
       drawHigh();
       break;
     }
-    case 2://Acheivements
-    {
-      drawAchieve();
-      break;
-    }
-    case 3://Options
+    case 2://Options
     {
       drawOptions();
       break;
+    }
+    case 3://quit
+    {
+      exit();
     }
     case 4://Title
     {
@@ -446,6 +444,10 @@ void towerPlace()
         selectedTower = new rocket();
         placing = true;
         break;
+      }
+      else
+      {
+        moneyCheck = true; 
       }
     }
   }

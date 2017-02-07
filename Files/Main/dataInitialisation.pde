@@ -9,7 +9,7 @@ void dataInit()
   launcherSound = minim.loadFile("Launcher.wav");
   
   //stats
-  money = 500000;
+  money = 500;
   score = 0;
   Name = "";
   
@@ -27,7 +27,7 @@ void dataInit()
   
   //Global Variables Initialisation
   screenIndex = 0;
-  menuIndex = 4;
+  menuIndex = 4; 
   k=0;
  
   //Splash screen
@@ -50,7 +50,7 @@ void dataInit()
   selectedMenu = new menuOpt();
   
   textFont(gameFont,20);
-  String[] menuNames = {"Play","High Scores","Options",};
+  String[] menuNames = {"Play","High Scores","Options","Quit"};
   
   for(int i=0;i<menuNames.length;i++)
   {

@@ -2,25 +2,27 @@ import java.util.Collections;
 import processing.video.*;
 import ddf.minim.*;
 
+//sound
 Minim minim;
 AudioPlayer laserCannonSound;
 AudioPlayer AOESound;
 AudioPlayer sniperSound;
 AudioPlayer launcherSound;
+Boolean sound = true;
+boolean scoreCheck = true;
 
 //Video to play under portals
 Movie eventHorizon;
 
-boolean scoreCheck = true;
+
 int money,score;
 String Name;
+boolean moneyCheck = false;
 
 //Game options
 String selectedMap,difficulty;
 float diffMult;
 button g;
-
-
 
 //Index Variables
 int screenIndex, menuIndex, k;
