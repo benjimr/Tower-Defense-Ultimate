@@ -323,6 +323,11 @@ void drawEnemies()
       fast f = (fast)activeEnemies.get(i);
       f.drawEnemy();
     }
+    else if(e instanceof boss)
+    {
+      boss b = (boss)activeEnemies.get(i);
+      b.drawEnemy();
+    }
     
     e.moveEnemy();
   } 

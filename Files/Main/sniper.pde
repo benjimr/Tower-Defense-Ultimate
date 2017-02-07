@@ -43,7 +43,7 @@ class sniper extends tower
     strokeWeight(5);
     line(0,0,(towerWidth*0.75),0);
     
-    if(placing == true && pos.x > menuWidth || clicked == true)
+    if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);
       noFill();

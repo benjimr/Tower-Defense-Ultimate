@@ -24,7 +24,7 @@ class AOE extends tower
     ellipse(pos.x,pos.y,towerWidth,towerHeight);
     ellipse(pos.x,pos.y,towerWidth/2,towerHeight/2);
     
-    if(placing == true && pos.x > menuWidth || clicked == true)
+    if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);
       ellipse(pos.x,pos.y,range*2,range*2);

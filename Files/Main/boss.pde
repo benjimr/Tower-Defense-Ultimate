@@ -7,12 +7,35 @@ class boss extends enemy
     entityWidth = 25;
     entityHeight = 25;
     speed = 1;
-    health = health2 = (1000*diffMult)*(1+(currentRound+1+overtimeRound)/10);
+    health = health2 = (5000*diffMult)*(1+(currentRound+1+overtimeRound)/10);
     value = 1000;
   } 
   
   void drawEnemy()
   {
+    stroke(entityColour);
+    noFill();
+    strokeWeight(3);
     
+    pushMatrix();
+    translate(source.x,source.y);
+    
+    pushMatrix();
+    translate(curr.x,curr.y);
+    
+    rotate(frameCount*0.5);
+    ellipse(0,0,entityWidth*2,entityHeight*2);
+    line(-entityWidth,0,entityWidth,0);
+    line(0,-entityHeight,0,entityHeight);
+    
+    
+    popMatrix();
+    drawHealthBar();
+ 
+    popMatrix();
   }
 }
+
+//ellipse(curr.x,curr.y,entityWidth*2,entityHeight*2);
+  //  line(curr.x-entityWidth,curr.y,curr.x+entityWidth,curr.y);
+    //line(curr.x,curr.y-entityHeight,curr.x,curr.y+entityHeight);

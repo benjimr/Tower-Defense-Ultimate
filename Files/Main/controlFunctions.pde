@@ -339,6 +339,27 @@ void roundControl()//to Major Tom
     roundEnded = true; 
     roundStarted = false;
     
+    for(int i=0;i<activeTowers.size();i++)
+    {
+      tower t = activeTowers.get(i);
+      
+      if(t instanceof AOE)
+      {
+        AOE a = (AOE)t;
+        a.pulseCheck = false; 
+        a.drawShot = false;
+        a.pulse = a.towerWidth/2;
+      }
+      else if(t instanceof rocket)
+      {
+        rocket r = (rocket)t;
+        r.pulseCheck2 = false;
+        r.drawShot = false;
+        r.pulse = 0;
+        r.drawBlast = false;
+      }
+    }
+    
     enemies.clear();
     activeEnemies.clear();
     k=0;

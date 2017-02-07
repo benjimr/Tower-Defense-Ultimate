@@ -116,26 +116,35 @@ void roundData()
   if(roundStarted == false)
   {
     enemyTotal = 0;
-    for(int basics=0;basics<(int)(rounds.get(currentRound).basic);basics++)
+    for(int basics=0;basics<(rounds.get(currentRound).basic);basics++)
     {
       enemy b = new basic();
       enemies.add(b);
       enemyTotal++;  
     }
 
-    for(int heavys=0;heavys<(int)(rounds.get(currentRound).heavy);heavys++)
+    for(int heavys=0;heavys<(rounds.get(currentRound).heavy);heavys++)
     {
       enemy h = new heavy();
       enemies.add(h);
       enemyTotal++;
     }  
   
-    for(int fasts=0;fasts < (int)(rounds.get(currentRound).fast);fasts++)
+    for(int fasts=0;fasts < (rounds.get(currentRound).fast);fasts++)
     {
       enemy f = new fast();
       enemies.add(f);
       enemyTotal++;
     }  
+    
+    for(int boss=0;boss < (rounds.get(currentRound).boss);boss++)
+    {
+      enemy b = new boss();
+      enemies.add(b);
+      enemyTotal++;
+    }  
+    
+    
     
     //gives random order of enemies each round
     Collections.shuffle(enemies);

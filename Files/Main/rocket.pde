@@ -60,7 +60,7 @@ class rocket extends tower
     
     rect(-towerWidth/4,-towerHeight/4,towerWidth,towerHeight/2);
     
-    if(placing == true && pos.x > menuWidth || clicked == true)
+    if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);
       noFill();
@@ -69,32 +69,6 @@ class rocket extends tower
       source = new PVector(pos.x,pos.y);
     }
       popMatrix();
-    
-    
-   /* 
-    strokeWeight(3);
-    stroke(towerColour);
-    noFill();
-    
-    pushMatrix();
-    if(target != null)
-    {
-      translate(pos.x,pos.y);
-      theta = atan2(pos.x-target.curr.x,pos.y-target.curr.y);
-      rotate(theta);
-    
-      ellipse(0,0,towerWidth,towerHeight);
-      fill(0);
-      rect(0-towerWidth/4,0-towerHeight/1.5,towerWidth-towerWidth/2,towerHeight);
-      
-      
-    }
-    
-
-     
-     popMatrix();
-     
-     */
   }
   
   void fire()

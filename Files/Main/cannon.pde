@@ -34,7 +34,7 @@ class cannon extends tower
     ellipse(0,0,towerWidth,towerHeight);
     triangle(towerWidth/4,0,-towerWidth/4,towerHeight/4,-towerWidth/4,-towerHeight/4);  
     
-    if(placing == true && pos.x > menuWidth || clicked == true)
+    if(pos.x > menuWidth && clicked == true)
     {
       strokeWeight(1);
       ellipse(0,0,range*2,range*2);
