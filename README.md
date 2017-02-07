@@ -2,7 +2,11 @@
 ## Assignment 2 Semester 2 2017
 
 ### Overview
-This game is called 'Tower Defense Ultimate'.
+This game is called 'Tower Defense Ultimate'. Below is an image detailing the basics of the
+main game screen.
+
+![Sketch](http://i.imgur.com/AxvdWzJ.png)
+
 #### Features
 - 4 Towers
 - 4 Enemy types
@@ -18,22 +22,27 @@ I used the java collections library, the minim sound library, and the processing
 
 ### Splash Screen
 Fades in, fades out and brings you to the main menu
+
 ![Sketch](http://i.imgur.com/jBThiae.png)
 
 ### Main menu
 This is where you can view high scores, change sound options quit and change game options
+
 ![Sketch](http://i.imgur.com/5Q53cn3.png)
 
 ### Play options
 Here you can choose which map you would like to play and what difficult it should be
+
 ![Sketch](http://i.imgur.com/K7FnxO8.png)
 
 ### High Scores
 Here you can view the top ten high Scores
+
 ![Sketch](http://i.imgur.com/vml2Iax.png)
 
 ### Options
 Here you can turn sound on or off
+
 ![Sketch](http://i.imgur.com/6EEWVhH.png)
 
 ### Quit
