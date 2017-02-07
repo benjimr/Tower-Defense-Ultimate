@@ -73,7 +73,7 @@ void dataInit()
   rounds = new ArrayList<round>();
   roundStarted = roundInitialised = roundEnded = false;
   limit = 20;
-  currentRound = 20;
+  currentRound = 0;
   overtimeRound = 0;
   
   //Round UI elements
