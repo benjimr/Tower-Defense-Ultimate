@@ -77,7 +77,7 @@ void screenControl()
       
        if(row.getInt("Score") < score)
        {
-         row.setString("Name","Bob");
+         row.setString("Name",Name);
          row.setInt("Round",currentRound+1);
          row.setInt("Score",score);
          row.setString("Diff",difficulty);

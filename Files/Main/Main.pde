@@ -54,7 +54,9 @@ void drawMainMenu()
   }
   
   textSize(15);
+ ;
   String type = "Name: ";
+  fill(255);
   text(type,(width/2)-textWidth(type),height-100);
   text(Name,(width/2)-textWidth(Name)/2,height-100);
   
@@ -143,6 +145,8 @@ void drawPlay()
       difficulty = diff[i]; 
     }
   }
+  textSize(9);
+  text(difficulty,goX-textWidth(difficulty)/2,bottom-goHeight);
   
   g = new button("Go",false,goX+border,bottom,goWidth,goHeight);
   g.drawButton();
@@ -185,6 +189,7 @@ void drawHigh()
  
   Collections.reverse(scores);
   
+  fill(255);
   for(int i=0;i<scores.size();i++)
   {
     TableRow row = scores.get(i);

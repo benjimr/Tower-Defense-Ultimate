@@ -8,7 +8,7 @@ void dataInit()
   //game options
   difficulty = "Normal";
   diffMult = 1;
-  selectedMap = "zigzag";//line square l j t z s
+  selectedMap = "Line";
 
   //Fonts
   splashFont = createFont("spektakel.otf",200);
@@ -42,7 +42,7 @@ void dataInit()
   selectedMenu = new menuOpt();
   
   textFont(gameFont,20);
-  String[] menuNames = {"Play","High Scores","Achievements","Options",};
+  String[] menuNames = {"Play","High Scores","Options",};
   
   for(int i=0;i<menuNames.length;i++)
   {
