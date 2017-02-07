@@ -11,7 +11,7 @@ void dataInit()
   scoreCheck = true;
   
   //stats
-  money = 50000;
+  money = 500;
   score = 0;
   Name = "";
   moneyCheck = false;
@@ -73,7 +73,7 @@ void dataInit()
   rounds = new ArrayList<round>();
   roundStarted = roundInitialised = roundEnded = false;
   limit = 20;
-  currentRound = 0;
+  currentRound = 20;
   overtimeRound = 0;
   
   //Round UI elements

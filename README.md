@@ -72,3 +72,9 @@ This will close the game.
 
 ### Game Complete
 ![Sketch](http://i.imgur.com/JHIgXZH.png)
+
+### Endless Mode
+
+Endless Mode, after round 21 endless mode starts if you wish to continue.
+
+![Sketch](http://i.imgur.com/MAif8MF.png)
