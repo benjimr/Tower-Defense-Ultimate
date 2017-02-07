@@ -49,12 +49,6 @@ void screenControl()
       {
         Table t3 = loadTable("data/highscores.csv","header");
 
-        println(t3.getRowCount());
-        for(int i=0;i<t3.getRowCount();i++)
-        {
-          TableRow row = t3.getRow(i);
-          println(row.getString("Name"));
-        }
         int lowest = 0;
             
         //find lowest in table
@@ -73,7 +67,6 @@ void screenControl()
        }
       
        TableRow row = t3.getRow(lowest);
-       println("Lowest = " +row.getInt("Score"));
       
        if(row.getInt("Score") < score)
        {
@@ -130,6 +123,9 @@ void resetGame()
   placing = false;
   qCheck = false;
   scoreCheck = true;
+  regOver = false;
+  overtime = false;
+  conCheck = false;
   menuIndex = 4;
   k=0;
   
@@ -338,30 +334,59 @@ void roundControl()//to Major Tom
     }
   }
   
-  if(enemyTotal == 0)
+  if(enemyTotal == 0 || conCheck == true)
   {
     roundEnded = true; 
     roundStarted = false;
+    
     enemies.clear();
     activeEnemies.clear();
     k=0;
     
-    money+=300;
-    score+=500;
-    
-    if(currentRound<20)
+    if(regOver == true)
     {
-      text("Round "+(currentRound+1)+" Complete",width/2,height/2);
-      currentRound++;
+      drawConCheck(); 
+    
+      if(con.clicked == true)
+      {
+        println("here");
+        overtime = true; 
+        overtimeMult = 1;
+        regOver = false;
+        conCheck = false;
+      }
       
-    }
-    else
-    {
-      text("Complete",width/2,height/2); 
+      if(fin.clicked == true)
+      {
+        resetGame();
+        screenIndex = 1;
+      }
     }
     
+    if(conCheck == false)
+    {
+      if(overtime == true)
+      {
+        overtimeRound++; 
+      }
+      else if(currentRound+1 == 21)
+      {
+        regOver = true;   
+        conCheck = true;
+      }
+      else if(currentRound+1 < 20)
+      {
+        currentRound++;   
+      }
+      
+      money+=300;
+      score+=500;
+    }
+    
+   
     roundData();
   }
+  
   
 }
 

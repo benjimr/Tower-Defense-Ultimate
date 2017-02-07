@@ -49,7 +49,8 @@ tower selectedTower;
 
 //Round controllers
 boolean roundStarted, roundInitialised, roundEnded;
-int enemyTotal, limit, currentRound;
+int enemyTotal, limit, currentRound, overtimeRound;
+
 
 //Round UI 
 float roundStartX, roundStartY, roundStartWidth, roundStartHeight, menuWidth;
@@ -63,4 +64,9 @@ ArrayList<button> prefButtons;
 //Game over
 button r,m;
 
-//highscores
+//overtime
+button con,fin;
+boolean regOver = false;
+boolean overtime = false;
+boolean conCheck = false;
+int overtimeMult = 0;

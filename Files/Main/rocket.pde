@@ -186,8 +186,6 @@ class rocket extends tower
 
       }
 
-      
-      
       ellipse(blastLoc.x,blastLoc.y,pulse,pulse);
     }
   }

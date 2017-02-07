@@ -64,7 +64,6 @@ void drawMainMenu()
   {
     if(key == 8) 
     {
-      println("BACKSPACE");
       if (Name.length() > 0) 
       {
         Name = Name.substring(0, Name.length()-1);
@@ -72,12 +71,10 @@ void drawMainMenu()
     }
     else if (key == 127)
     {
-      println("DELETE");
       Name = "";
     } 
     else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT && Name.length() < 4) 
     {
-      println("OTHER " + key);
       Name = Name + key;
     }
     delay(100);
@@ -407,7 +404,15 @@ void drawTowerMenu()
 void drawRoundUI()
 {
   textFont(gameFont,10);
-  String r = ("Round:"+(currentRound+1)+"/"+"21");
+  String r;
+  if(overtime == false)
+  {
+    r = ("Round:"+(currentRound+1)+"/"+"21");
+  }
+  else
+  {
+     r = ("Round:"+(currentRound+1+overtimeRound));
+  }
   String e = ("Remaining Enemies:"+enemyTotal);
   float border = width/80;
   fill(0);
@@ -481,6 +486,36 @@ void drawQCheck()
   
   no = new button("No",false,checkX+checkWidth/2+5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
   no.drawButton();
+}
+
+void drawConCheck()
+{
+  float checkWidth = width/3;
+  float checkHeight = height/3;
+  float checkX = width/2 - checkWidth/2;
+  float checkY = height/2 - checkHeight/2;
+  String grat = "Congratulations";
+  String beat = "You have beaten the game";
+  String sc = "Score = " + score;
+  String diff = "Difficuly: " +difficulty;
+  String cont = "Do you wish to continue?";
+  
+  stroke(255);
+  fill(0);
+  rect(checkX,checkY,checkWidth,checkHeight);
+  
+  fill(255);
+  textSize(15);
+  text(grat,checkX+(checkWidth/2)-textWidth(grat)/2,checkY+checkHeight*.25);
+  
+  textSize(10);
+  text(beat,checkX+(checkWidth/2)-textWidth(beat)/2,checkY+checkHeight*.5);
+  
+  con = new button("Yes",false,checkX+checkWidth/4-5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
+  con.drawButton();
+  
+  fin = new button("No",false,checkX+checkWidth/2+5,checkY+checkHeight*.75,checkWidth/4,checkHeight/5);
+  fin.drawButton();
 }
 
 void drawGameOver()
