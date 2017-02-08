@@ -8,7 +8,7 @@ class heavy extends enemy
     entityHeight = 25;
     speed = 1.5;
     health = health2 = (200*diffMult)*(1+(currentRound+1+overtimeRound)/10);
-    value = 60;
+    value = 5;
   }
   
   void drawEnemy()

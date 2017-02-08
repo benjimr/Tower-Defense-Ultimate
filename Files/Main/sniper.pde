@@ -17,7 +17,7 @@ class sniper extends tower
     currSet = true;
     speed = 100;
     source = new PVector(0,0);
-    
+    upgradePrice = 500;
   }
   
   void drawTower()

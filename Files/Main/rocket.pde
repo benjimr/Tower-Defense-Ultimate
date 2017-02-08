@@ -27,6 +27,7 @@ class rocket extends tower
     theta = 0;
     pulseCheck2 = true;
     source = new PVector(0,0);
+    upgradePrice = 500;
   }
   
   void drawTower()

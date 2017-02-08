@@ -9,6 +9,7 @@ class cannon extends tower
     range = width/8;
     priority = "Heavy";
     price = 100;
+    upgradePrice = 300;
   }
   
   void drawTower()

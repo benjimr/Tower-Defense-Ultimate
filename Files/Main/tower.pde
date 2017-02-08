@@ -38,7 +38,6 @@ abstract class tower
      towerWidth = width/38;
      towerHeight = width/38;
      upgradeMult = 1;
-     upgradePrice = 1000;
      level = 1;
    }
    

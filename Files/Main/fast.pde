@@ -11,7 +11,7 @@ class fast extends enemy
     speed = 4.5;
     health = health2 = (70*diffMult)*(1+(currentRound+1+overtimeRound)/10);
     size = 20;
-    value = 40;
+    value = 5;
   }
   
   void drawEnemy()

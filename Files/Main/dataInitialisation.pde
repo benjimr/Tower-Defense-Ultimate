@@ -11,7 +11,7 @@ void dataInit()
   scoreCheck = true;
   
   //stats
-  money = 500;
+  money = 600;
   score = 0;
   Name = "";
   moneyCheck = false;

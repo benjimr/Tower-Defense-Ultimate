@@ -49,39 +49,8 @@ void screenControl()
       //if game is over check if part of high scores
       if(scoreCheck == true)
       {
-        Table t3 = loadTable("data/highscores.csv","header");
-
-        int lowest = 0;
-            
-        //find lowest in table
-        for(int i=0;i<t3.getRowCount();i++)
-        {
-          TableRow row2 = t3.getRow(lowest);
-          int s2 = row2.getInt("Score");
-          
-          TableRow row  = t3.getRow(i);
-          int s = row.getInt("Score");
-
-          if(s2>s)
-          {
-            lowest = i; 
-          }
-       }
-      
-       TableRow row = t3.getRow(lowest);
-      
-       if(row.getInt("Score") < score)
-       {
-         row.setString("Name",Name);
-         row.setInt("Round",currentRound+1);
-         row.setInt("Score",score);
-         row.setString("Diff",difficulty);
-         row.setString("Map",selectedMap);
-
-       }
-       
-       saveTable(t3,"data/highscores.csv");
-
+        
+        highscoreCheck();
        scoreCheck = false;
       }
       
@@ -104,6 +73,42 @@ void screenControl()
   }
 }
 
+void highscoreCheck()
+{
+  Table t3 = loadTable("data/highscores.csv","header");
+
+  int lowest = 0;
+    
+  //find lowest in table
+  for(int i=0;i<t3.getRowCount();i++)
+  {
+    TableRow row2 = t3.getRow(lowest);
+    int s2 = row2.getInt("Score");
+    
+    TableRow row  = t3.getRow(i);
+    int s = row.getInt("Score");
+    
+    if(s2>s)
+    {
+      lowest = i; 
+    }
+  }
+  
+   TableRow row = t3.getRow(lowest);
+  
+   if(row.getInt("Score") < score)
+   {
+     row.setString("Name",Name);
+     row.setInt("Round",currentRound+1);
+     row.setInt("Score",score);
+     row.setString("Diff",difficulty);
+     row.setString("Map",selectedMap);
+    
+   }
+   
+  saveTable(t3,"data/highscores.csv"); 
+}
+
 //used to reset all elements of the game
 void resetGame()
 {
@@ -115,7 +120,7 @@ void resetGame()
   heavys.clear();
   selectedTower = null;
   limit = 20;
-  money = 1000;
+  money = 600;
   score = 0;
   currentRound = 0;
   roundInitialised = false;
@@ -394,8 +399,9 @@ void roundControl()//to Major Tom
       
       if(fin.clicked == true)
       {
+        highscoreCheck();
         resetGame();
-        screenIndex = 1;
+        screenIndex = 1;  
       }
     }
     
@@ -410,12 +416,12 @@ void roundControl()//to Major Tom
         regOver = true;   
         conCheck = true;
       }
-      else if(currentRound+1 < 20)
+      else if(currentRound+1 <= 20)
       {
         currentRound++;   
       }
       
-      money+=300;
+      money+=50;
       score+=500;
     }
     roundData();

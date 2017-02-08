@@ -13,6 +13,7 @@ class AOE extends tower
     pulse = towerWidth/2;
     price = 200;
     pulseCheck = true;
+    upgradePrice = 300;
   }
   
   void drawTower()

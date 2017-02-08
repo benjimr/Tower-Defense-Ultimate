@@ -8,7 +8,7 @@ class boss extends enemy
     entityHeight = 25;
     speed = 1;
     health = health2 = (5000*diffMult)*(1+(currentRound+1+overtimeRound)/10);
-    value = 1000;
+    value = 250;
   } 
   
   void drawEnemy()
