@@ -1,10 +1,5 @@
-# Object Oriented Programming - DT228/2
-## Assignment 2 Semester 2 2017
-
-### Overview
 This game is called 'Tower Defense Ultimate'. Below is an image detailing the basics of the
-main game screen. Video can be seen here: https://youtu.be/rIf7a7ia7ac. Note the gameplay has been edited to try and
-fit as many things as possible in to a short video. The enemy types in the first rounds are not usually as seen in the video, and you don't start with that much money.
+main game screen. Video demonstration can be seen here: https://youtu.be/rIf7a7ia7ac. Note the gameplay has been edited to try and fit as many things as possible in to a short video. The enemy types in the first rounds are not usually as seen in the video, and you don't start with that much money.
 
 ![Sketch](http://i.imgur.com/AxvdWzJ.png)
 
